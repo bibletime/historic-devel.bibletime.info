@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Programming_Guidelines.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Programming_Guidelines skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Programming_Guidelines.html" title="Programming Guidelines">Programming Guidelines</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Programming_Guidelines&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Programming_Guidelines&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">BibleTime up to 1.6 never had strict rules for the implementation of the code. Looking at the code you'll see that the code is a total mess, not maintainable, not well put into an architecture. Part of the reasons were the lacking knowledge of the right techniques. 
+
+These guidelines are quite strict to enforce good code quality. They are mandatory for any newly written code.
+
+= Central repository =
+== Types of branches ==
+* '''master''' - the main development branch for checking in code.
+* '''stable-*''' - branches for stable versions used for backporting fixes (e.g. ''stable-2.7'').
+* '''archived-*''' - old stable branches for versions no longer being supported (e.g. ''archived-2.6'').
+
+== Policy for commiting to central repository ==
+All stable branches of our source code repository should '''always''' be in a releaseable state. That means that everything checked in has to compile and work properly, without breaking compatibility.
+
+The master branch, which is the development branch, should '''always''' be in a near-releasable. This means, that unless explicitly coordinated with other developers, the master branch should also be kept as bug-free as possible. It should compile and work properly for the most part.
+
+No commits should be done to the archived branches, '''ever'''!
+
+=Source code policies=
+
+== Headers and implementations ==
+It is good C++ practice to work with header and implementation files. The following rules apply:
+* One header and one implementation file for each major class
+* Classes declared within another class may be in the same file
+* The header files must #include only what is required for that particular header file. User forward declarations where possible.
+* Include everything needed for the class in the implementation file
+
+All source files must have the following beginning:
+{{Code|Mandatory C++ file heading|&lt;nowiki>/*********
+*
+* In the name of the Father, and of the Son, and of the Holy Spirit.
+*
+* This file is part of BibleTime's source code, http://www.bibletime.info/.
+*
+* Copyright 1999-2010 by the BibleTime developers.
+* The BibleTime source code is licensed under the GNU General Public License version 2.0.
+*
+**********/&lt;/nowiki>}}
+
+==Source code documentation==
+* Document classes, member variables and member functions in the ''header'' files. There should be at least a brief information about each class and member function.
+* Implementation files should contain in-code documentation (à la "the next block does..."). Please document enough, so that other people can understand your code quickly.
+
+==Design and naming conventions==
+There are no rules for this (yet).
+For helpful hints, check out this trolltech [http://doc.trolltech.com/qq/qq13-apis.html article] about a good API.
+
+==User-visible text==
+Texts in the UI that the user sees must be marked with {{InlineCode|QObject::tr()}} for translation.
+
+Here is a list of old, internal names and their preferred equivalent that is to be used in existing and new code:
+
+{| border="1" cellspacing="0" cellpadding="4" rules="all" class="hintergrundfarbe1 rahmenfarbe1" style="margin:1em 1em 1em 0; border-style:solid; border-width:1px; border-collapse:collapse; empty-cells:show; caption-side:top; "
+|- style="background-color: lightgray;"
+! Old names || Current name, to be used || explanation
+|-
+| (sword) module || work || literary work, all kinds of books
+|-
+| main index || bookshelf || the place to store your works
+|-
+| (sword) module manager || bookshelf manager || the tool to download/update/remove works
+|-
+| presenter, display window || read window || the mdi windows where you can read your works
+|}
+
+Read these instructions which are very enlightening and recommended for everyone working with user interface texts:
+*[http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGText/chapter_14_section_3.html#//apple_ref/doc/uid/TP30000365-CHDIEGHB Mac HIG]
+*[http://msdn2.microsoft.com/en-us/library/aa974175.aspx MS Vista HIG, Style and Tone]
+*[http://msdn2.microsoft.com/en-us/library/aa974176.aspx MS Vista HIG, User Interface Text]
+*[http://techbase.kde.org/Projects/Usability/HIG KDE HIG]
+
+===Text style and tone===
+*Neutral tone, not aggressive or impolite but not overly polite ("please" is not necessary, "You have failed to..." is bad)
+*As short as possible - every word counts and must add new information
+*Avoid redundancy (in one sentence but also between UI elements)
+*Avoid obvious information which is easily deductible from the context (e.g. don't add the object of the action if user knows it already)
+*Tooltips end with period only if there are several sentences. If there are several sentences they all end with period. Single, short, even incomplete sentences are preferred.
+* Avoid snobbish or rare words or grammar, remember that the text must be understood by even non-native English users. (Example: use "indexes" instead of "indices", it's correct English and more understandable to the foreign users because it's a regular plural.)
+
+Examples:
+*&lt;i>Bad tooltip:&lt;/i> You can go to the next verse of the current work by clicking this button.
+*&lt;i>Better tooltip:&lt;/i> Go to the next verse of the current work
+*&lt;i>Good tooltip:&lt;/i> Next verse
+
+===Capitalization===
+Use title-style capitalization for titles, sentence-style capitalization for all other UI elements. For details, see [http://msdn2.microsoft.com/en-us/library/aa974176.aspx MS Vista HIG, User Interface Text].
+*Window titles are title-style
+*Buttons, tabs, menu items, labels etc. are sentence-style
+*Even grouping headers are sentence-style
+*Bookshelf Manager is a title, use title-case in all places, even in menu
+
+== Coding style ==
+In general, source code should be as readable as possible. In case following any of the rules below makes code look too bad, then sometimes rules may be ignored.
+
+=== General class header file structure ===
+This is the general class header file structure for class ClassName, which inherits from BaseClassName:
+# Licence
+# empty line
+# {{InlineCode|#ifndef CLASSNAME_H}}
+# {{InlineCode|#define CLASSNAME_H}}
+# empty line
+# {{InlineCode|#include "baseclassname.h"}}
+# empty line
+# Global includes, alphabetically ordered, e.g. {{InlineCode|&lt;nowiki>#include &lt;QObject>&lt;/nowiki>}}
+# Local includes, alphabetically ordered, e.g. {{InlineCode|&lt;nowiki>#include "someclassname.h"&lt;/nowiki>}}
+# two empty lines
+# Macros
+# empty line
+# Global forward declarations, alphabetically ordered
+# empty line
+# {{InlineCode|&lt;nowiki>namespace ThisClassNamespace {&lt;/nowiki>}}
+# empty line
+# Local forward declarations, alphabetically ordered
+# empty line
+# Struct, class, typedef etc declarations separated by empty lines
+# empty line
+# Any other declarations for namespace, longer inlined or template code.
+# empty line
+# {{InlineCode|&lt;nowiki>} // namespace ThisClassNamespace&lt;/nowiki>}}
+# empty line
+# Any other declarations, macros.
+# empty line
+# {{InlineCode|#endif CLASSNAME_H}}
+# empty line
+
+=== General class source file structure ===
+This is the general class header file structure for class ClassName:
+# Licence
+# empty line
+# {{InlineCode|#include "classname.h"}}
+# empty line
+# Global includes, alphabetically ordered, e.g. {{InlineCode|&lt;nowiki>#include &lt;QObject>&lt;/nowiki>}}
+# Local includes, alphabetically ordered, e.g. {{InlineCode|&lt;nowiki>#include "someclassname.h"&lt;/nowiki>}}
+# two empty lines
+# Macros and anonymous namespaces
+# two empty lines
+# {{InlineCode|&lt;nowiki>namespace ThisClassNamespace {&lt;/nowiki>}}
+# definitions of class static variables
+# empty line
+# constructor definitions (separated by empty lines)
+# empty line
+# destructor definition
+# empty line
+# method definitions (separated by empty lines)
+# empty line
+# {{InlineCode|&lt;nowiki>} namespace ThisClassNamespace&lt;/nowiki>}}
+# empty line
+
+=== Line length ===
+Please try to fit all source code lines to 80 characters. Local {{InlineCode|typedef}}s, {{InlineCode|using}} clauses and temporary references can help:
+{{Code|Line length limiting example|&lt;nowiki>void print(const SomeClass &amp;container) {
+    using namespace this::is::very::nested;
+    typedef std::map&lt;Foo, std::list&lt;Bar> > FBLM;
+    typedef std::map&lt;Foo, std::list&lt;Bar> >::const_iterator FBLMCI;
+    const FBLM &amp;theMap = container.getMap();
+    for (FBLMCI it = theMap.begin(); it != theMap.end(); it++) {
+        
+    }
+}&lt;/nowiki>}}
+If possible, try to use somewhat intuitive abbrevations, e.g. "FBLMCI" could stand for "FooBarListMapConstIterator", i.e. {{InlineCode|std::map&lt;Foo, std::list&lt;Bar> >::const_iterator}}.
+
+=== Indentation ===
+One indentation level is '''four spaces'''. We do not use tabs to ensure that all text editors have the same display result.
+
+Preprocessor directives should also be indented to the same level as code. The preprocessor blocks themselves are not required to introduce more indentation.
+{{Code|Example of indenting preprocessor directives|&lt;nowiki>void f() {
+    #ifndef NDEBUG
+    #if STUFF > 0
+    std::cerr &lt;&lt; "STUFF is " &lt;&lt; STUFF &lt;&lt; std::endl;
+    #endif
+    #endif
+}&lt;/nowiki>}}
+
+However, indentation may be used for clarity, i.e. in &lt;tt>#if&lt;/tt> blocks, but keep in mind that regular code should also be indented. Here's how '''NOT''' to write the above example:
+{{Code|Bad (!!!) example of indenting preprocessor directives|&lt;nowiki>void f() {
+    #ifndef NDEBUG
+        #if STUFF > 0
+    std::cerr &lt;&lt; "STUFF is " &lt;&lt; STUFF &lt;&lt; std::endl; // SHOULD BE INDENTED!!!
+        #endif
+    #endif
+}&lt;/nowiki>}}
+
+=== Namespaces ===
+Namespaces are not indented and neither are their contents. An exception to this are forward declarations, which may be indented, if they're the only thing inside the namespace declaration:
+{{Code|Example of indenting forward declarations inside namespaces|&lt;nowiki>namespace Foo {
+    class FooBar;
+}
+class Bar;&lt;/nowiki>}}
+
+In other cases, code inside namespaces is not indented:
+{{Code|Namespace indentation example|&lt;nowiki>namespace Foo {
+
+struct Bar;
+
+struct Baz {
+    int a;
+};
+
+} // namespace Foo&lt;/nowiki>}}
+
+If some namespace block spans many lines, a comment should be present after the closing brace, indicating what namespace it ends. See example above.
+
+=== Classes ===
+Class member visibility specifiers ({{InlineCode|public}}, {{InlineCode|protected}}, {{InlineCode|private}}, {{InlineCode|signals}}) as well as Qt class macros (e.g. {{InlineCode|Q_OBJECT}}) are indented once, all other members are indented twice. Each visibility specifier (except specifiers for signals and slots) should also have a comment with the text "Types:", "Methods:" or "Fields:" indicating the type of members that follow. Duplication of visibility specifiers is needed to group all all class members properly.
+{{Code|Class example|&lt;nowiki>class Bar: public QObject {
+    Q_OBJECT
+
+    public: /* Types: */
+        typedef int Baz;
+
+    public: /* Methods: */
+        Bar();
+        virtual ~Bar();
+
+    protected: /* Methods: */
+        virtual Baz setBaz(const Baz &amp;baz);
+
+    protected: /* Fields: */
+        Baz m_baz;
+}; // class Bar&lt;/nowiki>}}
+
+For long class declarations, a comment should be present after the closing brace, indicating what class declaration it ends. See example above.
+
+=== Switches ===
+Cases are indented once, their contents are indented twice.
+{{Code|Switch example|&lt;nowiki>switch (foo) {
+    case 1:
+    {
+        Foo f = getFoo();
+        f.setValue(123);
+        a.setFoo(f);
+        break;
+    }
+    case 2: // Fall through
+    case 3:
+        a.setFoo(b.getFoo());
+        break;
+    default:
+        break;
+}&lt;/nowiki>}}
+
+For long switch statements, a comment should be present after the closing brace, indicating what switch statement it ends.
+
+=== Blocks ===
+Braces should generally open the block on the same line as the preceding keyword or function signature. If the preceding code or function signature spans multiple lines, the opening brace should be put on a new line.
+{{Code|Block examples|&lt;nowiki>inline function doFoo() { Foo::getInstance()->doSomething(); }
+
+function bar(const SomeNamespace::SomeClass &amp;c,
+             OtherNamespace::OtherClass *p)
+{
+    Foo &amp;f = c.foo();
+    if (p->canAccept(f)) {
+        p->accept(f);
+    }
+}&lt;/nowiki>}}
+
+=== Operators ===
+There always must be space around binary and ternary operators. For very long expressions, break lines on the same subexpression level, before the operator.
+{{Code|Long expression example|&lt;nowiki>
+if ((a || b == 123 + c * 10)
+    &amp;&amp; (c + d &lt; limit()))
+{
+    doStuff();
+}&lt;/nowiki>}}
+
+=== Initializer lists ===
+After the definition of the constructor, list all base class constructors and member variable inititializations in separate lines. Then comes the main constructor code block.
+{{Code|Initializer list example|&lt;nowiki>Foo::Foo(const QObject *parent)
+    : AbstractFoo(parent)
+    , m_bar(Bar::DEFAULT)
+{
+    // Intentionally empty
+}&lt;/nowiki>}}
+
+==Compiler strictness==
+In normal development builds, the compiler will perform a very strict error checking with the flags "-Wall -Werror -pedantic-errors". This means that all compiler warnings will abort the build. Therefore code is not allowed to produce any compiler warnings. For developers this may seem nasty at times, but I'm convinced this will prove very helpful in future (find bugs before they find you).  One example where the stricter compiler checking can help find potential bugs is "inheritance / virtual functions".
+
+==Checkin restrictions==
+* Checked in code has to compile
+* Don't check in commented out code
+* Do not check in code that is only needed for development and active by default
+** You can use a commandline switch like --debug to activate development-specific code. See main.cpp for an example (qDebug() messages will only be output if the user specified --debug as a commandline argument).
+
+= Mandatory programming principles =
+== DRY (Don't Repeat Yourself) ==
+This simple principle means that every piece of information (data or logic) may be represented only '''once''' in a system (= program).
+* http://www.artima.com/intv/dry.html
+* Related: http://c2.com/cgi/wiki?OnceAndOnlyOnce
+
+== RAII (Resource Acquisition Is Initialisation) ==
+Resource Acquisition Is Initialisation (RAII) is a powerful technique for managing allocation and deallocation of resources that was invented and popularised by Bjarne Stroustrup, the creator of C++. It allows easier managing of resources, and is the *only* sensible way to make resources exception safe.
+
+This is how this heap resources are usually used by developers:
+{{Code|Common style of coding in C and C++|&lt;nowiki>{
+    allocate_resources
+    use_resources
+    delete_resources
+}&lt;/nowiki>}}
+
+This however, is (1) error prone, because everything in delete_resources must be made to match that in allocate_resources, and if use_resources has an early exit condition it is even more difficult to program correctly; and (2) not exception safe, because use_resources might throw an exception, and the resources will be leaked.
+
+The way RAII works, is by creating a wrapper class for each resource type, the class initializes or stores the resource in its constructor, and releases it in its destructor. Since C++ guarantees that objects will be destroyed when they fall out of scope, this will ensure that resources are freed automatically. Thus, code will look like this:
+{{Code|The effects of RAII|&lt;nowiki>{
+    allocate_resources
+    use_resources
+} // Resources are automatically freed on return&lt;/nowiki>}}
+
+We use [http://doc.trolltech.com/qsharedpointer.html QSharedPointer] from Qt for just about any scoped resource management of this type that is needed. BibleTime developers should use the RAII technique for *all* scoped resource allocation and deallocation, as it is the only legitimate way to ensure exception safety, and thus to satisfy one of the Abraham's exception safety rules (see http://www.gotw.ca/gotw/082.htm for information on the Abraham's exception safety rules).
+
+Put simply,
+{{Code|Example of resource management without RAII|&lt;nowiki>void f(int val) {
+    MyClass *obj = new MyClass(); // Allocate resources
+    obj->doSomething(val);        // Use resources
+    delete obj;                   // Free resources
+}&lt;/nowiki>}}
+becomes:
+{{Code|Example of resource management with RAII|&lt;nowiki>#include "&lt;QSharedPointer>"
+
+void f(int val) {
+    QSharedPointer&lt;MyClass> obj = new MyClass(); // Allocate resources
+    obj->doSomething(val);                       // Use resources
+} // Free resources&lt;/nowiki>}}</textarea><div class='templatesUsed'>
+<div class="mw-templatesUsedExplanation"><p>Templates used on this page:
+</p></div><ul>
+<li><a href="http://devel.bibletime.info/wiki/Template:Code" title="Template:Code">Template:Code</a> (<a href="http://devel.bibletime.info/index.php?title=Template:Code&amp;action=edit" title="Template:Code">view source</a>) </li><li><a href="http://devel.bibletime.info/wiki/Template:CodeBox" title="Template:CodeBox">Template:CodeBox</a> (<a href="http://devel.bibletime.info/index.php?title=Template:CodeBox&amp;action=edit" title="Template:CodeBox">view source</a>) </li><li><a href="http://devel.bibletime.info/wiki/Template:InlineCode" title="Template:InlineCode">Template:InlineCode</a> (<a href="http://devel.bibletime.info/index.php?title=Template:InlineCode&amp;action=edit" title="Template:InlineCode">view source</a>) </li><li><a href="http://devel.bibletime.info/wiki/Template:InlineMonospace" title="Template:InlineMonospace">Template:InlineMonospace</a> (<a href="http://devel.bibletime.info/index.php?title=Template:InlineMonospace&amp;action=edit" title="Template:InlineMonospace">view source</a>) </li></ul>
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Programming_Guidelines.html" title="Programming Guidelines">Programming Guidelines</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Programming_Guidelines.html">http://devel.bibletime.info/wiki/Programming_Guidelines</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Programming_Guidelines.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:Programming_Guidelines.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Programming_Guidelines&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Programming_Guidelines&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Programming_Guidelines&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Programming_Guidelines.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Programming_Guidelines.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Programming_Guidelines", "wgTitle": "Programming Guidelines", "wgAction": "edit", "wgArticleId": 1430, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3986, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.446 secs. --></body></html>

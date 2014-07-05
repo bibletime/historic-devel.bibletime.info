@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>BuildingBibleTime - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-BuildingBibleTime skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">BuildingBibleTime</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>This page describes how to build BibleTime. This is meant for those who want to develop BibleTime or just want to build it from source.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Linux.2FUnix"><span class="tocnumber">1</span> <span class="toctext">Linux/Unix</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Prerequisites_for_building_BibleTime"><span class="tocnumber">1.1</span> <span class="toctext">Prerequisites for building BibleTime</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Tools"><span class="tocnumber">1.1.1</span> <span class="toctext">Tools</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Library_dependencies"><span class="tocnumber">1.1.2</span> <span class="toctext">Library dependencies</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-5"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Building_BibleTime"><span class="tocnumber">1.2</span> <span class="toctext">Building BibleTime</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Getting_the_code"><span class="tocnumber">1.2.1</span> <span class="toctext">Getting the code</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#The_build_script"><span class="tocnumber">1.2.2</span> <span class="toctext">The build script</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Manual_cmake"><span class="tocnumber">1.2.3</span> <span class="toctext">Manual cmake</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#After_the_first_build"><span class="tocnumber">1.2.4</span> <span class="toctext">After the first build</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Troubleshooting"><span class="tocnumber">1.3</span> <span class="toctext">Troubleshooting</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#IDEs"><span class="tocnumber">1.4</span> <span class="toctext">IDEs</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#KDevelop"><span class="tocnumber">1.4.1</span> <span class="toctext">KDevelop</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Qt_Creator"><span class="tocnumber">1.4.2</span> <span class="toctext">Qt Creator</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Windows"><span class="tocnumber">2</span> <span class="toctext">Windows</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="index.php%3Ftitle=BuildingBibleTime&amp;printable=yes.html#Mac_OS_X"><span class="tocnumber">3</span> <span class="toctext">Mac OS X</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Linux.2FUnix">Linux/Unix</span></h2>
+<h3> <span class="mw-headline" id="Prerequisites_for_building_BibleTime">Prerequisites for building BibleTime</span></h3>
+<p>It's important to have all prerequisites/dependencies installed before trying to build, otherwise you may get strange errors. The build tool doesn't always give informative messages.
+</p>
+<h4> <span class="mw-headline" id="Tools">Tools</span></h4>
+<ul><li> g++ (not just gcc) or clang++
+</li><li> cmake (autotools are NOT needed! cmake takes care of everything)
+</li><li> make (e.g. GNU Make)
+</li><li> git client for getting the latest source code (we also have tarballs for releases, so git is not necessary for those)
+</li><li> Qt4 development tools (uic, moc etc.) - probably bundled with the Qt development package
+</li></ul>
+<h4> <span class="mw-headline" id="Library_dependencies">Library dependencies</span></h4>
+<p>If you need to build something yourself remember the dependencies - most of the problems when building for example Sword come from lacking dependencies (clucene, icu...). <b>The easiest way is to install the SWORD and Qt binary and development packages with your system's package manager</b>, that should take care of almost everything else including their tool and library dependencies.
+</p>
+<ul><li> zlib compression library (lib64z1-dev)
+</li><li> sword library binary
+</li><li> sword library development package (headers)
+</li><li> clucene library binary
+</li><li> clucene library development package (headers)
+</li><li> Qt4 library binaries and development packages (headers) with at least the following Qt components present:
+<ul><li> QtCore
+</li><li> QtDbus
+</li><li> QtGui
+</li><li> QtNetwork
+</li><li> QtWebKit
+</li><li> QtXml
+</li></ul>
+</li><li> Boost library (may depend on platform whether it's divided into library and dev package(s))
+</li><li> sword may require these:
+<ul><li> libcurl
+</li><li> icu
+</li></ul>
+</li></ul>
+<p>Again, for all libraries: remember that you have to have both binaries and <b>development headers</b> installed! Many distos have binary packages and -dev or -devel packages for them; for example libqt and libtq-dev. And don't forget dependencies!
+</p>
+<h3> <span class="mw-headline" id="Building_BibleTime">Building BibleTime</span></h3>
+<p>Here's how to build the development version of BibleTime:
+</p>
+<h4> <span class="mw-headline" id="Getting_the_code"> Getting the code </span></h4>
+<ul><li> Go to a directory where the bibletime/ base directory may be created
+</li><li> "git clone <a href="git://gitorious.org/bibletime/bibletime.git" class="external free" rel="nofollow">git://gitorious.org/bibletime/bibletime.git</a>" - to check out the latest source code
+</li><li> "cd bibletime"
+</li></ul>
+<h4> <span class="mw-headline" id="The_build_script">The build script</span></h4>
+<ul><li> run "./build*.sh" (build-debug.sh, build-release.sh)
+</li><li> build*.sh runs "make install" automatically.
+<ul><li> For debug build there will be a bibletime binary in build/install/bin/, release build installs into /usr/local/. Debug build is recommended if you want a safe and easy install.
+</li></ul>
+</li></ul>
+<h4> <span class="mw-headline" id="Manual_cmake">Manual cmake</span></h4>
+<p>If build*.sh fails or if you want to do it manually:
+</p>
+<ul><li> Create a build directory and cd into it
+</li><li> run "cmake -D MODE=DEBUG .." (see the build scripts for the MODE), or... 
+</li><li> for interactive frontend: "ccmake -D MODE=DEBUG .."
+<ul><li> Basic usage of ccmake: press c, check and possibly edit the variables. Press c again for another round until you see the option to 'generate and exit'. Press 'g'.
+</li><li> If there are errors: 'e' to exit help after the process errors, then on the list of variables move down to erroneous variable, hit enter to input the correct value, then enter again.
+</li></ul>
+</li><li> If you need to hack further you can look at and edit CMakeCache.txt and run cmake again.
+</li><li> There will be makefiles in the ./build/ directory. Run "make" there to build BibleTime. Run "make install" to install it. Install location depends on the MODE (see above and read the build script).
+</li></ul>
+<h4> <span class="mw-headline" id="After_the_first_build">After the first build</span></h4>
+<ul><li> The source directory will not be touched or modified in any way. All the files made by the build process will be in the build/ directory. You can run "make" or "make install" there again.
+</li><li>The list of files to be build is in cmake/bibletime_source_list.cmake. New source files will be added there.
+</li><li> When something is changed or edited you have to run make or even cmake again:
+<ul><li> If CMakeLists.txt file in bibletime dir has been changed, running make should be enough; it re-runs cmake automatically.
+</li><li>If files have been added/removed to/from the source tree and bibletime_source_list.cmake, running make should be enough.
+</li><li>If the underlying system (libraries, tools etc.) has been radically changed you have to delete CMakeCache.txt file from build dir and run cmake or the build script again.
+</li><li>Sometimes it may be useful to delete the whole build directory and start from scratch.
+</li></ul>
+</li></ul>
+<ul><li> After running cmake once you can build the project with KDevelop (see the instructions below)
+</li></ul>
+<h3> <span class="mw-headline" id="Troubleshooting">Troubleshooting</span></h3>
+<ul><li> Did you remember all prerequisites? Most of the build problems (with any project, not only BibleTime) come from lacking dependencies, either tools, binaries or <b>development headers</b>.
+</li><li> Distro packagers don't notice all bugs, there might be something wrong with cmake files of Qt or some other library or tool so that all files are not found.
+<ul><li> <small>"No rule to make target `/usr/lib/libICE.so', needed by `bibletime'" is an example from real life for two previous items. There seemed to be some bug in some Kubuntu 8.04 package which caused some X11 related development libraries not being installed automatically as a dependency. The -dev libraries had to be installed manually. Additionally the make system error description is exceptionally misleading.</small>
+</li></ul>
+</li><li> If compiling fails with a message about something missing or a needed library (for example "libpcre"), you may have to install that library (binary and development headers). See the previous item for an example.
+</li><li> CMakeLists.txt file in bibletime directory includes some custom cmake files which are in cmake/ directory. Look at them if the build system doesn't find clucene or sword.
+</li><li> If the linking phase fails check if you have the requested library installed but having no .so link. For example if the linker complains about the missing -lphonon library, it's possible that you have libphonon.so.4 but not libphonon.so link (this is a real example from the Kubuntu 8.04).
+</li><li> You can ask help in bt-devel email list or possibly in the Discussion page of this page.
+</li></ul>
+<h3> <span class="mw-headline" id="IDEs">IDEs</span></h3>
+<h4> <span class="mw-headline" id="KDevelop">KDevelop</span></h4>
+<p>You can create a project for BibleTime:
+</p>
+<ul><li> Project-&gt;Import existing project
+</li><li> Directory: your bibletime directory
+</li><li> Generic C++ application (custom buildsystem)
+</li><li> OK
+</li></ul>
+<p>...and the project is created. Now you have to change some project options:
+</p>
+<ul><li> Project-&gt;Project Options
+</li><li> Build Options -&gt; Run the build tool in...
+<ul><li>Put here the build/ directory which is under the bibletime/ directory by default
+</li></ul>
+</li></ul>
+<p>Now you can use Build-&gt;Build Project or Build-&gt;Install, <b>but only after you have run cmake from the command line once</b> (see the instructions above).
+</p>
+<h4> <span class="mw-headline" id="Qt_Creator"> Qt Creator </span></h4>
+<p>The following instructions should work for Qt Creator 2.1 RC and later.
+</p>
+<ul><li> Open the CMakeLists.txt file of the project
+</li><li> A wizard dialog opens, and first asks you for a location to place build files in. If the folder does not exist, create it. Click the "<u>N</u>ext &gt;" button at the bottom of he dialog.
+</li><li> The next page of the wizard asks for cmake arguments
+<ul><li> For a debug build, use "<tt>-D CMAKE_BUILD_TYPE=Debug</tt>" and for a release build, use "<tt>-D CMAKE_BUILD_TYPE=Release</tt>". You may also append "<tt> -D CMAKE_INSTALL_PREFIX="install/"</tt>" to tell CMake that "<tt>make install</tt>" should install into the "install" directory under the build location, otherwise "<tt>make install</tt>" attempts to install BibleTime system-wide, but may fail due to access permissions.
+</li><li> Click the "Run CMake" button
+</li><li> It should now run and the last message is: "- Build files have been written to:..."
+</li><li> Close the wizard by clicking the "<u>F</u>inish" button.
+</li></ul>
+</li><li> Switch to the "Projects" view (CTRL+5)
+<ul><li> <b>OPTIONAL STEP:</b> <i>In "Build Settings" under "Build Steps" is a box which says "Make: make". Click the "Details" button next to the box. In the "Additional arguments" box, type "<tt>-j#</tt>" where # is the number of CPU cores on your computer + 1. This makes compilation faster by utilizing all available CPU cores by running # jobs in parallel. The additional +1 job is to utilize the a CPU core which sits idle in case another compilation jobs waits for I/O requests to complete.</i>
+</li><li> In "Run Settings" add a new deploy configuration with a new Make build step. Put "<tt>install</tt>" as an additional argument to that Make step. You can also rename the new deploy configuration "<tt>make install</tt>" or anything else you like.
+</li></ul>
+</li><li> Under main window "Build" menu, click "Run" (CTRL+R). This makes Qt Creator try to build and run BibleTime. It should successfully build BibleTime, but fail to run it properly. To see compilation progress, click "Compile Output" (ALT+4) from the bottom of Qt Creator.
+</li><li> After Qt Creator has failed to run BibleTime in the last step, go back to the "Projects" view "Run Settings" page.
+<ul><li> add a new Run configuration ("Custom executable")
+</li><li> Leave the fields as they are, it's easier to fill them later
+</li></ul>
+</li><li> Make Qt Creator try to run ("Build-&gt;Run", CTRL+R) BibleTime again. After a short while, Qt Creator opens a dialog asking for the custom executable (because you didn't give it in the new Run configuration).
+<ul><li> Browse and add "<tt>bin/bibletime</tt>" from the install location as the executable
+</li><li> <b>OPTIONAL STEP:</b> <i>It is recommended to add "<tt>--debug</tt>" to the arguments field.</i>
+</li><li> Accept the dialog by clicking "Ok".
+</li></ul>
+</li></ul>
+<p>If all went well, then BibleTime should start and you have successfully configured Qt Creator to work with your copy of the BibleTime source code.&#160;:)
+</p>
+<h2> <span class="mw-headline" id="Windows">Windows</span></h2>
+<p>There are some directions at <a href="wiki/Building_on_Windows.html" title="Building on Windows">Building_on_Windows</a>
+</p>
+<h2> <span class="mw-headline" id="Mac_OS_X">Mac OS X</span></h2>
+<p>Building on Mac is relatively straight-forward.
+</p>
+<ul><li>Install MacPorts: <a href="http://www.macports.org" class="external free" rel="nofollow">http://www.macports.org</a>.
+</li><li>Use MacPorts to install qt4-mac.
+</li><li>Use MacPorts to install curl, clucene, zlib, icu, etc with their development packages and any other dependencies that SWORD has as well as cmake and boost for BibleTime.
+<ul><li> icu is actually not used by BT and SWORD can be compiled without it.
+</li></ul>
+</li><li>Manually install the SWORD library from the source tarball, probably to a location like /opt/manual, so it's not mixed in with the system headers, but is instead in a directory parallel to MacPorts in /opt/local.
+</li><li>Download the Bibletime source and build the debug version, then run.  Everything should work out properly.  Complain on the list if it doesn't, I'll figure out what steps I missed here, and everything will be fine in the end.
+</li></ul>
+<p>Problems with Mac build
+</p>
+<ul><li> It does not find any of the modules that either MacSword or BibleDesktop install. These both install to ~/Library/Application Source/Sword. (This is a biggie!!!) -- Testing now with SWORD HEAD and seeing if that works better for DM. (Greg)
+</li><li>IMHO, the layout does not at all look like a Mac application. It should have a Mac look and feel. Especially since the download is 38M. That is pretty big for a the Bible programs available on the Mac. Some of it has a Mac look and feel (e.g. tabs) but much of it doesn't (the same can probably be said of BibleDesktop). (Acceptance by Mac users will determine whether this is a big deal.)
+<ul><li> It should be possible to reduce the download size; Windows package is only ~11MB including msvc files. The look&amp;feel is harder. Probably we aren't going to change the UI greatly just because of Mac. Qt does what it does to look and behave like a Mac UI and it's not always enough. MacSword is highly recommended for those who want a native app. BibleTime may be good for those who want to use one app on many platforms or need some specific feature. --<a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 12:27, 10 November 2009 (UTC)
+</li></ul>
+</li><li> There shouldn't be both a Preferences menu selection and a Settings menu. The Settings menu should go away. Many Mac users won't expect that. 
+<ul><li> But BibleTime users on multiple platforms will. It's about choice, and if you are choosing BibleTime, it's not for a MAC Look and feel,it's for a BibleTime Look and Feel. If you change it to match the MAC, then it's not BibleTime any more. BibleTime has a distinctly Qt Look and Feel, because that is what it is designed around, and mainly what makes the interface so nice, I have used more than 20 sword based projects, and my favourite is BibleTIme for it's presentation, customizable layout, menu structure, and book shelf manager. Changing these to look more "MAC" ish, detracts from these features which are built around Qt. --ntrcessor 01:01, 12 March 2010 (CST)
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 59/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1462-0!*!0!!en!*!edit=0 and timestamp 20140704232823 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/BuildingBibleTime.html">http://devel.bibletime.info/wiki/BuildingBibleTime</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/BuildingBibleTime.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:BuildingBibleTime&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=BuildingBibleTime&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=BuildingBibleTime&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=BuildingBibleTime&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/BuildingBibleTime.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/BuildingBibleTime.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=BuildingBibleTime&amp;oldid=3922.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 22 November 2013, at 19:19.</li>
+		<li id="viewcount">This page has been accessed 28,312 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BuildingBibleTime", "wgTitle": "BuildingBibleTime", "wgAction": "view", "wgArticleId": 1462, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3922, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.219 secs. --></body></html>

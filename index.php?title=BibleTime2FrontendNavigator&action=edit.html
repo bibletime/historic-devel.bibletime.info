@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/BibleTime2FrontendNavigator.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-BibleTime2FrontendNavigator skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/BibleTime2FrontendNavigator.html" title="BibleTime2FrontendNavigator">BibleTime2FrontendNavigator</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=BibleTime2FrontendNavigator&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=BibleTime2FrontendNavigator&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">== BibleTime 2.0 navigator ==
+This page shows an idea how it would be possible to implement a keychooser-like solution for BibleTime2.
+This design was originally meant as a possible implementation suggestion for BibleTime 1.x, but imho it's too much work and overhead to do this in 1.x.
+
+A navigator is the element in BibleTime's GUI which is responsible for the navigation in a work.
+
+===Typical usage===
+Here's a small scenario how the navigator might be used. The shown navigator is used in a verse based module, e.g. a Bible. A navigator widget has seperate parts in the edit line. In this example it's split into three parts, the book, chapter and verse part. All can be reached by pressing tab. In each part the user can type text of use the up- and down-arrow keys to change the part.
+When he's done the the user presses the enter key to show the passage he entered.
+
+# The user clicks on the widget or presses the attached key accelerator for focus. The whole key is shown, nothing is highlighted.
+#:[[image:navigator1.png]]
+# He presses TAB to get to the first part of the edit line, i.e. to the book edit part.
+#:[[image:navigator2.png]]
+# The user can enter some new text. 
+#:[[image:navigator3.png]]
+# The navigator shows a completion for the currently entered text. In this case all books which begin with "1". The first item of the list is highlighted. Pressing enter takes the highlighted list item into the currently used edit part. 
+#:[[image:navigator4.png]]
+# The user pressed ENTER on the first list item. "1. Samuel" is now the chosen book.
+#:[[image:navigator5.png]]
+# Pressing TAB activates the next edit part of the widget, i.e. the chapter part.
+#:[[image:navigator6.png]]
+# Pressing the up-arrow key increases the number to the next available one. 
+#:[[image:navigator7.png]]
+# Pressing ENTER in the edit line finished the editing action of the user and displays the newly chosen passage.
+#:[[image:navigator8.png]]
+
+==Classes==
+The classes need a detailed design together with the backend classes. As the navigation classes are model-based the model should be integrated into the backend of BibleTime somehow.
+
+===NavigationActionFactory===
+
+===Navigator===
+
+===NavigatorHistory===
+
+===NavigatorEdit===
+
+===NavigatorCompletion===
+
+===NavigationModelFactory===
+
+===NavigationModel===
+
+===NavigationModelItem===</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/BibleTime2FrontendNavigator.html" title="BibleTime2FrontendNavigator">BibleTime2FrontendNavigator</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/BibleTime2FrontendNavigator.html">http://devel.bibletime.info/wiki/BibleTime2FrontendNavigator</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/BibleTime2FrontendNavigator.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:BibleTime2FrontendNavigator.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=BibleTime2FrontendNavigator&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=BibleTime2FrontendNavigator&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=BibleTime2FrontendNavigator&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/BibleTime2FrontendNavigator.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/BibleTime2FrontendNavigator.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BibleTime2FrontendNavigator", "wgTitle": "BibleTime2FrontendNavigator", "wgAction": "edit", "wgArticleId": 1381, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1549, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.284 secs. --></body></html>

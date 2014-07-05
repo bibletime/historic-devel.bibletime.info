@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Bibletime2Frontend - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Bibletime2Frontend skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Bibletime2Frontend</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Design"><span class="tocnumber">1</span> <span class="toctext">Design</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Documentation"><span class="tocnumber">2</span> <span class="toctext">Documentation</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Translations"><span class="tocnumber">3</span> <span class="toctext">Translations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Bible_Booknames"><span class="tocnumber">3.1</span> <span class="toctext">Bible Booknames</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#User_Interface"><span class="tocnumber">3.2</span> <span class="toctext">User Interface</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Documentation_2"><span class="tocnumber">3.3</span> <span class="toctext">Documentation</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;printable=yes.html#Website"><span class="tocnumber">3.4</span> <span class="toctext">Website</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Design"> Design </span></h2>
+<p>The analysis and the class design of the frontend.
+</p>
+<ul><li> <a href="wiki/BibleTime2FrontendNavigator.html" title="BibleTime2FrontendNavigator">BibleTime2FrontendNavigator</a>
+</li></ul>
+<p>We'll probably use WebKit as HTML renderer (here is <a href="http://devel.bibletime.info/index.php?title=Bibletime2WebKitEval&amp;action=edit&amp;redlink=1" class="new" title="Bibletime2WebKitEval (page does not exist)">an initial evaluation</a>).
+</p>
+<h2> <span class="mw-headline" id="Documentation"> Documentation </span></h2>
+<p>We need a good online help system in BibleTime. It should be context-sensitive, i.e. if you press F1  / Help in a dialog information about the current dialog
+should be displayed which explains what the GUI elements do.
+To do this cross-plattform it might be necessary to write a simple online help application or evalutate Qt assistant. If we decide to write our own app this could be done as a totally seperate binary or by another main window which can be controlled by the dialogs, etc.
+</p><p>The best and easiest form of online help is tooltips. I think it would be a good idea to force a guideline according to which you are not allowed to check in UI code which doesn't have both tooltip and whatsthis text if they are available for the elements. Like it or not, for some reason people just don't read help documents - and why bother, if the UI is self-documenting and intuitive. --Eeli
+</p><p>I agree! We need to make sure the tooltips can work with normal HTML. Do you think we can do <i>without</i> a handbook entirely? What about screenshots? --mgruner
+</p><p>From Qt docs: "The "What's This?" text is used to provide a brief description of the action. The text may contain rich text." (rich text is html). OK, I tested this with Designer. It accepts html, also pictures: &lt;img src="/work/mydocs/nuolialas.png"&gt;, and span style="font-size:20pt" etc. Maybe it just uses Qt's rich text engine? But href links don't work. You can use paragraphs and align text. Tables work also.
+</p><p>Rich text doesn't work with tooltips.
+</p><p>For visible shortcuts tooltip and whatsthis may be enough, but menus etc. may need some other documentation. (Edit: Qt has whatsthis for menu items, too.) Also some kind of workflow oriented HowTo could be nice. For example for the Navigator widget good tooltip or whatsthis can serve as a simple tutorial. If we take my Navigator proposal, it could read in book selector text area: "Write the name of the book or some initials. You can write the chapter and verse here also. Press Enter to read the book or Tab to move to Chapter selection." Then there are "Next book" and "Previous book" buttons and "List of all books" button.
+</p><p>Read <a href="http://accentgrave.blogspot.com/2006/04/whatsthis.html" class="external free" rel="nofollow">http://accentgrave.blogspot.com/2006/04/whatsthis.html</a> and follow the link to the pdf doc. Maybe that gives some ideas. Whatever path we take, simple tooltip is always great as long as it gives a bit more information than the picture in the button of which you wonder what it is. Good tooltips have saved my day many times. --Eeli
+</p>
+<h2> <span class="mw-headline" id="Translations"> Translations </span></h2>
+<h3> <span class="mw-headline" id="Bible_Booknames"> Bible Booknames </span></h3>
+<p>We'll need to find a way to enable translators to translate all books available in OSIS as well as define abbreviations for them that match their language. This should be possible by defining a simple std::vector, QHashMap (or something better) of QStrings containing 
+</p>
+<ol><li> osisID
+</li><li> translation
+</li><li> comma-separated string of abbreviations
+</li></ol>
+<p>for each book. This "array" can be used to get the data for display and parsing, and we will make sure that tr() is called for each element when it is filled. The benefit of this is that it integrates into the normal UI translation and eliminates the need to load data from other external files.
+</p>
+<h3> <span class="mw-headline" id="User_Interface"> User Interface </span></h3>
+<p>QT offers an own translation mechanism using the QObject::tr() function. The main drawback is that it uses its own internal file format instead of .po and .mo files. It seems that we can use <a href="http://www.wordforge.org/static/toolkit-ts2po.html" class="external text" rel="nofollow">ts2po and po2ts</a> (debian package is called <a href="http://packages.debian.org/unstable/python/translate-toolkit" class="external text" rel="nofollow">translate-toolkit</a>) to convert the untranslated .ts files to .pot files, let translators work on them with KBabel, and convert the translated .po files back to .ts files (which later need to be compiled with lrelease). That way we can standardize on one format (see below).
+(We have to check if the conversion process between ts and po is lossless, Qt has a comment field and plural forms for the translation lookup)
+</p><p>Qt includes <a href="http://doc.trolltech.com/4.2/linguist-manual.html" class="external text" rel="nofollow">QtLinguist</a> which is a graphical tool for translators. It's of course cross-platform and uses Qt's own format. Does it lack someting? (edit: Now I see... it doesn't handle the BT documentation.)
+</p>
+<h3> <span class="mw-headline" id="Documentation_2"> Documentation </span></h3>
+<p>Currently the documentation is in XML (docbook) and can be translated with tools from KDE. They extract all translatable strings to .po files which can be translated and be assembled to XML files afterward. This would not be possible with the QT file format.
+We will compile the translated XML files it into HTML pages during release preparation and install the HTML files and images on a user's system. When a user clicks on "handbook", BibleTime will call the system browser and let it open the correct HTML file.
+(ToDo: Check how this could be integrated with our help system or check if the help system could be replaces by a system-browser based solution)
+</p>
+<h3> <span class="mw-headline" id="Website"> Website </span></h3>
+<p>This works like documentation translation currently (docbook-based).
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 26/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1376-0!*!0!!en!*!edit=0 and timestamp 20140705181052 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Bibletime2Frontend.html">http://devel.bibletime.info/wiki/Bibletime2Frontend</a>"</div>
+		<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="wiki/Special:Categories.html" title="Special:Categories">Category</a>: <span dir='ltr'><a href="wiki/Category:BibleTime_2.html" title="Category:BibleTime 2">BibleTime 2</a></span></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Bibletime2Frontend.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Bibletime2Frontend&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Bibletime2Frontend&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Bibletime2Frontend.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Bibletime2Frontend.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Bibletime2Frontend&amp;oldid=3140.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 25 May 2009, at 07:39.</li>
+		<li id="viewcount">This page has been accessed 8,646 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Bibletime2Frontend", "wgTitle": "Bibletime2Frontend", "wgAction": "view", "wgArticleId": 1376, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3140, "wgCategories": ["BibleTime 2"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.230 secs. --></body></html>

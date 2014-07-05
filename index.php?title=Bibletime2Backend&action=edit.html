@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Bibletime2Backend.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Bibletime2Backend skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Bibletime2Backend.html" title="Bibletime2Backend">Bibletime2Backend</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Bibletime2Backend&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Bibletime2Backend&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">This page is about the general structure and functionality of BibleTime 2's backend.
+
+If a new module has been discovered it needs to be prepared to be used in BibleTime:
+# Convert the content into a suitable XML format if necessary
+# Parse the content and store it
+# Prepare the navigation data
+# Create the search index(es)
+
+The backend as a whole needs a central place to get a list of all available modules, the metadata of those and more.
+
+=Content access and navigation=
+&lt;big>For now, we'll assume all content is '''XML-based'''.&lt;/big> Plain text modules will be considered as trees (even if they are not in XML, then we'll emulate a tree-like structure). We should keep in mind that one day we might want to support maps and other non-text content. For now we'll concentrate on text-based content, however.
+
+At import time, the document is split up into parts and stored in a database. The splitting will be according to xml document structure. If a module is structured by osisIDs, for example, they will be used to split it into parts. If not, as in ThML, we'll have to use other markup-provided elements such as &amp;lt;div&amp;gt; for the splitting, which might result in larger chunks of data. The database will have several tables. One of them is for content access, the others are for navigation. All of them represent a tree structure.
+
+==Generic Trees in SQL==
+There are very efficient ways to represent a tree in SQL databases. We'll start with the following table layout for all tree-based tables:
+
+{| border="1" cellspacing="0" cellpadding="4" rules="all" class="hintergrundfarbe1 rahmenfarbe1" style="margin:1em 1em 1em 0; border-style:solid; border-width:1px; border-collapse:collapse; empty-cells:show; caption-side:top; "
+|nodeID || (INT, NOT NULL, PRIMARY KEY)
+|Represents the tree nodes in linear order
+|-
+|level || (INT, NOT NULL, >=0)
+|Level of the current node
+|-
+|parent || (INT, NOT NULL, >=0)
+|nodeID of the parent node
+|-
+|countChildren ||(INT, NOT NULL, >=0)
+|Number of children of this node
+|-
+|treeCode ||(TEXT, NOT NULL, INDEX)
+|Special string that allows fetching of this and all sub-items with 1 SELECT statement (see below)
+|-
+|data ||(TEXT, INDEX)
+|actual content of the node itself
+|-
+|}
+
+The field's purpose should be fairly obvious, except for '''treeCode'''.
+The trick about this field is that for each level, a fixed-length number is written into a string. First we have to define how many children there can be to one node. Let's assume 1000 for now. That means we'll need 3 digits for each level (to represent 0..999). The first node's treeCode in the document (level 0) will be '000', the second node's treeCode '001' and so forth. The first child of the second node will have treeCode '001000', the second child '001001'. Do you ge the idea? The great benefit of this approach is that one can fetch a node and all its children with one SELECT statement. If we want the second node on level 0 and all its children, we can issue a 
+ "SELECT * from treeDB WHERE treeCode LIKE '001%' ORDER BY nodeID"
+This will fetch the second node on level 0 ('001'), its first child '001000', and even a child of its second child '001001022'. Because all nodes are ordered by nodeID they will be in the tree's correct structure.
+The one major drawback is that the number of digits for each level must be fixed. That means there is a limit on the number of children one node can have. I suggest to start with 6 digits per level, which means each node can have 1,000,000 children (also valid for the number of items on level 0). I cannot imagine situations where documents that BibleTime uses would exceed that right now, but please correct me if you are convinced otherwise.
+
+==[http://www.w3.org/TR/xml-id/ xml:id], The Backend - Frontend connection==
+Since the fontend only works with rendered HTML/JS/CSS, we need to establish some kind of direct link to the original XML data. This cannot be based on OsisIDs or other canonical data, because this would obviously not work with other documents.
+
+We'll perform a simple trick here. For each supported language we'll define a set of XML tags that need to be mappable from the frontend (such as div, verse, note and the like for OSIS). At import time, all XML tags are read in and the mappable tags will receive an additional attribute called '''[http://www.w3.org/TR/xml-id/ xml:id]'''. This will be a simple incremental number. When we render the XML data, the xml:id will be included in the HTML elements generated out of the original XML data, so that the frontend can use the xml:id of a given element to ask the backend questions about this ID. 
+Example: A footnote is represented by a 
+ &amp;lt;span xml:id="2137"&amp;gt;*&amp;lt;/span&amp;gt; 
+in the frontend. The frontend can then invoke a function of the backend to get the actual content of that footnode (xml:id 2137) and display it in a popup.
+
+==Content access table==
+This is not available to the frontend, only for backend internals. The content access table holds the actual document's content. From this table, the entire original document can be reproduced (with minor alterations such as different atribute order of XML elements).
+
+This table will be based on the generic tree table described above with minor extensions. At import time of the XML document, each element is stored in a tree table together with '''rendering context before''' and '''rendering context after''' the current node. With this approach it is possible to render correctly any portion of the entire work, even something like Mark.1-John.3.2.
+
+The rendering context before and after will each get an own table, and the tree table itself will only hold foreign keys to this table. Many elements will have the same rendering context, and we should store it only once to save space.
+
+So the table will hold the following fields in addition to the tree database fields listed above:
+{| border="1" cellspacing="0" cellpadding="4" rules="all" class="hintergrundfarbe1 rahmenfarbe1" style="margin:1em 1em 1em 0; border-style:solid; border-width:1px; border-collapse:collapse; empty-cells:show; caption-side:top; "
+|renderingContextBefore || (INT, NOT NULL)
+|Foreign key to the data containing the rendering context before the current node
+|-
+|renderingContextAfter || (INT, NOT NULL)
+|Foreign key to the data containing the rendering context after the current node
+|-
+|}
+
+The renderingContext tables are simple:
+
+{| border="1" cellspacing="0" cellpadding="4" rules="all" class="hintergrundfarbe1 rahmenfarbe1" style="margin:1em 1em 1em 0; border-style:solid; border-width:1px; border-collapse:collapse; empty-cells:show; caption-side:top; "
+|renderingContextID || (INT, PRIMARY KEY)
+|
+|-
+|content || (TEXT, UNIQUE)
+|Contains the actual data (such as &lt;code>&lt;book osisID="Gen">&lt;chapter osisID="Gen.6">&lt;/code>
+|-
+|}
+
+To create a valid XML fragment for a given range, you have to fire up this:
+
+ SELECT renderingContextBefore.content FROM content, renderingContextBefore WHERE content.nodeID=startNodeID;
+ SELECT content.content FROM content WHERE nodeID >= startNodeID AND nodeID &lt;= stopNodeID;
+ SELECT renderingContextAfter.content FROM content, renderingContextAfter WHERE content.nodeID=startNodeID;
+
+Just concatenate the results and you have a valid XML fragment that can be rendered.
+
+==Navigation tables==
+For each module there must be at least one navigation table, but there can be more than one.
+There will probably always be a generic navigation tree which represents the document structure. Others can be added, such as a canonical navigation tree that is based on milestone-elements like osisIDs or others. With this approach it is possible to have "conflicting trees" that represent the same content.
+
+These navigation tables are what is actually used by the frontend (not directly throught SQL, of course, but by classes). Therefore their wrapper classes will implement the model/view concept of QT to make different views of the same data easily possible.
+
+===Navigation types===
+* generic document-structure navigation: depends on the way the document is marked up. In OSIS this could be book/chapter/verse OR a &amp;lt;div&amp;gt; based header structure.
+* canonical navigation: this is relevant for all canonical documents (book/chapter/verse-structure). Their canonical structure could be expressed with milestone-elements, but must be navigatable as well. 
+* term-article-navigation: for lexicons.
+* perhaps others, like date-based navigation for daily devotionals?
+
+We want to enable a user to go to "Genesis: The creation", "Genesis: The creation: Adam &amp; Eve" or  "Matthew: Sermon on the mountain". Later we want to implement advanced navigation features, such as: "Show all commentaries commenting Genesis 1" or "Show all lexicons which explain the word 'God'".
+
+The navigation tables will be based on the generic tree tables. The field '''data''' will be used to store references to the nodeIDs in the content-Table, where the current navigational element points to.
+
+
+
+==Metadata table==
+Each module needs to know some stuff about itself. Here we list all metadata that probably needs to be stored:
+* MD5 sum of the original source file
+* Timestamp of the orinial source file's creation
+* Location of the source file (URL/file)
+* Database schema version
+* more?....
+
+==Content filters (better term needed)==
+We need the possibility to filter content data (of the content table's data column) at import and at usage time (when the content data is rendered). This works independent of the markup language that is used for a particular XML document. Only the content itself will be filtered, navigation and search data will not be affected by this. So when a user navigates to a particular location, the content is retrieved from the database, the filters are applied, and the resulting XML fragment is rendered. Because filters are only applied a) at import time and b) at retrieval time, speed should not really be an issue.
+
+===Compression===
+For certain lengthy texts it will be beneficial to store the data compressed. This should be fine with the sql-based approach outlined above, we can just store "data" in gzip compressed format (qCompress/qUncompress). A flag would then be set to indicate if the data of this line is encrypted or not. This has the advantage that we can compute on import for each database line if compression actually reduces the size of the current entry or not. Only if yes, the data will be stored compressed.
+
+[TODO: evaluate compression rates and speed]
+
+===Encryption===
+We could also add a filter for symmetric encryption (such as sapphire from sword). That way the data can be stored safely in the database, and can only be read with the correct unlock key. This would allow for import of locked modules from sword.
+
+= Storage =
+There will be one standard content directory in a user's BibleTime2 home directory. It will hold one subdirectory per module.
+
+Each module's directory contains a compressed file with the original source [TODO: how to compress/uncompress this file in a platform-independent way?]. This is neccessary because whenever the database layout changes, the databases for each module will need to be regenerated from the source file. In addition, there will be one sqlite3 database which holds all the databases that need to be generated for that module (and perhaps one table informing about which tables are present). In a subdirectory, search indices are stored. We should also store an MD5 sum (and other metadata?) of the original file in our database to be able to check for updates. At present, this would result in a layout like this:
+
+ &lt;code>
+ content
+ |-document1
+ |         |-source.xml.gz
+ |         |-data.sq3
+ |         |-indices (dir)
+ |                 |-clucene (dir with index files)
+ |
+ |-document2
+ |         |-...
+ &lt;/code>
+
+We can think about the possibility of not storing the document itself, but only a reference to an online source to use when databases need to be rebuilt. If that source is unavailable, the module will be lost when databases need to be rebuilt.
+Another option is to store '''both''' source and a reference to an online source. This would allow BibleTime to also check for content updates automatically.
+
+=Search=
+It is important for us to make a '''generic interface to the search engine''', so that we can plug in other implementations (like a specialized linguistic search engine) later. We'll probably start with only a clucene engine, because we do have some experience with that already, but if we find something more flexible or more specialized, we can replace or amend it with other engine implementations. Perhaps someone wants to write a linguistic search engine for Hebrew texts?
+
+==Indexing==
+Creation of the search databases/indexes (implementation dependant, of course!) will take place at import time. While the original XML document is read, the content and navigation tables will be created and filled with data. Whenever a row is inserted into the content database, all available search engines will be fed its data, tied to the nodeID of that row. The search results will then have this reference, which can in turn be transformed into all of the available navigation models for that document. That means that when a user performs a search, he has all navigation types at his disposal.
+
+Example: The user searches for "Blessed are those who show mercy". The search result will show up. Depending on the navigation that the user selected, it will either refer to Mt.5.7 (canonical navigation) or to "New Testament/Gospel of Matthew/Sermon on the mount". Whatever the user selects, it will take him to the location he is looking for.
+
+Another important topic is '''search granularity'''. For most uses a navigation-level granularity will be sufficient. However, sometimes a user wants to look for a word by a combination of several attributes, such as language, lemma, morph and so forth. For this we'll need a search index that operates on word level. This is not so important in the first place, we'd have to consider how it could be done. It will probably only be relevant in special contexts.
+
+
+=Rendering and markup languages=
+Each backend implementaition is responsible for its own text rendering. Rendering means the conversion of the underlying data into a common HTML structure, which is always the same in the whole BibleTime application.
+
+We'll probably start by implementing either OSIS or ThML, but later we'll aim to support at least (hopefully more):
+* OSIS -> own filters
+* ThML -> own filters
+* GBF -> will be converted into OSIS or ThML at import time (need to decide which), no own filters needed
+
+
+=Plug-In-Metadata for canonical material=
+It must be possible for BibleTime to load module-independent metadata, such as an XML file with headings for the Bible, or information about parallel passages (like the material from semanticbible relating to the synoptic gospels). This can then be activated for any installed module.
+# TODO: collect available metadata
+# TODO: create concept for how the integration could work out
+
+[[Category:BibleTime_2]]</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Bibletime2Backend.html" title="Bibletime2Backend">Bibletime2Backend</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Bibletime2Backend.html">http://devel.bibletime.info/wiki/Bibletime2Backend</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Bibletime2Backend.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:Bibletime2Backend.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Bibletime2Backend&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Bibletime2Backend&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Bibletime2Backend&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Bibletime2Backend.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Bibletime2Backend.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Bibletime2Backend", "wgTitle": "Bibletime2Backend", "wgAction": "edit", "wgArticleId": 1378, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3523, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.265 secs. --></body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Meeting-15.01.2011 - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Meeting-15_01_2011 skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Meeting-15.01.2011</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Meeting-15.01.2011&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Meeting-15.01.2011&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>Minutes from Meeting about BibleTime
+</p><p>Convened at 2011-01-15 16:52:30.268367 by "superfly" in #bibletime on freenode
+</p>
+<h2> <span class="mw-headline" id="Minutes">Minutes</span></h2>
+<pre>[16:52:30] STARTED (superfly)
+[16:52:43] TOPIC: Releases (superfly)
+[17:28:42] AGREED: Look at possibly implementing floating docks, as per KDevelop (superfly)
+[17:29:25] AGREED: Think about user interface modifications to take mobile and netbook screens into account (superfly)
+[18:13:49] ENDED (superfly)
+</pre>
+<h2> <span class="mw-headline" id="Present">Present</span></h2>
+<ul><li> superfly
+</li><li> GHellings
+</li><li> jotik
+</li><li> _mg_
+</li><li> gholmlund
+</li></ul>
+<h2> <span class="mw-headline" id="Raw_Log">Raw Log</span></h2>
+<pre>[16:52:30] &lt;superfly&gt; iTwinkle: start meeting about BibleTime
+[16:52:30] * iTwinkle gets out his memo-pad and cracks his knuckles
+[16:52:43] &lt;superfly&gt; iTwinkle: topic Releases
+[16:52:43] &lt;iTwinkle&gt; Current Topic: Releases
+[16:53:31] &lt;gholmlund&gt; <a href="wiki/Release_Schedules/2.9.html" class="external free" rel="nofollow">http://devel.bibletime.info/wiki/Release_Schedules/2.9</a>
+[16:59:28] &lt;superfly&gt; jotik: if we want to release a 3.0, we need to include some fairly big features from a user's perspective
+[17:01:01] &lt;_mg_&gt; GHellings: I (hopefully) found a way to configure macports to specify the target SDK 10.5. Rebuilding clucene now.
+[17:01:18] &lt;_mg_&gt; GHellings: did you say clucene is causing the problems?
+[17:01:44] &lt;GHellings&gt; According to the crash report that is the library with the problems
+[17:02:01] &lt;_mg_&gt; cool
+[17:02:13] &lt;_mg_&gt; I'm about to drop from mumble, it's useless for me.
+[17:02:19] &lt;GHellings&gt; Ok
+[17:05:38] &lt;_mg_&gt; GHellings: building new release
+[17:05:50] &lt;GHellings&gt; Ok, I'm also trying to build it directly myself
+[17:06:02] &lt;_mg_&gt; GHellings: well I'm sure this will work&#160;:D
+[17:06:09] &lt;GHellings&gt; Yay!
+[17:06:20] &lt;_mg_&gt; I mean building it directly
+[17:06:25] &lt;GHellings&gt; Oh.&#160;:D
+[17:09:19] &lt;superfly&gt; jotik: in OpenLP we have a text file on the site which OpenLP reads, nothing very complicated
+[17:09:45] &lt;_mg_&gt; sorry, I can't stand it any longer.
+[17:09:51] &lt;superfly&gt; jotik: also Debian packagers don't like update-checks, and tend to disable them
+[17:10:03] &lt;_mg_&gt; I don't think it needs to be an auto-update, but at least a notification
+[17:10:09] &lt;_mg_&gt; XML file on the server?
+[17:10:26] &lt;GHellings&gt; XML or even auto-generated the way SWORD's download page is
+[17:11:14] &lt;superfly&gt; do we really need a whole XML file, when just a text file will do?
+[17:11:43] &lt;_mg_&gt; superfly: It needs to be structured in some way. Do you talk about YAML?
+[17:12:17] &lt;superfly&gt; _mg_: a one-line text file with the version number in it is all you need
+[17:12:25] &lt;superfly&gt; what "structure" do you need?
+[17:12:30] &lt;GHellings&gt; Two lines for version and URL
+[17:12:52] &lt;_mg_&gt; superfly: agreed, if you don't need history information, that's enough
+[17:13:09] &lt;_mg_&gt; but if you want to target multiple systems, you need more structure
+[17:13:35] &lt;GHellings&gt; Not if it is auto-generated and knows what to look for
+[17:13:45] &lt;GHellings&gt; bibletime.info/versioncheck?client=mac
+[17:13:47] &lt;GHellings&gt; or so on
+[17:13:55] &lt;superfly&gt; _mg_: my OpenLP project is on Windows, Linux, OS X, BSD, and we only use 1 file
+[17:14:05] &lt;superfly&gt; so I don't see the need for anything more complicated than that
+[17:14:36] &lt;_mg_&gt; ok!
+[17:14:47] &lt;_mg_&gt; GHellings: uploading...
+[17:15:01] &lt;GHellings&gt; Ok, I'm refraining from actually packaging and installing.&#160;:D
+[17:15:04] &lt;superfly&gt; I mean, sure you can add extra stuff into the file, but I'm not sure it's really needed
+[17:15:06] &lt;GHellings&gt; That way I can use yours
+[17:15:45] &lt;_mg_&gt; GHellings: that is not a problem
+[17:15:45] &lt;GHellings&gt; superfly: Especially with the way C++ packages and installers, etc, it's very possible for us to be on 2.8 in Linux but 2.8-4 on Mac (like we are right now)
+[17:16:00] &lt;_mg_&gt; GHellings: the error will still be there on my package, I believe
+[17:16:09] &lt;_mg_&gt; s/will/would/
+[17:16:35] &lt;superfly&gt; jotik: I have an N900
+[17:17:10] &lt;_mg_&gt; GHellings: it's up
+[17:17:18] &lt;GHellings&gt; Ok, running upstairs now
+[17:17:29] &lt;superfly&gt; yes, but OpenLP is Python... I cross-compiled Quassel too, so I figure it shouldn't be too difficult to get BT compiled
+[17:19:44] &lt;superfly&gt; <a href="http://blog.saturnlaboratories.co.za/archive/2010/11/07/first-impressions-nokia-n900" class="external free" rel="nofollow">http://blog.saturnlaboratories.co.za/archive/2010/11/07/first-impressions-nokia-n900</a>
+[17:20:04] &lt;superfly&gt; I was just about to say that
+[17:20:07] &lt;superfly&gt; Interface changes
+[17:23:40] &lt;superfly&gt; jotik, GHellings: if you look at the following screenshot, you'll see there are buttons down the side that hide and show the dock windows: <a href="http://www.kdevelop.org/graphics/screenshots/4.0/Kdevelop_cpp_codetooltip.png" class="external free" rel="nofollow">http://www.kdevelop.org/graphics/screenshots/4.0/Kdevelop_cpp_codetooltip.png</a>
+[17:25:04] &lt;GHellings&gt; _mg_: Now the error is that my /usr/lib/libcurl.dylib is 5.0.0 but the binary requires 6.0.0 or higher
+[17:25:23] &lt;GHellings&gt; But that's progress!
+[17:25:42] &lt;superfly&gt; gholmlund: ^^
+[17:25:43] &lt;_mg_&gt; good.
+[17:26:27] &lt;_mg_&gt; GHellings: not sure how to solve this. curl is from macos itself.
+[17:27:07] &lt;GHellings&gt; It is, but you should be able to configure CMake to use the 10.5SDK which would compile against my version
+[17:27:18] &lt;GHellings&gt; But that might be more difficult
+[17:27:39] &lt;GHellings&gt; At that point, you might want to use the XCode generator and manually switch it from 10.6 to 10.5 and build there
+[17:28:10] &lt;GHellings&gt; jotik: I was mentioning my problems with Greek/Hebrew UTF-8 font coverage in Linux for the Wycliffe Bible Translator modules I've been working with
+[17:28:27] &lt;jotik&gt; Ok.
+[17:28:42] &lt;superfly&gt; iTwinkle: Agreed Look at possibly implementing floating docks, as per KDevelop
+[17:28:42] &lt;iTwinkle&gt; Agreed: Look at possibly implementing floating docks, as per KDevelop
+[17:29:02] &lt;GHellings&gt; Qt keeps telling BT to use Arial font, even when I didn't have Arial installed (I do now) and whatever font was being used instead did not have coverage of the UTF-8 combining diacritics for Greek/Hebrew text
+[17:29:14] &lt;jotik&gt; GHellings: You could try these fonts: <a href="http://www.gnu.org/software/freefont/" class="external free" rel="nofollow">http://www.gnu.org/software/freefont/</a>
+[17:29:16] &lt;superfly&gt; iTwinkle: agreed: Think about user interface modifications to take mobile and netbook screens into account
+[17:29:16] &lt;iTwinkle&gt; superfly: *blink*
+[17:29:17] &lt;GHellings&gt; If I use real Arial or a good Unicode font, everything works great
+[17:29:25] &lt;superfly&gt; iTwinkle: agreed Think about user interface modifications to take mobile and netbook screens into account
+[17:29:25] &lt;iTwinkle&gt; Agreed: Think about user interface modifications to take mobile and netbook screens into account
+[17:30:03] &lt;gholmlund&gt; What do you mean by "floating docks". In kdevelop they have tabs you can click and open the dock. Is this what you mean?
+[17:30:12] &lt;superfly&gt; yes
+[17:30:29] &lt;GHellings&gt; jotik: The problem isn't that I don't have fonts that do the work, the problem is Qt defaults to using a poor font choice
+[17:30:45] &lt;jotik&gt; I think it uses a system font.
+[17:30:57] &lt;jotik&gt; At least when under KDE
+[17:31:07] &lt;GHellings&gt; It seems to default to a sans-serif that only has basic latin/greek/hebrew and lacks the extended versions
+[17:31:26] &lt;GHellings&gt; But if I configure a custom font for my modules the characters appear properly
+[17:33:03] * jotik is afk for some minutes
+[17:33:04] &lt;_mg_&gt; GHellings: I think I found it.
+[17:33:15] &lt;_mg_&gt; you need to set an environment variable: MACOSX_DEPLOYMENT_TARGET
+[17:33:32] &lt;GHellings&gt; _mg_: Sounds about right.
+[17:33:55] &lt;GHellings&gt; I have some samples of how to setup the system in the SWORD cmake files so it can target iPhone
+[17:35:27] &lt;GHellings&gt; _mg_: Have you considered putting BT into the Mac App Store when we get it all built out?
+[17:35:36] &lt;superfly&gt; ah, it looks like the server's max bandwidth is something like 10 K/s, I'll see if I can adjust that higher
+[17:36:48] &lt;superfly&gt; restarting the server...
+[17:37:11] &lt;_mg_&gt; GHellings: well it costs $99 per year and they don't accept the GPL....&#160;:((
+[17:37:25] &lt;GHellings&gt; They don't? How so?
+[17:37:41] &lt;GHellings&gt; Or maybe "Why so?"
+[17:37:51] &lt;_mg_&gt; GHellings: because they want to be the exclusive distribution channel
+[17:38:14] &lt;GHellings&gt; "underscore milligrams underscore entered channel"
+[17:38:25] &lt;jotik&gt; Maybe we should release an exclusive non-GPL version for the app store which would be identical to the GPL one?&#160;:D
+[17:39:50] &lt;superfly&gt; haha, nice one jotik
+[17:40:19] &lt;GHellings&gt; jotik: We'd have to clear that with the larger SWORD world, wouldn't we?
+[17:40:39] &lt;GHellings&gt; I believe they're the only GPL-only library we use, correct?
+[17:40:44] &lt;jotik&gt; ah yes! bummer! Qt, clucene etc also.
+[17:40:54] &lt;GHellings&gt; Qt is LGPL so we're good
+[17:41:05] &lt;superfly&gt; <a href="http://www.9to5mac.com/46505/vlc-for-ios-removed-from-the-app-store" class="external free" rel="nofollow">http://www.9to5mac.com/46505/vlc-for-ios-removed-from-the-app-store</a>
+[17:41:52] &lt;jotik&gt; Apple is evil.
+[17:42:19] &lt;_mg_&gt; jotik: I agree!
+[17:42:24] &lt;GHellings&gt; Maybe, but they're also popular and one of our targetted platforms!
+[17:42:42] &lt;_mg_&gt; GHellings: agreed too!
+[17:43:02] &lt;_mg_&gt; GHellings: that's why I'm currently rebuilding again, just for you&#160;:D
+[17:43:13] &lt;jotik&gt; We should make write a jailbreaker for BibleTime!&#160;:D
+[17:43:38] &lt;GHellings&gt; jotik: You're starting to scare me.&#160;;)
+[17:47:26] &lt;superfly&gt; Unity
+[17:47:38] &lt;superfly&gt; Yes
+[17:48:11] &lt;superfly&gt; I stick to KDE&#160;:-)
+[17:48:33] &lt;GHellings&gt; I stick to "Hey, look, it installed something!"
+[17:48:34] * jotik too. Not that I use KDE-specific features a lot, but still.
+[17:50:05] &lt;superfly&gt; Just had a thought, related to John A Sullivan III's bookmarks query... what about a sync manager of a sort... like you specify a directory where those sorts of things should be saved, so that you can use something like Dropbox or SpiderOak to sync your personal data
+[17:50:26] &lt;superfly&gt; Firefox/Rekonq
+[17:50:33] &lt;superfly&gt; but mostly Firefox
+[17:52:25] &lt;superfly&gt; Firefox is basically a browser written in XML and JavaScript
+[17:53:00] &lt;GHellings&gt; And the XUL is an extra layer of complexity to plugins that I don't really care to master.&#160;:D
+[17:53:36] &lt;_mg_&gt; GHellings: uploading...
+[17:54:48] &lt;GHellings&gt; Ok, this time I'll give it 5 minutes, since last time it took a little while for the servers to realize they had a full file
+[17:55:35] &lt;_mg_&gt; GHellings: they dropped the SQL storage from HTML5, did you see that?
+[17:55:44] &lt;GHellings&gt; Who? Chrome?
+[17:55:47] &lt;_mg_&gt; now it's IndexedDB
+[17:56:08] &lt;GHellings&gt; Chrome or W3C?
+[17:56:12] &lt;_mg_&gt; the WhatWG I guess, those who develop HTML5
+[17:56:40] &lt;GHellings&gt; I heard something about that. It's unlikely Chrome will drop it, since it claims to have built-in support for Google Gears
+[17:57:00] &lt;_mg_&gt; GHellings: it's up.
+[18:00:17] &lt;superfly&gt; jotik: Redmine is pretty good
+[18:00:50] &lt;superfly&gt; We use Redmine on support.openlp.org
+[18:01:12] &lt;superfly&gt; we use JIRA at work, and I can't say I'm a fan
+[18:03:07] &lt;GHellings&gt; We use it at work (SWORD uses it, and Wycliffe uses it) - it's my favorite so far
+[18:03:24] &lt;GHellings&gt; _mg_: Same libcurl error.&#160;:(
+[18:04:02] &lt;superfly&gt; I'm not a fan of Trac either
+[18:04:22] &lt;GHellings&gt; Trac is great if you need strong integration with SVN
+[18:08:23] &lt;_mg_&gt; GHellings: see my commit. Maybe you find a better solution?
+[18:08:48] &lt;GHellings&gt; _mg_: Any solution I find will be based in 10.5. Maybe I should just build one for 10.5 and yours will be for 10.6?
+[18:09:09] &lt;_mg_&gt; the 10.5 one will also run on 10.6
+[18:09:52] &lt;_mg_&gt; just tell me how I have to build so that it works for you too.
+[18:10:12] &lt;GHellings&gt; If I knew that, we'd have figured this out weeks ago.&#160;:-/
+[18:12:32] &lt;GHellings&gt; We have ignition!
+[18:12:40] &lt;GHellings&gt; Liftoff!
+[18:13:11] &lt;superfly&gt; Let's have an agenda for the next meeting&#160;;-)
+[18:13:16] &lt;GHellings&gt; ^
+[18:13:43] &lt;_mg_&gt; GHellings: next attempt on rebuilding..
+[18:13:49] &lt;superfly&gt; iTwinkle: end meeting
+</pre>
+<!-- 
+NewPP limit report
+Preprocessor node count: 11/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1568-0!*!0!!*!*!edit=0 and timestamp 20140705181421 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Meeting-15.01.2011.html">http://devel.bibletime.info/wiki/Meeting-15.01.2011</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Meeting-15.01.2011.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Meeting-15.01.2011&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Meeting-15.01.2011&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Meeting-15.01.2011&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Meeting-15.01.2011&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Meeting-15.01.2011.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Meeting-15.01.2011.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Meeting-15.01.2011&amp;oldid=3709.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 15 January 2011, at 18:25.</li>
+		<li id="viewcount">This page has been accessed 1,059 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Meeting-15.01.2011", "wgTitle": "Meeting-15.01.2011", "wgAction": "view", "wgArticleId": 1568, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3709, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.291 secs. --></body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Programming - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Programming skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Programming</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Programming&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Programming&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Programming_guidelines"><span class="tocnumber">1</span> <span class="toctext">Programming guidelines</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Documentation"><span class="tocnumber">2</span> <span class="toctext">Documentation</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Online_resources_for_programmers"><span class="tocnumber">3</span> <span class="toctext">Online resources for programmers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#API.2FLanguage_documentation"><span class="tocnumber">3.1</span> <span class="toctext">API/Language documentation</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Markup_languages_for_Bibles_and_related_material"><span class="tocnumber">3.2</span> <span class="toctext">Markup languages for Bibles and related material</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Most_important_formats"><span class="tocnumber">3.2.1</span> <span class="toctext">Most important formats</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Less_well-known_formats"><span class="tocnumber">3.2.2</span> <span class="toctext">Less well-known formats</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-8"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Resources_for_alternative_versification_systems"><span class="tocnumber">3.3</span> <span class="toctext">Resources for alternative versification systems</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#Important_Programming_techniques"><span class="tocnumber">4</span> <span class="toctext">Important Programming techniques</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="index.php%3Ftitle=Programming&amp;printable=yes.html#RAII"><span class="tocnumber">4.1</span> <span class="toctext">RAII</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Programming_guidelines"> Programming guidelines </span></h1>
+<p>Please see <a href="wiki/Programming_Guidelines.html" title="Programming Guidelines">Programming_Guidelines</a>. For developers this is a must-read.
+</p><p><br />
+</p>
+<h1> <span class="mw-headline" id="Documentation"> Documentation </span></h1>
+<p>Here you can find developer information about parts of BibleTime's code/architecture.
+</p>
+<ul><li><a href="wiki/Documentation_DragAndDrop.html" title="Documentation DragAndDrop">Documentation about BibleTime's new Drag'n'Drop system</a>
+</li><li> <a href="wiki/Documentation_BackendUpdate.html" title="Documentation BackendUpdate">Documentation about the module list updates</a>
+</li></ul>
+<h1> <span class="mw-headline" id="Online_resources_for_programmers"> Online resources for programmers </span></h1>
+<h2> <span class="mw-headline" id="API.2FLanguage_documentation"> API/Language documentation </span></h2>
+<ul><li> <a href="http://doc.trolltech.com/4.4/mainclasses.html" class="external text" rel="nofollow">QT 4.4 API</a> documentation
+</li><li> <a href="http://api.kde.org/4.0-api/kdelibs-apidocs/" class="external text" rel="nofollow">KDE 4.0 API</a> documentation
+</li><li> <a href="http://www.boost.org/libs/libraries.htm" class="external text" rel="nofollow">Boost API</a> documentation
+</li><li> <a href="http://crosswire.org/~mgruner/sword-apidoc/html/" class="external text" rel="nofollow">Sword API</a> documentation
+</li><li> <a href="http://de.selfhtml.org/" class="external text" rel="nofollow">The excellent SELFHTML HTML reference</a> (german)
+</li><li> <a href="http://www.unc.edu/depts/case/pgi/pgC++_lib/stdlib.htm" class="external text" rel="nofollow">Standard C++ Library</a> documentation/user guide
+</li><li> <a href="http://www.sgi.com/tech/stl/" class="external text" rel="nofollow">STL</a> documentation (as a subset of the Standard C++ Library)
+</li></ul>
+<p>Other useful programming resources
+</p>
+<ul><li> <a href="http://web.utk.edu/~jplyon/sqlite/SQLite_optimization_FAQ.html" class="external text" rel="nofollow">SQLite optimization FAQ</a>
+</li><li> <a href="http://www.digilife.be/quickreferences/quickrefs.htm" class="external text" rel="nofollow">Quick reference cards</a> from Ada to XML, very helpful
+</li></ul>
+<h2> <span class="mw-headline" id="Markup_languages_for_Bibles_and_related_material"> Markup languages for Bibles and related material </span></h2>
+<p>A good overview is available at <a href="http://ebible.org/usfx/Bible-encoding.htm" class="external text" rel="nofollow">ebible.org</a>.
+There is also a <a href="http://www.crosswire.org/wiki/index.php/File_Formats" class="external text" rel="nofollow">file formats overview page</a> from Crosswire.
+</p>
+<h3> <span class="mw-headline" id="Most_important_formats"> Most important formats </span></h3>
+<ul><li> <a href="http://bibletechnologies.net/utilities/fmtdocview.cfm?id=28871A67-D5F5-4381-B22EC4947601628B&amp;method=title" class="external text" rel="nofollow">OSIS reference</a> and <a href="http://whi.wts.edu/OSIS/admin/cheatsheet/Cheatsheet4-25-03Plone.htm" class="external text" rel="nofollow">OSIS (1.1.1) quick reference card</a>
+</li><li> <a href="http://www.ccel.org/ThML/ThML1.04.htm" class="external text" rel="nofollow">ThML reference</a>
+</li><li> <a href="http://ebible.org/bible/gbf.htm" class="external text" rel="nofollow">GBF reference</a>
+</li></ul>
+<h3> <span class="mw-headline" id="Less_well-known_formats"> Less well-known formats</span></h3>
+<p>For the following we'll have to collect data on how important they are, and if we should implement support for them sooner, later or not at all.
+</p>
+<ul><li> <a href="http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&amp;item_id=XSEM" class="external text" rel="nofollow">XSEM (SIL)</a>
+</li><li> <a href="http://confluence.ubs-icap.org/display/USFM/Home" class="external text" rel="nofollow">USFM (Paratext) docs</a>
+</li><li> <a href="http://ebible.org/usfx/usfx.htm" class="external text" rel="nofollow">USFX</a> is supposed to be the XML-based successor of USFM (<a href="http://ebible.org/usfx/" class="external text" rel="nofollow">introduction and quick comparison to USFM and OSIS</a>)
+</li></ul>
+<h2> <span class="mw-headline" id="Resources_for_alternative_versification_systems">Resources for alternative versification systems</span></h2>
+<ol><li> <a href="http://www.ccel.org/refsys/refsys.html" class="external text" rel="nofollow">Data from CCEL</a>
+</li><li> <a href="http://scripturechecks.wikidot.com/" class="external text" rel="nofollow">ScriptureChecks</a> - there is a program to download the relevant data from the wiki.
+</li></ol>
+<h1> <span class="mw-headline" id="Important_Programming_techniques"> Important Programming techniques </span></h1>
+<h2> <span class="mw-headline" id="RAII"> RAII </span></h2>
+<p>Resource Acquisition Is Initialisation (RAII) is a powerful technique for managing allocation and deallocation of resources that was invented and popularised by Bjarne Stroustrup, the creator of C++. It allows easier managing of resources, and is the *only* sensible way to make resources exception safe.
+</p><p>The following style of coding is common in much C and C++ code (including BibleTime):
+</p><p><code>
+</p>
+<pre>{
+   allocate_resources
+   use_resources
+   delete_resources
+}
+</pre>
+<p></code>
+</p><p>This however, is (1) error prone, because everything in delete_resources must be made to match that in allocate_resources, and if use_resources has an early exit condition it is even more difficult to program correctly; and (2) not exception safe, because use_resources might throw an exception, and the resources will be leaked.
+</p><p>The way RAII works, is by creating a wrapper class for each resource type, the class initializes or stores the resource in its constructor, and releases it in its destructor. Since C++ guarantees that objects will be destroyed when they fall out of scope, this will ensure that resources are freed automatically. Thus, code will look like this:
+</p><p><code>
+</p>
+<pre>{
+   allocate_resources
+   use_resources
+} //resources are automatically freed
+</pre>
+<p></code>
+</p><p>We use boost::scoped_ptr from the <a href="http://boost.org/libs/smart_ptr/smart_ptr.htm" class="external text" rel="nofollow">Smart Pointers</a> module of boost for just about any scoped resource management of this type that is needed. BibleTime developers should use the RAII technique for *all* scoped resource allocation and deallocation, as it is the only legitimate way to ensure exception safety, and thus to satisfy one of the Abraham's exception safety rules (see <a href="http://www.gotw.ca/gotw/082.htm" class="external free" rel="nofollow">http://www.gotw.ca/gotw/082.htm</a> for information on the Abraham's exception safety rules).
+</p><p>Very simple usage example:
+</p><p><code>
+</p>
+<pre>CPrinter* printer = new CPrinter();
+printer-&gt;printKeyTree(tree);
+delete printer;
+</pre>
+<p></code>
+</p><p>becomes:
+</p><p><code>
+</p>
+<pre>#include "&lt;boost/scoped_ptr.h"
+...       
+boost::scoped_ptr&lt;CPrinter&gt; printer( new CPrinter() );
+printer-&gt;printKeyTree(tree);
+</pre>
+<p></code>
+</p><p>The printer object will automatically be deleted. See this page for more information: <a href="http://discuss.joelonsoftware.com/default.asp?joel.3.125966.24" class="external text" rel="nofollow">Discussion about RAAI and auto_ptr</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 38/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1380-0!*!0!!en!*!edit=0 and timestamp 20140704211834 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Programming.html">http://devel.bibletime.info/wiki/Programming</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Programming.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:Programming.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Programming&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Programming&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Programming&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Programming.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Programming.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Programming&amp;oldid=3655.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 18 September 2010, at 16:38.</li>
+		<li id="viewcount">This page has been accessed 13,525 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Programming", "wgTitle": "Programming", "wgAction": "view", "wgArticleId": 1380, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3655, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.212 secs. --></body></html>

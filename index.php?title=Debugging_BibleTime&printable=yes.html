@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Debugging BibleTime - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Debugging_BibleTime skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Debugging BibleTime</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>This is an introduction to debugging BibleTime problems.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#Building_BibleTime_for_debugging"><span class="tocnumber">1</span> <span class="toctext">Building BibleTime for debugging</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#Running_BibleTime_in_debug_mode"><span class="tocnumber">2</span> <span class="toctext">Running BibleTime in debug mode</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#Debugging_with_GDB"><span class="tocnumber">3</span> <span class="toctext">Debugging with GDB</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;printable=yes.html#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Building_BibleTime_for_debugging"> Building BibleTime for debugging </span></h1>
+<p><i>This section discusses how to manually compile BibleTime with debug symbols. To use operating system provided debug files see the <a href="wiki/Debugging_BibleTime.html#See_also" title="Debugging BibleTime">See also</a> section.</i>
+</p>
+<table style="width: 100%; background-color: #f70; border: 1px solid #000; color: #000; margin: 0.6em 0">
+<tr>
+<td style="padding: 0.2em 0.5em"> <span style="font-weight: bold">TODO</span>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Running_BibleTime_in_debug_mode"> Running BibleTime in debug mode </span></h1>
+<p>To run BibleTime in debugging mode, pass <span style="color: #444"><span style="font-family:monospace">--debug</span></span> as an command-line argument to the <span style="color: #444"><span style="font-family:monospace">bibletime</span></span> binary. This causes BibleTime to output error messages to the console. Under Microsoft windows, a log file is generated instead.
+</p>
+<h1> <span class="mw-headline" id="Debugging_with_GDB"> Debugging with GDB </span></h1>
+<p>Especially when BibleTime crashes, it is useful to run it in a debugger such as <a href="http://www.gnu.org/software/gdb/" class="external text" rel="nofollow">GDB</a>, the GNU Project Debugger. For details on using GDB, please read the <a href="http://www.gnu.org/software/gdb/documentation/" class="external text" rel="nofollow">GDB User Manual</a>. The rest of this section is a short introduction to debugging BibleTime to provide a detailed backtrace. To help us fix crashes in BibleTime, these backtraces are usually extremely important for us. Therefore, this short walk-through also serves as a guide to people who report BibleTime crashes, which the BibleTime team is unable to reproduce themselves.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #777; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #aaa; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #444; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">COMMAND LINE:</span> Loading BibleTime into GDB
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}">gdb /path/to/bibletime</div>
+</td></tr></table>
+<p>Typing the above command into a terminal loads BibleTime into the GDB debugger, but does not yet start BibleTime. Instead you should get a <span style="color: #444"><span style="font-family:monospace">(gdb)</span></span> prompt. Let's first make sure that GDB passes the <span style="color: #444"><span style="font-family:monospace">--debug</span></span> command line argument to BibleTime. To do this, type the following into the GDB console:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #777; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #aaa; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #444; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">(gdb):</span> Making GDB pass <span style="color: #444"><span style="font-family:monospace">--debug</span></span> to the binary being debugged
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}">set args --debug</div>
+</td></tr></table>
+<p>Next, we'll try to reproduce the BibleTime crash. To do so, we must start BibleTime from the debugger:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #777; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #aaa; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #444; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">(gdb):</span> Starting a program in GDB
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}">run</div>
+</td></tr></table>
+<p>Directly after the crash or hang, switch back to the GDB console. In case there is no active <span style="color: #444"><span style="font-family:monospace">(gdb)</span></span> prompt, try pressing CTRL+C to interrupt BibleTime. Once you get to the <span style="color: #444"><span style="font-family:monospace">(gdb)</span></span> prompt, type
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #777; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #aaa; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #444; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">(gdb):</span> Printing a full backtrace from all threads
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}">thread apply all bt full</div>
+</td></tr></table>
+<p>to get a full backtrace for all running BibleTime threads. The output produced by this command is usually of paramount importance for our developers to start fixing the bug.
+</p><p>When we have finished debugging, shut down the debugger:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #777; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #aaa; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #444; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">(gdb):</span> Exiting GDB
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}">quit</div>
+</td></tr></table>
+<p>In case the program being debugged has not fully terminated when you try to exit GDB, the debugger might also ask you whether it should terminate the program before exiting.
+</p>
+<h1> <span class="mw-headline" id="See_also"> See also </span></h1>
+<ul><li> How to <a href="https://wiki.ubuntu.com/DebuggingProgramCrash" class="external text" rel="nofollow">install debugging symbols</a> and get meaningful <a href="https://wiki.ubuntu.com/Backtrace" class="external text" rel="nofollow">backtraces</a> in Ubuntu
+</li><li> <a href="http://fedoraproject.org/wiki/StackTraces" class="external text" rel="nofollow">How to install debugging symbols and get meaningful backtraces in Fedora</a>
+</li><li> <a href="http://www.gentoo.org/proj/en/qa/backtraces.xml" class="external text" rel="nofollow">How to install debugging symbols and get meaningful backtraces in Gentoo</a>
+</li><li> <a href="http://en.opensuse.org/openSUSE:Bugreport_application_crashed" class="external text" rel="nofollow">How to install debugging symbols and get meaningful backtraces in OpenSUSE</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 300/1000000
+Post-expand include size: 7719/2097152 bytes
+Template argument size: 784/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1561-0!*!0!!en!*!edit=0 and timestamp 20140705181250 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Debugging_BibleTime.html">http://devel.bibletime.info/wiki/Debugging_BibleTime</a>"</div>
+		<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="wiki/Special:Categories.html" title="Special:Categories">Category</a>: <span dir='ltr'><a href="index.php%3Ftitle=Category:TODO&amp;action=edit&amp;redlink=1.html" class="new" title="Category:TODO (page does not exist)">TODO</a></span></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Debugging_BibleTime.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Debugging_BibleTime&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Debugging_BibleTime&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Debugging_BibleTime.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Debugging_BibleTime.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Debugging_BibleTime&amp;oldid=3697.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 11 November 2010, at 05:45.</li>
+		<li id="viewcount">This page has been accessed 1,937 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Debugging_BibleTime", "wgTitle": "Debugging BibleTime", "wgAction": "view", "wgArticleId": 1561, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3697, "wgCategories": ["TODO"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.248 secs. --></body></html>

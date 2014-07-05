@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Bookshelf_Manager_redesign.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Bookshelf_Manager_redesign skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Bookshelf_Manager_redesign.html" title="Bookshelf Manager redesign">Bookshelf Manager redesign</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Bookshelf_Manager_redesign&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Bookshelf_Manager_redesign&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">=Bookshelf Manager redesign=
+
+I would like to redesign the Bookshelf Manager. It is not bad but not very good either. Every time I use it I think "why this has to be done like this?".
+
+Many labels/texts have unnecessary verbosity. "Manage Search Indices" could be "Search Indices" because it is not necessary to tell that they are "managed" here, it should be obvious. "Works" can be removed from many places: "Install/Update Works", "Remove Works", "Remove Selected Work(s)" (notice also the '(s)' which is never recommended for a high quality user interface). "Selected" is also unnecessary in "Create Selected Indices", especially because "Install Works" does not have "Selected".
+
+Short help texts on top of the dialog pages are useful in my opinion but they too should avoid verbosity. "Please" is not necessary, short help texts don't have to be overly polite.
+
+When I open the dialog it automatically opens Bookshelf Path(s). It's not good because defining the paths is probably the most rare task the user wants to do. Installing/Updating is the natural place to start.
+
+The installation "wizard" is especially confusing for me. As a user I understand well how it works but for some reason I hate it. It is difficult especially if I want to use many remote sources in one session. In my opinion the "Step 1" is unnecessary. The dialog can be redesigned to allow more simple way of working. I give one proposal here.
+
+===Terminology===
+I'm not sure about the terminology. Apparently the terms "bookshelf" and "library" have been selected because they are nontechnical and are real world metaphors. People take books from a library and put them into a bookshelf.
+
+But computer users have already learned to understand "installation", "path" etc. What is a library or bookshelf &lt;i>in a computer&lt;/i>? Who says "I'm going to get an electronic Bible text from a library and put it into my current bookshelf"? I think nobody. Instead people &lt;i>download&lt;/i> &lt;i>files&lt;/i> from the &lt;i>internet&lt;/i> and &lt;i>save&lt;/i> them into a &lt;i>directory&lt;/i> or  &lt;i>install&lt;/i> them.
+
+Metaphors are not clear here. It is very hard to assign "bookshelf" to a directory and "library" to an internet site. Bookshelf is a good label for the main index tab because it is apparent what it is and Bookshelf Manager is a good name for this smallish application/dialog. But we already have "Install/Update" page there, not "Get Books" page. Most users probably think about downloading a file when they open the Manager. When they read the help texts they have to reorientate to understand what "library" and "bookshelf" mean here in this context. After all, computers are full of electronic libraries and real libraries are full of bookshelves, but nobody really installs a book into a bookshelf (or do they in English?).
+
+Right now most of the users are computer literate and maybe even more technically orientated than average computer users, although KDE is used more and more by various people. Later, if we gain users from e.g. the third world, we may have to select the terminology afresh, but now I would stick to the "conservative" words which are meaningful to computer users. We should avoid technical jargon but use modern common words.
+
+==Local Paths==
+
+Editing the local sword paths is already quite easy. I have moved selecting the working directory/active directory from the Step 1 to this dialog. It unnecessarily clutters the Install dialog because changing the directory is a rare task and it is almost as easy to change it here.
+
+Update: see the Install/Update Updated version below. If this is a dialog which is opened from the Install page then selecting the active directory is unnecessary here.
+
+[[Image:Setswordpaths.jpg]]
+
+The access permissions to the paths have been a problem for the Sword users. We should offer at least a warning message which tells that user has no write permission and a possible solutions (like creating a group for the directory and adding users to it).
+
+==Install/Update==
+
+The most important changes are here. I have got rid of the wizard, everything can be done in one page.
+
+[[Image:Installandupdate.jpg]]
+
+User can Add or Delete Source using the buttons. Each source is a tab. The first tab is always "All" and it cannot be deleted. It shows the modules from all sources. If the user deletes a source the application asks for confirmation. If user adds a source the new dialog (see below) will be shown.
+
+Refreshing (connecting) the source is also here. I would like to have a cache for sources. It feels stupid to connect every time if I have closed the dialog and open it again soon. In the mockup I have added "Last Refreshed" label which shows when the source has been last refreshed. When the dialog is opened the module data is taken from the cache. The user decides if it's time to refresh and does it explicitly for all sources in "All" tab or for each source individually in their tabs. The button text reflects the selected source: "Refresh All" or "Refresh Crosswire" etc.
+
+The tree view is similar to the current one. The view is constructed similarly to the other module tree views of the application so that it looks the same. "Status" column is unnecessary: the status is easy to show in Installed Version column with an icon: just add the up-to-date or out-of-date icon before the version number. Source column shows the source name (good for the All tab).
+
+I would also add a tooltip for the description for each module and maybe a RMB menu item for About dialog. It's quite difficult to know which modules I would like to install if I see only the module names. (Update: tooltip is in 1.6.5 but has been left out with our new ported code. Should be added.)
+
+Editing a source would also be nice, there could be "Edit Source" button for that which opens the "add source" dialog with the current source data.
+
+===Updated version===
+Here is another lightly different proposition.
+
+[[Image:Installandupdate3.jpg]]
+
+* Source configuration buttons are inside the tab because they logically belong to a source, there's less text in the buttons
+* Edit a source - it's nice to be able to change it later if needed. This means more careful design in the source adding/editing dialog - adding and editing are different tasks for user, though I'm not sure if a once named source can be really edited in place or is it necessary to delete and recreate it.
+* Installation path configuration is moved here. Now it's immediately available and the user can see right away where the works are installed. It opens a new dialog, not a config dialog page (which can be removed).
+* Is there too much in this widget now? Is it distracting to have 6 buttons, many tabs, labels etc. in one place? Install Path could be elsewhere but it would be more "hidden" then. Also managing sources could be behind one button, then the source dialog should be redesigned once again.
+* I have also though about having a RMB menu over tabbar which could have Add, Edit, Delete, Refresh. But if it's the only place to reach some actions it is not obvious and some users may not find them.
+
+Install button could install all selected modules from all tabs. It now opens a message box but it could include a list/tree widget with checkboxes for modules, so the user could deselect some modules there instead of cancelling the whole operation.
+
+I have also thought about an automatic update notifier feature. It would work in the mainindex, not here. It would refresh the source caches automatically and periodically and show some markers with those mainindex items which have updates available. Users could then update those modules with an RMB menu item in the mainindex without opening the Manager. Otherwise installing/removing modules is best left to the Manager.
+
+====Update to update====
+I have started implementing this. We have to rewrite the config dialogs anyways because they must be ported to Qt. Most of this widget's UI is now coded but it lacks the backend functionality. It should be possible to take it from the existing code without much modifications but I don't know that code well enough yet. (If I get the UI working an leave blanks with comments, could Martin fill them?)
+
+The new module view lacks all functionality now. I think that the columns and other visible information could be redesigned. First, "Installed version" and "Remote version" are quite useless for me. The modules are not like software applications for which people wait new version numbers and know the numbers by heart. All it gives is information that the module is changed. We could put that information in the tooltip. I would rather put the short description next to the module name and status indicator. The status column shows if the module is updateable and that should be enough for a quick glance.
+
+With context menu "About..." item we could even give the About dialog for the modules, the same one which is used in the bookshelf index. Context menu could have for example grouping functionality, "show only updated", "show only new" etc. I'm not going to do this at least for a while but these kind of functions could be helpful to the users.
+
+Enhanced item columns and tooltips are realistic right now. I would like also to highlight the updateable modules and their groups with some color, it should be quite easy.
+
+==Add Source==
+
+[[Image:Setnewsource.jpg]]
+
+Add source dialog is quite similar to the current one. I have added Predefined repositories which the user can choose. It is painful to add repos when you have to find the instructions every time you add a repo and you cannot know if you wrote everything correctly. Using a predefined repo adds hardcoded data to the fields.
+
+We could also use an extra dialog when the user selects a predefined data: a warning dialog for beta module area, or even a personal information dialog from which the data would be sent somewhere - this would be mostly for the NET Bible repository at the moment. I don't know if they like when people give their repository information to public when they have required registering. We could do the the registering here.
+
+The type is a radio button, combo box is not good for two fixed alternatives. Selecting Local disables the Server field but does not remove it - suddenly changing the user interface layout is not good. (I mean changing the layout and geometry is not good. It could be ok to hide some elements.)
+
+It would be user friendly to test the connection and path after the user accepts it but before the dialog is closed.
+
+Is "passive" ftp mode needed? It could be added also to options.
+
+===Updated version===
+
+[[Image:Setnewsource2.jpg]]
+
+* Description label for predefined sources.
+* Passive FTP mode selection.
+* Path selection button - automatically opening a dialog when clicking other element than button or similar is not recommended. Radio button is for selecting between items, not for opening a new dialog. When user selects "Local" the Server and FTP mode elements will be hidden or disabled and path selection button is enabled.
+* Test button. Testing is a bit problematic. Some things should be tested always automatically. These include legal local path, missing data and duplicate existing entries. I don't know if FTP connection should be tested automatically. When it is tested it should be in a simple dialog:
+
+*[[Image:Testsource.jpg]]
+
+*QFtp is easy enough to be used in this kind of test. It would be of course possible to use the installmgr for testing but can it just connect without downloading? QFtp test would be good because it can in a simple way test the different phases so that technically oriented users could locate the problems.
+
+
+==Uninstall==
+(Moved from Install above:)
+
+ good again. Another idea: we need to show another status of modules 
+ besides current, updated or new (remote): "obsolete or locally installed" 
+ for modules that are only available locally. maybe this should be optional? --mgruner
+* yes, that would prevent deleting the modules which can't be reinstalled. It belongs to the Remove (Uninstall) page though, not to the Install page. It requires querying the state of the installed module from the remote source cache.
+
+One problem is having the same module in two local sword directories. Maybe we should deal with it in the mainindex also, but here we could add the local path information. Users could see that the duplicates are in different places and could decide which they want to remove. But that probably needs some tweaking with the sword manager.
+
+
+==Update: The Real Thing==
+This is in the svn now. Quite many things have been implemented. Here are things which need thinking or implementing:
+* Add Source dialog is the old one. I noticed much difficulties when I tried to add repos which I didn't remember correctly. Program accepts them but fails without notice and with strange results when it tries to refresh or install. Predefined sources and testing would indeed be good.
+**UPDATE: important.
+* Empty the cache if a source is removed (or edited).
+* Install Page is not necessarily the right place for the Path configuration. Paths are for the whole app, not only for installing. It also clutters the interface a bit and takes space. Maybe the original blueprint above would be better. After all, changing the install path is quite rare. It should just be saved in the config. But what path should be selected for the first time?
+**UPDATE: important.
+* Notifying "obsolete or locally installed", see Uninstall above.
+* Make sure that duplicate modules are handled correctly. The least we can do is to let the user to uninstall them correctly. using findModuleByName is not enough if there are duplicates! This need to be taken care in the main index bookshelf too (maybe it is automatical already?).
+**UPDATE: Duplicates are in fact handled by the Sword library, it adds _1 etc. But then we have problem with duplicates when we decide whether a module is updateable, and what one to replace when updated.
+* Notifying the "last refreshed" status. Maybe putting it into the source tab tooltip would be enough, if it's needed at all. I haven't felt personal need for that while testing the new system.
+** In the tab tooltip, if at all. Maybe it would be quite easy to get the modification time of the cache directory with Qt filesystem functions.
+* Edit Source - is needed? If Add Source dialog would be better this would not be needed so badly because it would reduce the amount of false configurations.
+** UPDATE: as said, a better dialog is more important.
+* "All Sources Together" tab. I don't think it's really needed though it could be nice to have.
+** UPDATE: Not needed.
+* Module information. Almost all information have been moved into tooltip and About dialog which is behind double click. We can continue thinking what info should be visible and where. Is there something users want to know at first glance? Is there some info which could be given but is not? Notifying updated modules with red color is quite nice now.
+* Module trees. They are inconsistently grouped. The reason is that they have different purposes. We have to think if this is good for usability.
+**"Remove" tree has installed modules and the same structure as the main index but always shows the hidden ones.
+**"Install" tree has always Category/Language structure because the user may prefer some grouping for small amount of modules but Crosswire repo has huge amount of modules. We can't just show 100 Bibles of 50 different languages directly under Bibles category. How about adding "Grouping" combo box?
+**"Index" tree has indexed/nonindexed items. Should there be some else way to show them?
+** UPDATE: this doesn't feel important to me.
+* Removing (and updating, because it includes removing the old one) modules creates problems if two things can happen simultaneously. Indexing crashes if the module is deleted in the middle of indexing. This could be prevented if removing/updating modules would send goingToRemove(QStringList) signal. Indexing would stop, backend would be reloaded leaving the modules out and UI would be updated. After that the modules could be removed safely. This would probably allow also using truly concurrent UI while installing/updating modules.
+** UPDATE: TODO: use the new framework to cancel indexing.
+* The need for threaded indexing has already been noticed. We have now a good starting point with threaded install. Indexing tries to be in background but doesn't allow real concurrency now. It can't be cancelled which is very bad.
+** UPDATE: It can be cancelled now but the emulated "concurrency" is clumsy.
+* UPDATE, new item: How about showing the installed up-to-date modules, too, maybe as disabled non-selectable items? Leaving them off may confuse some users.
+
+[[User:Eelik|Eelik]] 17:46, 14 November 2007 (CET)
+
+Updated: [[User:Eelik|Eelik]] 17:28, 18 November 2007 (CET)
+
+Updated:[[User:Eelik|Eelik]] 15:38, 20 November 2007 (CET)
+
+Updated:[[User:Eelik|Eelik]] 22:50, 20 November 2007 (CET)
+
+Updated: [[User:Eelik|Eelik]] 10:00, 24 March 2008 (CET)
+
+Updated: [[User:Eelik|Eelik]] 18:55, 22 May 2008 (UTC)</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Bookshelf_Manager_redesign.html" title="Bookshelf Manager redesign">Bookshelf Manager redesign</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Bookshelf_Manager_redesign.html">http://devel.bibletime.info/wiki/Bookshelf_Manager_redesign</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Bookshelf_Manager_redesign.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Bookshelf_Manager_redesign&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Bookshelf_Manager_redesign&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Bookshelf_Manager_redesign&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Bookshelf_Manager_redesign&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Bookshelf_Manager_redesign.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Bookshelf_Manager_redesign.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Bookshelf_Manager_redesign", "wgTitle": "Bookshelf Manager redesign", "wgAction": "edit", "wgArticleId": 1479, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 2772, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.324 secs. --></body></html>

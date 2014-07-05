@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Translation - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Translation skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Translation</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">
+				<div id="mw-revision-info">Revision as of 20:46, 12 December 2013 by <a href="http://devel.bibletime.info/index.php?title=User:Tabthorpe&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Tabthorpe (page does not exist)">Tabthorpe</a>  <span class="mw-usertoollinks">(<a href="http://devel.bibletime.info/index.php?title=User_talk:Tabthorpe&amp;action=edit&amp;redlink=1" class="new" title="User talk:Tabthorpe (page does not exist)">Talk</a> | <a href="http://devel.bibletime.info/wiki/Special:Contributions/Tabthorpe" title="Special:Contributions/Tabthorpe">contribs</a>)</span></div>
+
+				<div id="mw-revision-nav">(<a href="http://devel.bibletime.info/index.php?title=Translation&amp;diff=prev&amp;oldid=3931" title="Translation">diff</a>) <a href="http://devel.bibletime.info/index.php?title=Translation&amp;direction=prev&amp;oldid=3931" title="Translation">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div>
+			</div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>BibleTime has several things to translate (localize) to your own language or other language too. The BibleTime web pages, BibleTime user interface, Bible study How To, HandBook and the biblical booknames. You can find BibleTime translation templates
+from the BibleTime Gitorious project page <a href="https://gitorious.org/bibletime/bibletime/source/i18n" class="external autonumber" rel="nofollow">[1]</a>.  You can read about the tools for editing below.
+</p><p>The translations statistics we used to host at the website are no longer available to us, but believe me when I tell you, almost all languages need some work&#160;:)
+</p><p>Translation is not only a contribution. You get experience and you can find many application features which you haven't noticed before!
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Tips"><span class="tocnumber">1</span> <span class="toctext">Tips</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Editing"><span class="tocnumber">2</span> <span class="toctext">Editing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Tidy"><span class="tocnumber">2.1</span> <span class="toctext">Tidy</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Qt_Linguist"><span class="tocnumber">2.2</span> <span class="toctext">Qt Linguist</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Virtaal"><span class="tocnumber">2.3</span> <span class="toctext">Virtaal</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Testing_your_translations"><span class="tocnumber">3</span> <span class="toctext">Testing your translations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Test_.ts_files_in_your_own_computer"><span class="tocnumber">3.1</span> <span class="toctext">Test .ts files in your own computer</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Test_.po_files_in_your_own_computer"><span class="tocnumber">3.2</span> <span class="toctext">Test .po files in your own computer</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Test_build_the_Handbook_on_your_computer"><span class="tocnumber">3.3</span> <span class="toctext">Test build the Handbook on your computer</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Test_build_the_HOWTO_on_your_computer"><span class="tocnumber">3.4</span> <span class="toctext">Test build the HOWTO on your computer</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Tools"><span class="tocnumber">4</span> <span class="toctext">Tools</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Are_you_a_real_translator.3F"><span class="tocnumber">5</span> <span class="toctext">Are you a real translator?</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Difficulties_of_translating_from_one_language_to_another"><span class="tocnumber">6</span> <span class="toctext">Difficulties of translating from one language to another</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#DIY"><span class="tocnumber">7</span> <span class="toctext">DIY</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Updating_the_.ts_file_from_the_source_code"><span class="tocnumber">7.1</span> <span class="toctext">Updating the .ts file from the source code</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Getting_rid_of_obsolete_messages"><span class="tocnumber">7.2</span> <span class="toctext">Getting rid of obsolete messages</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html#Useful_links"><span class="tocnumber">8</span> <span class="toctext">Useful links</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Tips"> Tips </span></h2>
+<p>Note that there are sentences from the Bible within the BibleTime documentation and user interface. You do <b>not</b> need to translate them. Instead, just look in your Bible in your language and copy+paste a verse or a sentence from it into the BibleTime translation you are working on! In many cases the basic idea of the sentence is complex to understand. Thus those who have translated the Bible are professional translators.  Make use of their high quality work.
+</p>
+<h2> <span class="mw-headline" id="Editing"> Editing </span></h2>
+<p>BibleTime uses .po and .ts files for localization. 
+</p><p>You can use Poedit (<a href="http://www.poedit.net/screenshots.php" class="external text" rel="nofollow">screenshots</a>), Lokalize (<a href="http://userbase.kde.org/Lokalize" class="external text" rel="nofollow">screenshots</a>) or <a href="http://virtaal.org/" class="external text" rel="nofollow">Virtaal</a> (<a href="http://translate.sourceforge.net/wiki/virtaal/screenshots" class="external text" rel="nofollow">screenshots</a>) to localize the .po files.
+</p><p>The BibleTime application has been reworked to use <a href="http://en.wikipedia.org/wiki/Qt_(toolkit)" class="external text" rel="nofollow">Qt</a>, Qt is more universal and works with a large number of different operating systems. Qt localization files are in xml format. The file extension they use is .ts. Only the BibleTime user interface is programmed with Qt since version 1.7.
+</p><p>You can translate .ts files with following applications:
+</p>
+<h3> <span class="mw-headline" id="Tidy">Tidy</span></h3>
+<ul><li> set tabstops=2
+</li><li> set textwdith=72
+</li><li> tidy -xml -indent -wrap 72 -q -m file.xml
+</li></ul>
+<h3> <span class="mw-headline" id="Qt_Linguist">Qt Linguist</span></h3>
+<p>You can use qt-linguist to translate BibleTime texts to your own language or to other language. If you have used KBabel, linquist maybe is familiar to you. First, you can install linguist translation application in Ubuntu 
+</p>
+<blockquote>
+sudo apt-get install libqt4-dev qt4-designer qt4-doc
+</blockquote>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="index.php%3Ftitle=Special:Upload&amp;wpDestFile=Linguist-fi.png.html" class="new" title="File:Linguist-fi.png">File:Linguist-fi.png</a>  <div class="thumbcaption">Linguist user interface in Kubuntu with finnish translation.</div></div></div>
+<p>Then you can start it with command
+</p>
+<blockquote>
+/usr/bin/linguist
+</blockquote>
+<p>Or you can add that to menu of your operating system user interface. Installed packages contains other tools also. When the Linguist is running, you can open a .ts file for translating. 
+</p><p>Qt Linguist has a good manual (Help on menu), which contains (for example) a good Qt Reference Documentation.
+</p>
+<h3> <span class="mw-headline" id="Virtaal">Virtaal</span></h3>
+<p><a href="http://translate.sourceforge.net/wiki/virtaal/index" class="external text" rel="nofollow">Virtaal</a> is a powerful translation program suitable for beginners and advanced translators.  It can open many formats, including .po and .ts files. The translation memory makes it easier to keep your translations consistent. It also integrates with Open-Tran.eu mentioned below.
+</p><p>Other features that you might be interested in:
+</p>
+<ul><li> Terminology support
+</li><li> Spell checking
+</li><li> Autocomplete
+</li><li> Integration with machine translation systems
+</li><li> Easy handling of XML tags
+</li><li> Easy navigation between strings based on search criteria, or translation status
+</li></ul>
+<p><a href="http://translate.sourceforge.net/wiki/virtaal/features" class="external text" rel="nofollow">Read about more powerful features of Virtaal</a>
+</p>
+<h2> <span class="mw-headline" id="Testing_your_translations"> Testing your translations </span></h2>
+<ul><li> Verify xml validity with
+</li></ul>
+<blockquote>
+xmllint -noout -valid file.xml
+</blockquote>
+<h3> <span class="mw-headline" id="Test_.ts_files_in_your_own_computer">Test .ts files in your own computer</span></h3>
+<p>When you have translated .ts file and if you use Qt Linguist, you can release it. It means that it is saved to .qm format in same directory where .ts is. Then you can copy it to there, where your operating system messages are. For example in Ubuntu you can copy that .qm file to /usr/share/locale/fi/LC_MESSAGES/ directory (if you use Finnish) and then you can start BibleTime and it will use your brand new translation. Here is the copy command:
+</p>
+<blockquote>
+sudo cp bibletime_ui_fi.qm /usr/share/locale/fi/LC_MESSAGES
+</blockquote>
+<p>Sudo is used, because LC_MESSAGES contains a system-wide set of files that cannot be changed by normal users.
+</p><p>After copying your .qm file, start BibleTime and it will use your brand new translation! I have tested this, and it works with BibleTime 1.6.5.1 version.
+</p>
+<h3> <span class="mw-headline" id="Test_.po_files_in_your_own_computer">Test .po files in your own computer</span></h3>
+<p>You can test your translation in your own computer, if you have BibleTime application. If you are translating .po files, you can do following command to take your translation in effect in your computer (example is for Finnish language and for Kubuntu):
+</p>
+<blockquote>
+msgfmt -o /usr/share/locale/fi/LC_MESSAGES/bibletime.mo bibletime.po
+</blockquote>
+<p>Then start your BibleTime again, and you will see it in your own language.
+</p>
+<h3> <span class="mw-headline" id="Test_build_the_Handbook_on_your_computer">Test build the Handbook on your computer</span></h3>
+<pre>
+
+#
+# Programs needed to generate and validate Handbook translations
+#
+# git - http://git-scm.com/
+#
+# po4a - http://po4a.alioth.debian.org/
+# xsltproc - http://xmlsoft.org/XSLT/
+# docbook-xml - http://www.oasis-open.org/docbook/
+# docbook-xsl - http://docbook.sourceforge.net/projects/xsl/
+#
+
+cd /var/tmp # or somewhere else more permenant to suit you needs
+
+git clone git://gitorious.org/bibletime/bibletime.git
+
+cd bibletime
+
+cp /path/to/translated/handbook-XX.po i18n/handbook # XX is your localisation code
+
+#
+# this will expend your translation into the appropriate docbook format
+# it will update other languages too, do not be concerned
+#
+po4a -v --no-backups -k 0 cmake/docs/handbook_po4a.conf
+
+cd docs/handbook/XX/html # same localisation code as above
+
+xsltproc ../../../../cmake/docs/docs.xsl ../docbook/index.docbook
+
+#
+# you should now have html handbook
+# watch for errors
+#
+</pre>
+<h3> <span class="mw-headline" id="Test_build_the_HOWTO_on_your_computer">Test build the HOWTO on your computer</span></h3>
+<pre>
+#
+# Programs needed to generate and validate Handbook translations
+#
+# git - http://git-scm.com/
+#
+# po4a - http://po4a.alioth.debian.org/
+# xsltproc - http://xmlsoft.org/XSLT/
+# docbook-xml - http://www.oasis-open.org/docbook/
+# docbook-xsl - http://docbook.sourceforge.net/projects/xsl/
+#
+
+cd /var/tmp # or somewhere else more permenant to suit you needs
+
+git clone git://gitorious.org/bibletime/bibletime.git
+
+cd bibletime
+
+cp /path/to/translated/howto-XX.po i18/howto # XX is your localisation code
+
+#
+# this will expend your translation into the appropriate docbook format
+# it will update other languages too, do not be concerned
+#
+
+po4a -v --no-backups -k 0  cmake/docs/howto_po4a.conf
+
+cd docs/howto/XX/html # same localisation code as above
+
+xsltproc ../../../../cmake/docs/docs.xsl ../docbook/index.docbook
+
+#
+# you should now have html handbook
+# watch for errors
+#
+</pre>
+<h2> <span class="mw-headline" id="Tools"> Tools </span></h2>
+<ul><li> vim, <a href="http://www.vim.org/" class="external text" rel="nofollow">www.vim.org</a> a graphical editor based on vi
+</li><li> tidy, <a href="http://tidy.sourceforge.net/" class="external text" rel="nofollow">tidy.sourceforge.net</a>
+</li><li> libxml2, <a href="http://xmlsoft.org/" class="external text" rel="nofollow">xmlsoft.org/</a>
+</li><li> lokalize, <a href="http://userbase.kde.org/Lokalize" class="external text" rel="nofollow">userbase.kde.org/Lokalize</a> is designed for KDE 4, next generation of KBabel
+</li><li> poedit, <a href="http://www.poedit.net/" class="external text" rel="nofollow">www.poedit.net</a>
+</li><li> qt-linguist, <a href="http://doc.trolltech.com/4.0/linguist-manual.html" class="external text" rel="nofollow">doc.trolltech.com/4.0/linguist-manual.html</a> a graphical translation tool for Qt
+</li><li> <a href="http://translate.sourceforge.net/wiki/virtaal/index" class="external text" rel="nofollow">Virtaal</a> - an easy-to-use translation program with many features supporting both .ts and .po files
+</li></ul>
+<h2> <span class="mw-headline" id="Are_you_a_real_translator.3F"> Are you a real translator? </span></h2>
+<ul><li> We would love to have your insights. There are lot of untranslated languages.
+</li></ul>
+<ul><li> Have you translated BibleTime before? There has been active developing period. It causes lots of fuzzy translations with a large amount of languages. Thus fuzzies don't appear in business. So, there is some work to do. Make fuzzies translated and then untranslated to translated.
+</li></ul>
+<h2> <span class="mw-headline" id="Difficulties_of_translating_from_one_language_to_another"> Difficulties of translating from one language to another </span></h2>
+<p>The technical things are relatively easy to learn. The most difficult and important part is to create an understandable high quality translation. You may find out that there are words or sentences in BibleTime which are difficult to translate to a particular language. If you find it difficult to understand what something means at all, it doesn't mean you are stupid. The original message may be badly chosen. Don't hesitate to ask.
+</p><p>There may also be clauses which are hardcoded so that they are difficult to put in another order. If your language uses different word order than English and the original code makes it impossible to create a good translation, don't hesitate to ask if the original code could be changed.
+</p>
+<h2> <span class="mw-headline" id="DIY">DIY</span></h2>
+<p>If you are a DIY (Do It Yourself) computer user, you may be able to do some more advanced things with the UI translation.
+</p>
+<h3> <span class="mw-headline" id="Updating_the_.ts_file_from_the_source_code">Updating the .ts file from the source code</span></h3>
+<p>The .ts files will go out of date when the UI is evolved. They are updated periodically by an administrator but you can do it yourself, too.
+</p>
+<ul><li> Install a command line program called lupdate. If you have Qt Linguist, it's probably installed already.
+</li><li> Download the BibleTime source code with svn.
+</li><li> Run lupdate from command line: "lupdate src/ -ts i18n/messages/bibletime_ui_XX.ts" (if you are in the source code root folder).
+</li></ul>
+<p>If the UI strings (messages) have been changed in the source code the .ts file is now updated.
+</p>
+<h3> <span class="mw-headline" id="Getting_rid_of_obsolete_messages">Getting rid of obsolete messages</span></h3>
+<p>If classes inside the source code are renamed/removed or the original strings (messages) are changed/removed, the messages in the .ts file become obsolete. They are grayed out in Qt Linguist. They may still be useful if you use the "guesses" given by Linguist: the obsolete message texts may be still valid for new messages. For example, if a class is renamed from "CClass" to "BtClass" and it has messages "Click this" and "Read this", the messages become obsolete but there appears a new context in Linguist which has those same messages. Linguist is not intelligent enough to know that the messages are still valid, so you have to retranslate them. However, Linguist gives guesses and you can use them.
+</p><p>In some phase you want to get rid of obsolete messages. It's easy with lupdate:
+</p>
+<ul><li> lupdate -noobsolete src/ -ts i18n/messages/bibletime_ui_XX.ts
+</li></ul>
+<p>You can also ask the translation administrator to remove the obsolete messages.
+</p>
+<h2> <span class="mw-headline" id="Useful_links"> Useful links </span></h2>
+<ul><li> <a href="http://open-tran.eu/" class="external text" rel="nofollow">open-tran.eu</a> - helps to translate some common GUI-related strings already translated in some other open-source programs. <a href="http://virtaal.org" class="external text" rel="nofollow">Virtaal</a> integrates results from Open-Tran.eu as you translate.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 85/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1496-0!*!0!!en!2!edit=0 and timestamp 20140705181254 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Translation.html">http://devel.bibletime.info/wiki/Translation</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Translation.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Translation&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Translation&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Translation&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Translation&amp;returntoquery=oldid%3D3931" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Translation.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Translation.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://devel.bibletime.info/index.php?title=Translation&amp;oldid=3931&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="index.php%3Ftitle=Translation&amp;oldid=3931.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Translation", "wgTitle": "Translation", "wgAction": "view", "wgArticleId": 1496, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3931, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.290 secs. --></body></html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Testing BibleTime - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Testing_BibleTime skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Testing BibleTime</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">
+				<div id="mw-revision-info">Revision as of 16:20, 4 November 2009 by <a href="wiki/User:Eelik.html" title="User:Eelik" class="mw-userlink">Eelik</a>  <span class="mw-usertoollinks">(<a href="http://devel.bibletime.info/index.php?title=User_talk:Eelik&amp;action=edit&amp;redlink=1" class="new" title="User talk:Eelik (page does not exist)">Talk</a> | <a href="wiki/Special:Contributions/Eelik.html" title="Special:Contributions/Eelik">contribs</a>)</span></div>
+
+				<div id="mw-revision-nav">(<a href="http://devel.bibletime.info/index.php?title=Testing_BibleTime&amp;diff=prev&amp;oldid=3357" title="Testing BibleTime">diff</a>) <a href="http://devel.bibletime.info/index.php?title=Testing_BibleTime&amp;direction=prev&amp;oldid=3357" title="Testing BibleTime">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div>
+			</div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>This page has guidelines for testing.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#General_guidelines"><span class="tocnumber">1</span> <span class="toctext">General guidelines</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Texts.2C_layouts_and_sizes"><span class="tocnumber">1.1</span> <span class="toctext">Texts, layouts and sizes</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Bookshelf_index"><span class="tocnumber">2</span> <span class="toctext">Bookshelf index</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Bookmarks"><span class="tocnumber">3</span> <span class="toctext">Bookmarks</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Bookshelf_Manager"><span class="tocnumber">4</span> <span class="toctext">Bookshelf Manager</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Display_windows"><span class="tocnumber">5</span> <span class="toctext">Display windows</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Bibles"><span class="tocnumber">5.1</span> <span class="toctext">Bibles</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Commentaries"><span class="tocnumber">5.2</span> <span class="toctext">Commentaries</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#General_books"><span class="tocnumber">5.3</span> <span class="toctext">General books</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Dictionaries"><span class="tocnumber">5.4</span> <span class="toctext">Dictionaries</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Other"><span class="tocnumber">5.5</span> <span class="toctext">Other</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Search"><span class="tocnumber">6</span> <span class="toctext">Search</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html#Configuration"><span class="tocnumber">7</span> <span class="toctext">Configuration</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="General_guidelines">General guidelines</span></h2>
+<p>Here we have collected some things which should help testers find out what to do. These are guidelines only. The problem with testing is that one user (let alone developer) can't find all ways an application can be used. Therefore it's important to play around and try to find some unexpected use cases. Some user may use the application daily in a way which never came to a developer's mind. Do what you usually or rarely do plus as many extra things as come to your mind. Be evil: try to think what the developers haven't considered and try to crash the application.
+</p><p>Testers should have a debug build if possible. Start with --debug option.
+</p><p>Install BibleTime using another user account. Create an account if necessary, preferably with a name with non-ascii characters. Do all tests.
+</p>
+<h3> <span class="mw-headline" id="Texts.2C_layouts_and_sizes">Texts, layouts and sizes</span></h3>
+<p>Whatever you do, always think about the visible texts. Are they comprehensible and correct? Are they good English (if you aren't using a translated UI)? Are they informative? Do they mislead users? Are they consistent with each other, using same words and conventions?
+</p><p>Test the tooltips, too. Every component which is not self-evident should have a tooltip. See <a href="wiki/Programming_Guidelines.html#User-visible_text" class="external free" rel="nofollow">http://devel.bibletime.info/wiki/Programming_Guidelines#User-visible_text</a> to know how they should have been written.
+</p><p>Change the general UI font (possibly with qtconfig or qtconfig-qt4 program, if changing the system wide fonts doesn't work). Try double the size and half the size of your usual font. Check through all the UI elements. You should be able to read all texts in one way or the other. If they aren't directly visible, resize the windows or areas. If some text can't be seen and the window or area can't be resized larger, it's a serious usability bug.
+</p><p>Every window should fit in the display. Some modern netbook computers have vertical resolution of 600 or even 480 pixels where desktop bar may take 40 or so pixels making the available space less than about 440 pixels. If a window can't be resized under that (with the normal font size), it's a usability bug.
+</p><p>Try to resize every window smaller and larger and check that they behave reasonably.
+</p>
+<h2> <span class="mw-headline" id="Bookshelf_index">Bookshelf index</span></h2>
+<ul><li> Change Grouping and Hiding. Check that those are saved between sessions.
+</li><li> Check that Grouping and Hiding are reflected in everywhere where expected (all places except Bookshelf Manager: Change/Add work buttons in text windows, search work list...).
+</li><li> Use all RMB menu items for different works.
+</li><li> Add and remove works and install folders with Bookshelf Manager (q.v.) and check that changes are reflected here.
+</li></ul>
+<h2> <span class="mw-headline" id="Bookmarks">Bookmarks</span></h2>
+<ul><li> Load existing bookmarks created with 1.6.
+</li><li> Try different things with many or no bookmarks.
+</li><li> Start drag from different places from BT or from other applications and drop to bookmarks.
+</li><li> Drag to the bookmarks view to different areas (items, selections, empty area).
+</li><li> Drag bookmarks to other widgets and other applications.
+</li><li> Cancel drags (with ESC key) which are created in different places and are on top of different areas.
+</li><li> Resize the bookmarks view, make it very small/large and try different things.
+</li><li> Try dragging on top of a folder which has sub- and subsubfolders.
+</li><li> Open the RMB menu on top of different areas with different kinds of item selections - does it have the correct items (dis)abled?
+</li><li> Test the RMB menu items with different kinds of single items
+</li><li> Test the RMB menu items with different kinds of multiple selections
+</li><li> Copy and move different kinds of items and selections to different places. Do they really move/copy as expected?
+</li></ul>
+<h2> <span class="mw-headline" id="Bookshelf_Manager">Bookshelf Manager</span></h2>
+<p>Sources and install locations:
+</p>
+<ul><li> Add sources, even broken ones.
+</li><li> Delete sources.
+</li><li> After adding and deleting, close the manager and open it again to see if the changes have been saved.
+</li><li> After adding and deleting, close and open the whole app.
+</li><li> Add install locations.
+</li><li> Add locations with non-ascii (e.g. arabic) characters. Try to find and install works there.
+</li><li> Remove install locations.
+</li><li> After adding and deleting install locations the main bookshelf index and display windows should be updated automatically. (Add a location where works are already installed, or remove the same location, and see that module lists are updated.) 
+</li><li> Keep modules from all locations open in display windows while removing install locations.
+</li></ul>
+<p>Install modules:
+</p>
+<ul><li> If possible, set up a private ftp server and a repository where you can download from.
+</li><li> It's especially valuable to test with multicore or multiprocessor machines.
+</li><li> Install one module.
+</li><li> Install several modules in one go.
+</li><li> Install several modules from several sources in one go.
+</li><li> Cancel all installations with "stop/cancel all"...
+<ul><li> immediately after the dialog has opened.
+</li><li> after downloading has started.
+</li><li> after all downloads have ended but the dialog is still visible.
+</li></ul>
+</li><li> Cancel all installations with individual Stop/cancel button.
+</li><li> Cancel some installations but let some continue.
+<ul><li> Cancel while it's still waiting for turn.
+</li><li> Cancel when it's preparing but download hasn't started.
+</li><li> Cancel after download has started.
+</li><li> The first and last items are especially important.
+</li></ul>
+</li><li> Try to install to non-writable destination location.
+</li><li> Try to do anything else while installing: search, open and close modules, navigate in them, change configuration settings...
+</li><li> After installing check that installed works are seen in the rest of the UI.
+</li><li> After installing check that sources don't show those installed modules as still installable.
+</li></ul>
+<p>Remove modules:
+</p>
+<ul><li> Remove all modules.
+</li><li> Remove some modules.
+</li><li> Remove one module.
+</li><li> Keep modules open in display windows while removing modules.
+</li><li> Try to do something else while removing (you have to be lightning fast:)
+</li></ul>
+<h2> <span class="mw-headline" id="Display_windows">Display windows</span></h2>
+<p>Try each type of modules/texts. There are also some testing modules in <a href="ftp://labs.crosswire.org/pub/sword/experimentalraw/" class="external free" rel="nofollow">ftp://labs.crosswire.org/pub/sword/experimentalraw/</a> repository, possibly having new features which are not yet supported by BT.
+</p>
+<h3> <span class="mw-headline" id="Bibles">Bibles</span></h3>
+<ul><li> Navigate with each method (drag&amp;drop a reference, write a reference, use dropdown lists, next/prev b/c/v buttons, history buttons, verse references within Bible text, crossreferences within Bible text). Use these methods one after another in different orders.
+</li><li> Add, remove and change parallel texts.
+</li><li> Change display settings.
+</li><li> Use all RMB menu items.
+</li></ul>
+<h3> <span class="mw-headline" id="Commentaries">Commentaries</span></h3>
+<p>Navigate just as with Bibles. Open the writable commentary and edit it.
+</p>
+<h3> <span class="mw-headline" id="General_books">General books</span></h3>
+<p>Navigate. Open a book you know and see if it has all chapters etc.
+</p>
+<h3> <span class="mw-headline" id="Dictionaries">Dictionaries</span></h3>
+<ul><li>Test if dictionaries have all entries. Navigate.
+</li><li>Test a dictionary which has non-ascii keys. E.g. LiddellScott.
+</li></ul>
+<h3> <span class="mw-headline" id="Other">Other</span></h3>
+<p>Test modules with images. E.g. ABSMaps from the Xiphos repo. Different image file formats may work differently, so try to find each of them.
+</p>
+<h2> <span class="mw-headline" id="Search">Search</span></h2>
+<ul><li> Try at least one module from each module type/category.
+</li><li> Try at least one module with non-ascii unicode characters.
+</li><li> Try one Greek and one Hebrew module. (instead of or in addition to the previous item.)
+</li><li> Try searching Strong's numbers (in KJV, some Greek modules).
+</li><li> Try searching morphology (KJV, some Greek modules).
+</li><li> Try searching adjacent Strong's numbers (some words in KJV represent more than one Greek word).
+</li><li> Try searching for small words: articles, "and", "or"... alone and with other words.
+</li><li> Try searching all available tags (also other than Strong's and morphology: heading, footnote).
+</li><li> Try strange search terms: special characters etc.
+</li><li> Try "All words", "Some words" and "Full" in combination with other options and search terms.
+</li><li> Try selecting different sets of modules and searching in them.
+</li><li> Selected modules have a history list - see that it works correctly.
+</li><li> Try the scope/range.
+</li><li> Edit and test scopes.
+</li><li> Try the Strong's numbers feature in the module list in the results area.
+</li><li> Try Analyzing the results and check if it looks correct.
+</li><li> Open and close the search dialog in different situation while doing different things.
+</li><li> Saving and restoring the dialog settings automatically (histories, user defined settings etc.)
+</li></ul>
+<h2> <span class="mw-headline" id="Configuration">Configuration</span></h2>
+<ul><li> Open and close Configuration dialog.
+</li><li> Try every and each option. There's no need to list them here - there are too many and they may change. See that they work as expected.
+</li><li> Close and open the application to see that settings have been saved and restored.
+</li><li> If it's not restored, you can look from the config file if it's been saved at all, or just not restored.
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 51/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1495-0!*!0!!en!*!edit=0 and timestamp 20140705152544 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Testing_BibleTime.html">http://devel.bibletime.info/wiki/Testing_BibleTime</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Testing_BibleTime.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Testing_BibleTime&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Testing_BibleTime&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Testing_BibleTime&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Testing_BibleTime&amp;returntoquery=oldid%3D3357" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Testing_BibleTime.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Testing_BibleTime.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://devel.bibletime.info/index.php?title=Testing_BibleTime&amp;oldid=3357&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="index.php%3Ftitle=Testing_BibleTime&amp;oldid=3357.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Testing_BibleTime", "wgTitle": "Testing BibleTime", "wgAction": "view", "wgArticleId": 1495, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3357, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.308 secs. --></body></html>

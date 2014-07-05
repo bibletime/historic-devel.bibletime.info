@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Reworking the Configuration System - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Reworking_the_Configuration_System skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Reworking the Configuration System</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Reworking_the_BibleTime_configuration_system"><span class="tocnumber">1</span> <span class="toctext">Reworking the BibleTime configuration system</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Existing_system"><span class="tocnumber">1.1</span> <span class="toctext">Existing system</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#CBTConfig"><span class="tocnumber">1.1.1</span> <span class="toctext">CBTConfig</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#CResMgr"><span class="tocnumber">1.1.2</span> <span class="toctext">CResMgr</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#CProfile"><span class="tocnumber">1.1.3</span> <span class="toctext">CProfile</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Replacement:_BtConfig"><span class="tocnumber">1.2</span> <span class="toctext">Replacement: BtConfig</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#The_BtConfig_class"><span class="tocnumber">1.2.1</span> <span class="toctext">The BtConfig class</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Actions"><span class="tocnumber">1.2.2</span> <span class="toctext">Actions</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Default_values"><span class="tocnumber">1.2.3</span> <span class="toctext">Default values</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Independent_components_with_Signals_and_Slots"><span class="tocnumber">1.2.4</span> <span class="toctext">Independent components with Signals and Slots</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Backend_implementation"><span class="tocnumber">1.2.5</span> <span class="toctext">Backend implementation</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Drawbacks"><span class="tocnumber">1.2.6</span> <span class="toctext">Drawbacks</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Proposal"><span class="tocnumber">2</span> <span class="toctext">Proposal</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;printable=yes.html#Configuration_layout"><span class="tocnumber">2.1</span> <span class="toctext">Configuration layout</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Reworking_the_BibleTime_configuration_system">Reworking the BibleTime configuration system</span></h2>
+<h3> <span class="mw-headline" id="Existing_system">Existing system</span></h3>
+<h4> <span class="mw-headline" id="CBTConfig">CBTConfig</span></h4>
+<p>Currently there is the CBTConfig class which handles the configuration. It has many enums which are used as arguments in methods
+(or actually functions, because all are static).
+There are functions to get values and default values and to set values, about 25 counted together, plus private functions. KConfig is
+used as a backend.
+</p><p>In implementation there are many private getKey functions which have different kinds of default values, like:
+</p>
+<pre>   switch ( ID ) {
+       case bibletimeVersion:		return "bibletimeVersion";
+</pre>
+<p>Then there are many public getDefault functions:
+</p>
+<pre>   switch ( ID ) {
+       case standardBible:	return "KJV";
+</pre>
+<p>And of course many get functions:
+</p>
+<pre>   KConfigGroup cg = CBTConfig::getConfig()-&gt;group("ints");
+   return cg.readEntry(getKey(ID), getDefault(ID));
+</pre>
+<p>And many set functions:
+</p>
+<pre>   KConfigGroup cg = CBTConfig::getConfig()-&gt;group("strings");
+   cg.writeEntry(getKey(ID), value);
+</pre>
+<p>This all works but I really think it is unnecessarily complicated. KConfig and QSettings both have systems with which the programmer does not have to care about types. All types can be saved and loaded with same functions. Using a horde of functions (and namespaces) destroys this idea.
+</p>
+<h4> <span class="mw-headline" id="CResMgr">CResMgr</span></h4>
+<p>There is also CResMgr class which handles the values as a treelike namespace structure. There are .h and .cpp files and both
+have essentially the same code lines, .h for declarations and .cpp for definitions.
+</p><p>namespace modules {
+</p>
+<pre>   namespace bible {
+   const QString icon_unlocked  = "bible.svg";
+</pre>
+<p>This also works but I really think it is very ugly (namespaces are not meant for this) and unnecessarily complicated. Also it's very restricting see the reasoning below, "Actions".
+</p>
+<h4> <span class="mw-headline" id="CProfile">CProfile</span></h4>
+<p>CProfile class handles saving and loading profiles. Using XML is overkill because the documents are not handled anywhere
+else besides this class. All information could be saved in a tree structure as key/value pairs.
+Actually QSettings documentation gives an explicit example for exactly that situation, "Restoring the State of a GUI Application".
+</p>
+<h3> <span class="mw-headline" id="Replacement:_BtConfig">Replacement: BtConfig</span></h3>
+<h4> <span class="mw-headline" id="The_BtConfig_class">The BtConfig class</span></h4>
+<p>As a replacement I give one class. It has very small public interface:
+</p>
+<pre>   class BtConfig {
+     public:
+       enum ItemFlags {NoSave, Save, NoChange};
+       static void setValue(QString key, QVariant value, ItemFlags flags = NoSave);
+       static QVariant value(QString key);
+       static bool hasValue(QString key);
+       static void initialize();
+       //...
+   }
+   
+</pre>
+<p>At first sight this looks impossible. How could such interface replace or at least greatly simplify those three classes above?
+</p><p>QVariant is the key (actually the value, but we are speaking figuratively&#160;:). In the current system we have to handle all types differently and
+therefore use enums and countless functions. But Qt has a solution for this: QVariant. It is magic. Without it we must write for example:
+</p>
+<pre>   setIntValue(some_key, 12);
+   setStringValue(some_other_key, QString("hello"));
+   int i = intValue(some_key);
+   QString s = stringValue(some_other_key);
+   
+</pre>
+<p>But with QVariant we can write:
+</p>
+<pre>   setValue(some_key, 12);
+   setValue(some_other_key, QString("hello"));
+   int i = value(some_key).toInt();
+   QString s = value(some_other_key).toString();
+</pre>
+<p>Now keys are namespaces. We have to write:
+</p>
+<pre>   setValue(CBTConfig::strings::somekeyname, 12);
+</pre>
+<p>But we could as well write:
+</p>
+<pre>   setValue("somekeyname", 12);
+</pre>
+<p>Why string keys are better? We will see.
+</p>
+<h4> <span class="mw-headline" id="Actions">Actions</span></h4>
+<p>Porting the actions from Qt/KDE3 to 4 was pain because the constructors had changed. There are dozens of actions in the code, spread in many files.
+Every one of them had to be changed.
+I wrote one convenience function into one class with which I could reduce the code a bit. But alas, our configuration system did not let
+make a simple solution. Let's see why. Here is a convenience function (a real one):
+</p>
+<pre>   void initAction(KAction* action, QString text, QString icon, KShortcut accel, QString tooltip, const char* actionName, const char* slot );
+</pre>
+<p>And you would call it like this (a real example):
+</p>
+<pre>   initAction(
+       new KAction(ac),
+       i18n("Search in &amp;open work(s)"),
+       CResMgr::mainMenu::mainIndex::search::icon,
+       CResMgr::mainMenu::mainIndex::search::accel,
+       CResMgr::mainMenu::mainIndex::search::tooltip,
+       CResMgr::mainMenu::mainIndex::search::actionName,
+       SLOT( slotSearchModules() )
+   );
+</pre>
+<p>This is not much shorter than any constructor/setters combination and yet you have to write the same code for every Action. What is worse, we have
+CResMgr::mainMenu::mainIndex::search:: 4 times. Apparently I would like to call it with "CResMgr::mainMenu::mainIndex::search::" once without "icon",
+"accel" etc. because they are repeated for every action.
+</p><p>The shortest possible call would be this:
+</p>
+<pre>   initAction(action, CResMgr::mainMenu::mainIndex::search::, SLOT(slotSearchModules());
+</pre>
+<p>But using namespaces forbids it. There is no way to use namespace as an argument. It would be possible with strings:
+</p>
+<pre>   initAction(action, "mainMenu/mainIndex/search", SLOT...);
+</pre>
+<p>And implementation would look like this:
+</p>
+<pre>   //initAction implementation...
+   action.setIcon(QIcon(CResMgr.value(QString(key) + QString("icon") )));
+   //...
+</pre>
+<p>We could make new BtAction class which would inherit QAction or KAction and would have couple of constructors for different situations, basically
+like this:
+</p>
+<pre>   BtAction::BtAction(QString actionName, QObject* receiver, const char* slot) {
+       if ( CResMgr::hasValue(QString(key) + QString("icon") )) {
+           setIcon(QIcon(CResMgr::value(QString(key) + QString("icon") )));
+       }
+       //set other properties, connect signal etc.
+   }
+</pre>
+<p>The idea is that we can define all actions in some centralized place and then construct them automatically.
+</p><p>There would also be added benefit that we could make BtAction inherit KAction if it feels necessary and later change it to inherit QAction.
+We could also make our own BtActionCollection inheriting KActionCollection which indeed is responsible for providing the actions to the shortcut editor.
+Later we could replace the relevant part of the API with our own implementation.
+</p>
+<h4> <span class="mw-headline" id="Default_values">Default values</span></h4>
+<p>We want of course provide default values for configuration. It would be easy. We could have file btconfig_defaults.cpp just for that:
+</p>
+<pre>   void BtConfig::initializeDefaults(){
+       setDefault("mainMenu/mainIndex/actions/search/icon", "icon.svg");
+       setDefault("mainMenu/mainIndex/actions/search/accel", QKeySequence(), BtConfig::Save);
+       setDefault("mainMenu/mainIndex/actions/search/text",
+           tr("Search in &amp;open work(s)", "Search action in main window bookshelf index") ); //see Qt translation tutorial
+       setDefault("mainMenu/mainIndex/actions/search/tooltip",
+           tr("Search in all open works", "Search action tooltip in main window bookshelf index") );
+       //...
+       //--------------- replace the CResMgr structures:-------------------------------
+       setDefault("moduletypes/bible/icons/unlocked", "bible.svg", BtConfig::NoChange);
+       //...
+   }
+</pre>
+<p>"BtConfig::Save" tells that this value can be saved into file, otherwise it would be only in the runtime memory and not saved.
+It is very easy to make some value saveable e.g. if we want to use icon sets. BtConfig::NoChange tells that the default
+value may not be changed at all (maybe this is not necessary but it prevents accidents).
+</p><p>There might be need for private setDefault function because it may be necessary to revert back to defaults even though there are saved values.
+For example if the user wants to switch back to default shortcuts. The backend would remember those defaults even after they were overriden.
+Also when getting a value we should first check if there were a saved/changed value and only after that revert to the default.
+</p><p>In the above example there is key string "mainMenu/mainIndex/actions/search/accel". The key tree structure should be standardized. Then we could make the configuration dialog to use the keys to find configurable shortcuts. This may need another new function but basically it would be searching for all actions under some base key. If it has been set as Saveable and Changeable the config dialog would take it to the list of modifiable shortcuts.
+</p>
+<h4> <span class="mw-headline" id="Independent_components_with_Signals_and_Slots">Independent components with Signals and Slots</span></h4>
+<p>It's not necessary to use signals and slots with the new system but it would be possible. Nowadays the Configuration dialog is not complicated and applying the settings calls a slot method in BibleTime class. This is not bad but it makes unnecessary dependencies. BibleTime class doesn't have to know anything about configuration changes, instead BtConfig could send signals when settings are changed and the relevant GUI classes could catch and process them.
+</p>
+<h4> <span class="mw-headline" id="Backend_implementation">Backend implementation</span></h4>
+<p>Without an easy backend this would be much harder, but we already have QSettings. Using QVariant becomes directly from
+QSettings. QSettings handles the loading and saving automatically. It is also a solution to config file placement problem.
+</p><p>QSettings is overkill if we just want to create a key/value pair runtime and keep it in memory (like icon names etc.).
+QSettings documentation recommends using QMap&lt;QString, QVariant&gt; for that purpose. So our implementation would have
+two backends: QSettings for permanent saveable storage and QMap for runtime-only storage. Therefore
+</p>
+<pre>   setValue("key1", "value1", BtConfig::Save);
+   setValue("key2", "value2", BtConfig::NoSave);
+</pre>
+<p>would put the first pair into QSettings and the second one into QMap. The getter function finds the value from either of these and
+the caller doesn't have to know where it comes from.
+</p><p>Undoubtedly there will be more implementation details but this will still be much more simple than the current solution.
+</p>
+<h4> <span class="mw-headline" id="Drawbacks">Drawbacks</span></h4>
+<p>Are there any downsides in this solution?
+</p>
+<ul><li>Using namespaces prevents all spelling mistakes. Using strings is always risky. But QSettings system already takes that risk, so why don't we?
+<ul><li>You could still use "const QString"s for all names that are used to access the values. So you can still use the compiler to check your code for spelling mistakes. All the names would be defined in the config header file. What do you think? --mgruner
+</li><li> After some hard thinking I probably get what you mean. We could for example have a Config:: namespace and inside it some const strings:
+</li></ul>
+</li></ul>
+<pre>namespace Config {
+    const char* bibleWindow_actions_nextVerse_accel = "bibleWindow/actions/nextVerse/accel";
+}
+</pre>
+<ul><li><ul><li>and then the name could be used instead of the string:
+</li></ul>
+</li></ul>
+<pre>getValue(Config::bibleWindow_actions_nextVerse_accel);
+</pre>
+<ul><li><ul><li>It just means that we have to duplicate some text. Is it worth it? Build-time checking is good because it prevents small but annoying bugs, otherwise it's not important. QSettings and KConfig are already built to use only runtime checking and yet they are used in real applications so it should be enough for us too. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 16:34, 19 November 2007 (CET)
+</li></ul>
+</li></ul>
+<ul><li>The user has to check what type the value is. The current system makes sure that it is always correct. I'm not sure how strictly QVariant handles conversions.
+</li><li>I can't say anything about the runtime time/memory penalty of either old or new solution. I suppose it would be negligible though.
+</li><li>QVariant can not handle just any type out there. See the QVariant class documentation. Most important/interesting for us would be:
+<ul><li>QString
+</li><li>QStringList
+</li><li>QMap&lt;QString, QVariant&gt;
+</li><li>QList&lt;QVariant&gt;
+</li><li>int
+</li><li>bool
+</li><li>QRect (window geometry)
+</li><li>QFont
+</li><li>QKeySequence (accelerators)
+</li><li>Therefore we have to either break some of our own classes like CLanguageMgr::Language into pieces to save them, make them known to QVariant (see the doc again) or write extra setter/getter functions for them.
+</li></ul>
+</li></ul>
+<ul><li>Using QVariant essentially means removing strict typing, which can be dangerous.  Of course, we will have to use QVariant with QSettings itself, but perhaps our class can use simple overloading (though we'll have to define more functions for the getters).  If we only have a few types, would overloading really add much more complexity?  Each function may be able to be as simple as checking the type() of the variable and doing the conversion.
+<ul><li>This approach might even reduce the complexity, since the function that uses the QVariant will probably need to convert it to its native type anyhow.
+</li><li>This would prevent the user from having to check the type outside of the class.
+</li><li>This approach would make handing our own classes like CLanguageMgr::Language similar to native types from the perspective of code using the class. -jerickson314
+</li></ul>
+</li></ul>
+<ul><li><ul><li> Yes, that is what I meant by "The user has to check..." above. I can't find a solution to easiness/safety dilemma here but neither have the writers of KConfig or QSettings found it. They follow the easy way, not the safe one. You may be right about adding functions, but I was trying to avoid adding a new function for every type we add to the config data. We have to think about this, checking all different kinds of situations where the config system could be used, and see what would be the best solution in each place. We shouldn't over-engineer but the config system is surely one place where we need flexibility for the future needs. Could this be a place for templates? I'm not familiar enough with them to say for sure. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 20:11, 14 November 2007 (CET)
+</li><li> If we add getters we have not reduced the complexity. We would have more functions and each user should use a specific function anyways. It would not be much easier to use for example getInt() than get().toInt(). <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 20:11, 14 November 2007 (CET)
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Proposal"> Proposal </span></h2>
+<p>I (Patrick) will braindump my current thoughts about this here.
+</p>
+<ul><li>Putting a wrapper around QSettings will allow for several nify features, see below.
+</li><li>Do we actually need ephemeral setting storage? (probably not)
+</li><li>Singleton class should be used if we put everything in one config, otherwise a configmanager would be needed, probably overkill
+</li><li>Strings as key.
+</li><li>Put Sessions into that config or separate ones? - Same config.
+<ul><li>Separate ones introduce hidingplaces for bugs.
+</li><li>The wrapper class should abstract the access to the current session
+</li><li> The wrapper class could save a QSet with entries that are saved in sessions. Every access to such elements would automatically put itself in the session if it has to
+<ul><li> Might that cause a performance problem?
+</li></ul>
+</li></ul>
+</li><li> BtConfig::getSingleton().getValue("gui/mainwindow/showStuff").value&lt;QString&gt;()
+</li><li> Defaults could be stored in a QHash&lt;QString,QVariant&gt; that is initialized once (and might even be cached to prevent regeneration).
+</li><li>bookmarks should be kept as XML. They can not be represented in QVariants well and are interesting for other applications too.
+</li><li>No type based hierarchy (int, bool, stringlist...) but purpose/origin based. See below.
+</li></ul>
+<h3> <span class="mw-headline" id="Configuration_layout"> Configuration layout </span></h3>
+<p>Rough layout of Configuration file, this is in no way final. A lot of options are missing and they might be majorly reordered.
+</p>
+<ul><li>gui
+<ul><li>mainwindow
+<ul><li>mainwindow options
+</li></ul>
+</li></ul>
+</li><li>settings
+<ul><li>search
+</li><li>shortcuts
+<ul><li>shortcuts go here
+</li></ul>
+</li><li>Language
+</li><li>Font
+</li><li>Filters
+<ul><li>global filter options go here
+</li></ul>
+</li></ul>
+</li><li>sessions
+<ul><li>sessionname
+<ul><li>gui
+<ul><li>mainwindow
+<ul><li>showBookshelf
+</li><li>showBookmark
+</li><li>showMag
+</li><li>...
+</li></ul>
+</li><li>BibleWindows
+<ul><li>VerseKey
+</li><li>Bibles (QStringList)
+</li><li>useLinebreaks
+</li><li>useVerseNumbers
+</li><li>...
+</li></ul>
+</li><li>CommentWindows
+<ul><li>similar to BibleWindows
+</li></ul>
+</li><li>BookWindows
+</li><li>DictionaryWindow
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 54/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1472-0!*!0!!en!*!edit=0 and timestamp 20140705181457 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Reworking_the_Configuration_System.html">http://devel.bibletime.info/wiki/Reworking_the_Configuration_System</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Reworking_the_Configuration_System.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Reworking_the_Configuration_System&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Reworking_the_Configuration_System&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Reworking_the_Configuration_System.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Reworking_the_Configuration_System.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Reworking_the_Configuration_System&amp;oldid=3706.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 16 December 2010, at 22:14.</li>
+		<li id="viewcount">This page has been accessed 3,963 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Reworking_the_Configuration_System", "wgTitle": "Reworking the Configuration System", "wgAction": "view", "wgArticleId": 1472, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3706, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.688 secs. --></body></html>

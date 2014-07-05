@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Talk:BibleTime2FrontendNavigator.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-1 ns-talk page-Talk_BibleTime2FrontendNavigator skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Talk:BibleTime2FrontendNavigator.html" title="Talk:BibleTime2FrontendNavigator">Talk:BibleTime2FrontendNavigator</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Talk:BibleTime2FrontendNavigator&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Talk:BibleTime2FrontendNavigator&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">The navigator is the most important widget in a Bible application (after the text display). Therefore it's worth analyzing deeply. I hope this is useful or at least entertaining.
+
+==An editable navigator widget==
+Most biblestudy pages in www which use some kind of a navigator beyond a simple text widget have usability problems. The most common problem is the drop-down list, which is an editable or non-editable combo box.
+
+===Problem with long list===
+When you show any number of items in that list it puts them one after one vertically. If the amount of items goes over some threshold a scrollbar is showed up. And here comes one usability problem. When user opens the list of the books of the Bible, it starts with the Genesis etc. If he wants Galatians he has to scroll down. But if he uses the location marker of the scrollbar, he has to have supernatural powers to get it to right location fast, because that location is only few pixels tall. Usually it takes moving down, moving back up, down again, frustration... Another option is to use the arrows, but they are slow. That kind of widget is just not designed for large amount of data.
+
+Still one note about dropdown lists. Why to limit the number of visible items to e.g. 10? If there are tens of items, the problem I described comes up. Using as much space for the list as there is in the screen gives user direct visibility to more items and using the scrollbar, if it's necessary, is easier because the "resolution" is lower. (This is a more general note, but applies to BT if dropdown lists are used somewhere.)
+
+Some applications have a tree list for navigation. A permanently visible list takes valuable screen estate and has the same problem with a combobox list: you have to scroll, and when you have opened some books/chapters, you have to scroll  much more. Not good.
+
+
+The same problem is inherent with the current BibleTime navigation widget. The idea is great, but one has to first shoot at a block (between up/down arrows) which is couple of pixels tall and a bit wider. Then he has to move the mouse with less than one pixel resolution (I tried!) and that's impossible. No hint of good usability.
+
+===Problems of the current implementation===
+There are also other problems with the current implementation. First, how to scroll the list of items is not self-evident to users - there are no similar things in other applications. You have to read docs (which the users usually don't do) or find it by accident.
+
+Second, the up/down arrows are problematic. Usually "up" in spinbox denotes larger number and vice versa. But when you are browsing a document, "up" means back and it's contrary to the verse/chapter numbers. Do it either way but it's still confusing and that cannot be solved. Right-left arrows are better, they are the standard in modern multimedia. "Right" is always forward.
+
+The scrolling mouse button is great once you are used to it. I noticed (by accident) that it works with the navigator also. But compared to the arrows and the document reading direction "up" is now "down"! Where's the logic? Maybe there cannot be one.
+
+===The other idea===
+Then something about the idea in this wiki. Generally it's good. There are some problems, however.
+
+First: user clicks - nothing is highlighted. Why? If user clicks the widget he wants to edit it. I can't think of no other case. So, the part under the cursor should be highlighted immediately. It could be the book name, chapter or verse.
+
+Second: if the widget looks like one text area but is really several, it's unnatural for users. There are no text areas which have many separated text areas inside it in other applications. Why not use visibly separate widgets if the user has to press tab anyways?
+
+Third: the mouse is the best and easiest way to navigate for many users, there's no escaping that fact. Having the possibility to write with keyboard is obligatory, but so is using mouse only.
+
+===A new idea===
+I made a navigator mockup which tries to solve some of these problems. It's not perfect in any way, it creates some problems of it's own. For example, it takes much more space than some other solutions. But here it is.
+
+[[Image:bt_navigator_mockup1.png|A navigator mockup]]
+
+There are three widgets for book, chapter and verse. Each one can work as the current idea in the wiki so that it has completion etc. Additionally each one has it's own backward/forward navigation arrows. They are self-explanatory. Then there is a combobox downward arrow indicating a dropdown list. I have located it under the text so that it's easily distinguishable from the navigation arrows. It's not familiar to users but is clearly visible and very natural after trying once. It almost begs you to click it to see what happens.
+
+The "book" widget could also recognize chapter and verse number if the user writes them with keyboard. After parsing it just moves the numbers into chapter and verse widgets. Using tab key is more cumbersome than using space if you are a seasoned typewriter.
+
+The difference between this and other similar ideas is mostly in the dropdown list. We know that there are so many books in the Bible and so many chapters and verses in each book. So we can make a nondynamic table instead of a list. In the picture the user has clicked the opening button in the book widget. Usually you get a short list with a scrollbar. But here you can see all the books at once, just move there and click.
+
+The dropdown list has book names categorized. It helps to find a book visually. Categorizing can be done with colored background, now it's quite ugly (and takes more space because it has empty spaces). If a module has only OT/NT, the missing books are removed from the list. Apocrypha can be added.
+
+This is the old way, used in some applications, to move to some book:
+*Click the button to open the list
+*Move to scrollbar
+*Click and hold down
+*Move, trying to find the right book
+*Move back because you went too far
+*Move forward because you went back too far (OR move to up/down arrows and start clicking them)
+*Release button
+*Move over the right book
+*Click
+
+And this is the new way:
+*Click the button to open the list
+*Locate the right book with your eyes (I think this is very natural after some time, because they are not only listed but also sorted in categories)
+*Move to the book
+*Click
+
+There can be similar tables for numbers: 10 rows, as many columns as you need for the book in question. Moving to Psalm 80 is as easy as moving to Psalm 1. Not so in any implementation I know (when working with mouse).
+
+=== A competitor's solution ===
+UPDATE: The Word has a navigator which is quite similar to this. Here is a screenshot.
+
+[[Image:thewordnavigator.png]]
+
+It has only one text field and a dropdown list. The list has submenus. This navigator is more simple than my mockup. It takes three moves to go to a different verse (and you can't move to another book without selecting ch. and v.), but the application has several other ways to navigate.
+
+I'm not sure which one is better. If you want to move inside one book, it's easier to have a direct link to all chapters without selecting a book. But with The Word's solution you need only one click, three moves and one click to move to any verse (versus my 6 clicks and 5 moves). Maybe these two could be combined: from book selection list you can navigate to chapter list OR click the book name. If you want to change the chapter only, you can open the chapter list directly. One downside of submenus is that when you move the mouse too slowly, a submenu appears even if you don't want it. There has to be a delay, The Word has it (about 0.5 sec) and it works quite well.
+
+The navigator activates the text when clicked (or F4 pressed) and it gives a list of completions. Very quick and handy. Also it activates the text after pressing enter, so after you have read your verse you can start typing another without pressing F4 or something.
+
+BTW, the parsing algorithm can take a plain chapter:verse without book name and use the current book. e-Sword does that, but it doesn't recognize one number: it takes you to the first book name beginning with that number if that exists (e.g. 1Sam). Ideal solution would take one number as chapter.
+
+This makes me think if the chapter and verse text areas are needed at all. In my proposal they give a good visible hint for user to meanings of navigation and dropdown list arrows. We could as well have three dropdown menu arrows under one text area. But then we need separate (6 or 4) buttons for forward/backward navigation. Unless we add links to the top and bottom of every html page and feel it's enough. The Word has links also (like it has toolbar buttons and a tree list window).
+
+--Eeli
+
+==Treeview navigator==
+Many Bible programs have a treeview navigator. There are some advantages in it. It's easy to find. It's always there. It gives a feeling of some kind of safety. It's also familiar, you can see what it is by just looking at it. But I don't know if there are any real advantages.
+
+Note that I'm talking about Bible view here, not necessarily general books. All Bibles have same books/chapters. We don't necessarily know anything about other books, they may have have any number of headers and nesting levels.
+
+===Too narrow===
+It has all the disadvantages of normal treeview panels. First, it's always too narrow. If you have only abbreviations of book names, numbers of chapters and numbers of verses, it may be wide enough. But if you want to use the names of the books, it would take too much screen space to leave it open. User can find the place even if he doesn't see the whole name, so this might not be crucial.
+
+But problem becomes more important if we want to use modern passage navigation. The whole idea of TOC is that you can easily find what you are looking for. But narrow panel restricts the view to only the beginning of the TOC item. You cannot browse through the list rapidly with your eyes, but you have to hover the mouse to see the tooltips or drag the panel wider. Human brains are good at comparing things and selecting something relevant, but restrecting the view to one item at a time is not natural for them. Of course they actually may read one at a time, but the natural way is quite different than moving mouse to see an item, then reading it, then putting it in memory, then moving mouse again to read another... My main point here is that reading real paper book TOC is easy because you can let the brain do the subconscious work, but restricted view makes you do much work consciously with your eyes and hands.
+
+BibleExplorer has an interesting mix of ch/v and passage TOC. You can see that it takes quite much space and even then can't show the headings. (Notice also how it adds "Chapter" in every place redundandly. Like I didn't know that number means a chapter here. It's actually distracting, not helpful.)
+
+[[Image:Bibleexplorertreeviewnavigator.png]]
+
+===Too short===
+The other problem, maybe greater, is hight. Even with my 900px high monitor the BibleExplorer view can show only a bit more than half of the book names at once (and what if we add apocrypha here?). Open Job and Psalms and it adds almost 200 lines. After that open Psalm 119 - if the treeview has verses, it's 176 lines more. After that you really want to collapse the tree unless you are willing to scroll up and down, trying to find a book name between books, chapters and verses.
+
+===Using the tree===
+With treeview you are using the same view to find books, chapters and verses, or possibly passage headers. It sounds good - after all, it's a treelike structure. But think it for a while. You want to start reading a book in the Bible. So you have to find a book name. Or you want to move to another chapter and find a chapter name. The problem is that there are book names, chapters and verses mixed up there and if you have opened some subtrees you see all of them. Normal treeview is not clear enough to make distinction between the levels, you have to really ''read'' what it reads. You have to find a book between books ''and'' chapters.
+
+===Fixing the problems===
+I don't know if this is worth fixing at all, but here are some hints:
+*use only abbreviations of book names (width, visibility)
+*don't add extra text like "Chapter" (redundancy, visual clutter, width)
+*calculate the initial width of the widget intelligently
+*don't show verse numbers in treeview (after selecting a chapter user can find it within the text) (height, navigating)
+*try to separate different levels visually but not distractingly (navigating)
+
+===Conclusions===
+What you ''can'' do (apart from selecting an item) with a decent treeview panel is:
+*scroll it up and down with mouse
+*scroll it horizontally
+*open and close subtrees
+*collapse the tree
+*drag it wider and narrower
+*move mouse over an item to see it in a tooltip
+*hopefully hide and show it again
+
+But these all (except hiding and showing) are really unnecessary! With a properly designed navigation system we shouldn't have to do at all these things which are not related to the task at hand but to a deficient widget.
+
+--Eeli</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Talk:BibleTime2FrontendNavigator.html" title="Talk:BibleTime2FrontendNavigator">Talk:BibleTime2FrontendNavigator</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Talk:BibleTime2FrontendNavigator.html">http://devel.bibletime.info/wiki/Talk:BibleTime2FrontendNavigator</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main"><a href="wiki/BibleTime2FrontendNavigator.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="selected"><a href="wiki/Talk:BibleTime2FrontendNavigator.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Talk:BibleTime2FrontendNavigator&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Talk:BibleTime2FrontendNavigator&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Talk:BibleTime2FrontendNavigator&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Talk:BibleTime2FrontendNavigator.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Talk:BibleTime2FrontendNavigator.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "Talk", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 1, "wgPageName": "Talk:BibleTime2FrontendNavigator", "wgTitle": "BibleTime2FrontendNavigator", "wgAction": "edit", "wgArticleId": 1437, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1959, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.255 secs. --></body></html>

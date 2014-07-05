@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Development_Plan.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Development_Plan skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Development_Plan.html" title="Development Plan">Development Plan</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Development_Plan&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Development_Plan&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">= Next release: BibleTime 2.9 =
+See also: [[Release Schedules/2.9]]
+
+==Open ToDos==
+
+=== Bookshelf manager ===
+* Refactor the indexing page to use the new bookshelf model (likely by using BtBookshelfWidget). -- [[User:Jotik|jotik]] 22:02, 24 November 2010 (UTC)
+** '''DEPENDS ON:''' The whole UI concept of the indexing page should be redesigned. Ideas needed.
+** If still present, the following old bug will also be fixed:
+*** '''Removing a module while it is indexed crashes [Eeli]'''
+**** This is not a surprise, but removing a module while it is being indexed causes crash. Indexing is (and has been) kind of a background job but it allows deleting the module simultaneously. I don't know if anyone will every do that and if it's worth fixing. [[User:Eelik|Eelik]] 22:55, 22 March 2008 (CET)
+**** After testing the new module list change notification with the indexing dialog it became clear that this is difficult to implement without threaded indexing. Therefore I will implement this with threads later. (Threads give also real responsive concurrent UI - otherwise threads would not be worth it.) [[User:Eelik|Eelik]] 12:53, 23 May 2008 (UTC)
+
+=== About dialog ===
+* Give credit to the people who created the icons. -- [[User:Jotik|jotik]] 22:02, 24 November 2010 (UTC)
+
+=== Search Dialog ===
+* Rewrite the whole search dialog to accommodate the bookshelf model. -- [[User:Jotik|jotik]] 22:02, 24 November 2010 (UTC)
+
+===Main index does not save all settings===
+Saving/restoring the opened folders when restarting is not a good idea in my opinion (Jeremy agreed). All other settings are now saved/restored. Keeping the folders open after hiding/showing modules would be good but needs some code - basically it's the same logic when saving/restoring. [[User:Eelik|Eelik]] 12:57, 11 January 2008 (CET)
+* I will research whether this can be easily implemented. --[[User:Jotik|jotik]] 22:02, 24 November 2010 (UTC)
+
+===Optimize HTML/CSS [martin] ===
+* Improve display without linebreaks (inline divs, correct outlines)
+* Improve HTML/CSS structure
+** Output [http://validator.w3.org/ valid] XHTML [http://www.w3.org/TR/xhtml1/ 1.0] and [http://jigsaw.w3.org/css-validator/ valid] CSS [http://www.w3.org/TR/CSS21/ 2.1] ?
+* Improve debugging facilities
+
+===Search Dialog [?]===
+* Enable context menus on verse references like in the main window.
+
+===Installing a work for a default work isn't reflected in display windows [?]===
+If there's e.g. no Bible installed for a default Bible to exist or Strong's dictionary, the footnotes or Strongs' don't show up in Mag. If I install one, it will automatically be shown in the Config dialog Standard works. However, that change is not reflected in the main window. I have to apply the changes in the Config dialog for them to take effect. This will probably lead some users to quit and restart the app.  [[User:Eelik|Eelik]] 22:16, 26 March 2009 (UTC)
+
+=== Main window ===
+* Add text to the icons in the main toolbar (next to them). Make Icons larger.
+
+=== Refresh all respositories ===
+Refresh all respositories in the bookshelf manager. Feature Request [https://sourceforge.net/tracker/?func=detail&amp;aid=2969485&amp;group_id=954&amp;atid=350954 2969485]
+
+= Future release: BibleTime 2.x =
+
+== Support user-defined tools ==
+Allow users to configure and use custom tools. Currently, for more information, see [http://www.crosswire.org/pipermail/bt-devel/2010-June/010269.html this thread]. Brainstorming ideas:
+* Support for [http://doc.trolltech.com/latest/qtscript.html QtScript]?
+
+== Bookshelf model ==
+Everything even remotely using QTreeWidget, QTreeWidgetItem's and will be rewritten, mostly for the purpose of code cleanup. They all will then use the new bookshelf model, which will simplify code management in the future.
+: Perhaps I will have the time to do all this in the summer. -- [[User:Jotik|jotik]]
+: there is cool widget that supports list/tree models, but it is oriented for mobile devices. Any way have a look on it: Mini Branch/src/frontend-mini/view/btminiview.h --[[User:Kalemas|Kalemas]] 02:52, 15 July 2011 (CDT)
+
+== Module chooser bar/buttons ==
+[[File:BtModuleChooserBar_2.6.png|right|thumb|Module chooser toolbar in BibleTime 2.6]]
+* Refactor the module chooser buttons to use the new bookshelf model (using BtMenuView).
+** '''MIGHT DEPEND ON:''' &lt;tt>CDisplayWindow&lt;/tt> and related classes using &lt;tt>CSwordModuleInfo*&lt;/tt> pointers (e.g. a bookshelf model) instead of a &lt;tt>QStringList&lt;/tt> of module names.
+*** '''DEPENDS ON:''' Removal &lt;tt>CSwordBackend::reload()&lt;/tt> and related signals which reload the whole backend. We should use the bookshelf model instead.
+* '''DEPENDS ON:''' New module chooser bar widget. Should probably be similar to the old module chooser bar widget (BtModuleChooserBar).
+** Constructor signature should be something like &lt;tt>BtModuleChooserBar(QWidget *parent = 0);&lt;/tt>
+** Must use an external &lt;tt>BtBookshelfModel&lt;/tt> for the list of open modules (CSwordModuleInfo).
+*** Must react to changes in the external model (insertion, removal, change of data)
+*** Must have a &lt;tt>setModel(BtBookshelfModel *)&lt;/tt> method.
+** Must use &lt;tt>BtMenuView&lt;/tt> for the button menus.
+** Should probably provide the following signals:
+*** &lt;tt>signalModuleAdded(int index, CSwordModuleInfo *module);&lt;/tt>
+*** &lt;tt>signalModuleRemoved(int index, CSwordModuleInfo *module);&lt;/tt>
+*** &lt;tt>signalModuleReplaced(int index, CSwordModuleInfo *oldModule, CSwordModuleInfo *newModule);&lt;/tt>
+
+== Icons ==
+(It's easier to handle all icons under the same header though they are in different places in UI and code.)
+
+There are some icons missing. Add here the ones you notice.
+* Display window RMB menu copy, save, print (former KStandardActions) [[User:Eelik|Eelik]] 19:45, 25 February 2009 (UTC)
+
+Unless new missing icons are found these will be fixed later. [[User:Eelik|Eelik]] 16:10, 23 May 2008 (UTC)
+
+== Drag and Drop [Eeli] ==
+Drag and drop works in some places:
+* Verse numbers and crossreferences can be dragged to a display window from a display window, mag window and search preview window
+* Verse numbers and crossreferences can be dragged to the bookmarks index
+
+It doesn't work in some places:
+* Verse numbers or references can't be dropped into the bookshelf index to open a work though the index claims it accepts drops (fixed temporarily by not accepting drops - not very important, LATER)
+* References can't be dragged from the Search dialog result verse list (FIXME before the next release!) DONE
+* Are there other situations where we need DnD? I think I tested systemwide DnD once, it would be nice to be able to drag into other apps, but it's not urgent. (Dragging from display window to other apps is now implemented - very easy.) [[User:Eelik|Eelik]] 20:47, 24 May 2008 (UTC)
+
+== Search dock / panel ==
+The main window could have a dock widget or a panel to replace the search dialog.
+
+== Find panel ==
+Display windows could have a find panel instead a dialog like most current web-browsers do.
+
+== Refreshing can't be cancelled [can wait] ==
+Cancel in Refresh Source dialog does nothing. Cancelling was meant for situations when the network connection is broken or the source is misconfigured. The Sword library can't test the connection so it just hangs and the whole app hangs. Possible cure: use threads, again. [[User:Eelik|Eelik]] 16:08, 23 May 2008 (UTC)
+
+== Replace FTP transport layer [Eeli] ==
+Sword's FTP transport turned out to be not threadsafe. Eeli is working on a QFtp based, thread safe replacement.
+*This will wait until I have more free time. The current implementation works well enough. [[User:Eelik|Eelik]] 19:42, 25 February 2009 (UTC)
+
+= Bugs pending to be fixed by Qt/Trolltech =
+== Display window handling ==
+With several windows maximizing + restoring restores the maximized window to a wrong position, always top left. Same thing with opening a new window: it's always top left, re-ordering the previous windows. [[User:Eelik|Eelik]] 15:28, 30 March 2008 (CEST)
+* This is a bug in QT. Qt 4.4 will contain the functions needed to realize the correct behaviour. --mgruner
+** Bug still present in Qt 4.4. Submitted a report. --mgruner
+*** TT reported this to be fixed, should appear in QT 4.5. --mgruner
+*** Has this been verified? [[User:Eelik|Eelik]] 17:42, 16 March 2009 (UTC)
+**** Still buggy in 4.5. =( --mgruner
+***** Where is the upstream bug report? --[[User:Jotik|jotik]] 19:17, 18 September 2010 (UTC)</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Development_Plan.html" title="Development Plan">Development Plan</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Development_Plan.html">http://devel.bibletime.info/wiki/Development_Plan</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Development_Plan.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:Development_Plan.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Development_Plan&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Development_Plan&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Development_Plan&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Development_Plan.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Development_Plan.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Development_Plan", "wgTitle": "Development Plan", "wgAction": "edit", "wgArticleId": 1475, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3848, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.295 secs. --></body></html>

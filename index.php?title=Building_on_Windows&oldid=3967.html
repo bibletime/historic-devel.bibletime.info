@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Building on Windows - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Building_on_Windows skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Building on Windows</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">
+				<div id="mw-revision-info">Revision as of 04:24, 5 January 2014 by <a href="http://devel.bibletime.info/index.php?title=User:Garyh&amp;action=edit&amp;redlink=1" class="new mw-userlink" title="User:Garyh (page does not exist)">Garyh</a>  <span class="mw-usertoollinks">(<a href="http://devel.bibletime.info/index.php?title=User_talk:Garyh&amp;action=edit&amp;redlink=1" class="new" title="User talk:Garyh (page does not exist)">Talk</a> | <a href="wiki/Special:Contributions/Garyh.html" title="Special:Contributions/Garyh">contribs</a>)</span></div>
+
+				<div id="mw-revision-nav">(<a href="http://devel.bibletime.info/index.php?title=Building_on_Windows&amp;diff=prev&amp;oldid=3967" title="Building on Windows">diff</a>) <a href="http://devel.bibletime.info/index.php?title=Building_on_Windows&amp;direction=prev&amp;oldid=3967" title="Building on Windows">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div>
+			</div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#How_to_build_With_Visual_Studio_2012"><span class="tocnumber">1</span> <span class="toctext">How to build With Visual Studio 2012</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Install_Build_Tools_and_Binary_Libraries"><span class="tocnumber">1.1</span> <span class="toctext">Install Build Tools and Binary Libraries</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Visual_Studio"><span class="tocnumber">1.1.1</span> <span class="toctext">Visual Studio</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#CMake"><span class="tocnumber">1.1.2</span> <span class="toctext">CMake</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Qt"><span class="tocnumber">1.1.3</span> <span class="toctext">Qt</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#NSIS"><span class="tocnumber">1.1.4</span> <span class="toctext">NSIS</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Git"><span class="tocnumber">1.1.5</span> <span class="toctext">Git</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#7_zip"><span class="tocnumber">1.1.6</span> <span class="toctext">7 zip</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#pkg-config"><span class="tocnumber">1.1.7</span> <span class="toctext">pkg-config</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Install_Source_Libraries"><span class="tocnumber">1.2</span> <span class="toctext">Install Source Libraries</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#zlib"><span class="tocnumber">1.2.1</span> <span class="toctext">zlib</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Clucene"><span class="tocnumber">1.2.2</span> <span class="toctext">Clucene</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Curl"><span class="tocnumber">1.2.3</span> <span class="toctext">Curl</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Sword"><span class="tocnumber">1.2.4</span> <span class="toctext">Sword</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-15"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Create_BibleTime.2C_debug_and_release_builds"><span class="tocnumber">1.3</span> <span class="toctext">Create BibleTime, debug and release builds</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Install_Microsoft_Redistributable_Library"><span class="tocnumber">1.3.1</span> <span class="toctext">Install Microsoft Redistributable Library</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html#Create_BibleTime_Solution"><span class="tocnumber">1.3.2</span> <span class="toctext">Create BibleTime Solution</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="How_to_build_With_Visual_Studio_2012"> How to build With Visual Studio 2012 </span></h2>
+<p>What follows is how BibleTime can be built on Windows using the free version of Visual Studio Express 2012.
+</p>
+<h3> <span class="mw-headline" id="Install_Build_Tools_and_Binary_Libraries">Install Build Tools and Binary Libraries</span></h3>
+<h4> <span class="mw-headline" id="Visual_Studio">Visual Studio</span></h4>
+<p>Install Visual Studio Express 2012 for Windows Desktop(C++ version).
+</p><p><a href="http://www.microsoft.com/visualstudio/eng/downloads" class="external text" rel="nofollow">Visual Studio Downloads</a>
+</p><p>Install Visual Studio Update 4
+</p><p><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30679" class="external free" rel="nofollow">http://www.microsoft.com/en-us/download/details.aspx?id=30679</a>
+</p><p>Download and place inttypes.h into C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include
+</p><p><a href="http://code.google.com/p/msinttypes/" class="external free" rel="nofollow">http://code.google.com/p/msinttypes/</a>
+</p><p><b>NOTE:</b> Use v110_xp option in each project for compatibility with Windows XP. Set instructions below.
+</p>
+<h4> <span class="mw-headline" id="CMake">CMake</span></h4>
+<p>CMake is a build tool used by both BibleTime and some of the libraries below. Make sure you have version 2.8.12 or later.
+</p><p><a href="http://www.cmake.org" class="external text" rel="nofollow">Download</a>
+</p>
+<h4> <span class="mw-headline" id="Qt">Qt</span></h4>
+<p>Qt is a library needed by BibleTime. I installed Qt 5.2 for Visual Studio 2012.
+</p><p><a href="http://qt-project.org/downloads" class="external text" rel="nofollow">Download</a>
+</p>
+<h4> <span class="mw-headline" id="NSIS">NSIS</span></h4>
+<p>If you want to be able to build an installable version of BibleTime, install NSIS. I installed version 2.46.
+</p><p><a href="http://nsis.sourceforge.net/Download" class="external text" rel="nofollow">Download</a>
+</p>
+<h4> <span class="mw-headline" id="Git">Git</span></h4>
+<p>Downloading git
+</p><p><a href="http://msysgit.github.io" class="external free" rel="nofollow">http://msysgit.github.io</a>
+</p><p>There are several git tools available for Windows. I choose to use "gitextensions".
+</p><p><a href="http://code.google.com/p/gitextensions/" class="external text" rel="nofollow">Download</a>
+</p>
+<h4> <span class="mw-headline" id="7_zip">7 zip</span></h4>
+<p>Download and install 7 zip.
+</p><p><a href="http://www.7-zip.org/" class="external text" rel="nofollow">Download</a>
+</p>
+<h4> <span class="mw-headline" id="pkg-config">pkg-config</span></h4>
+<p>Download pkg-config-lite from:
+</p><p><a href="http://sourceforge.net/projects/pkgconfiglite/" class="external free" rel="nofollow">http://sourceforge.net/projects/pkgconfiglite/</a>
+</p><p>Unzip and copy the directory into c:\Program Files (x86)\
+</p><p>In the Control Panel, search for "env" and add "C:\Program Files (x86)\pkg-config-lite-0.28-1\bin" to the PATH
+</p><p>Also add the env variable PKG_CONFIG_PATH with the value "C:\bt".
+</p>
+<h3> <span class="mw-headline" id="Install_Source_Libraries">Install Source Libraries</span></h3>
+<p>The C:\bt directory will be used as the parent directory for these libraries. Choose another directory if desired.
+</p><p><br />
+</p>
+<h4> <span class="mw-headline" id="zlib">zlib</span></h4>
+<ol><li>Download and unpack zlib to C:\bt from <a href="http://www.zlib.net/" class="external free" rel="nofollow">http://www.zlib.net/</a>. I used zlib.1.2.8.
+</li><li>Rename the directory to C:\bt\zlib
+</li><li>Open cmake-gui 
+<ol><li>Point its source directory to C:\bt\zlib
+</li><li>Point its binary directory to C:\bt\zlib
+</li><li>Click Configure and choose Visual Studio 11.
+</li><li>Click Configure again.  
+</li><li>Click Generate on the main CMake window.
+</li></ol>
+</li><li>Open the c:\bt\zlib\zlib.sln project in Visual Studio
+<ol><li>Right click on zlibstatic -&gt; Properties
+<ol><li>Set the Configuration to All
+</li><li>Under Configuration Properties -&gt; General
+</li><li>Set the Character Set to Unicode
+</li><li>Set the Platform Toolset property to Visual Studio 2012 – Windows XP (v110_xp).
+</li></ol>
+</li><li>Set "Release" in the toolbar as the build type
+<ol><li>Compile the zlibstatic project by right clicking on zlibstatic and "Build"
+</li></ol>
+</li><li>Set "Debug" in the toolbar as the build type (optional)
+<ol><li>Compile the zlibstatic project by right clicking on zlibstatic and "Build"
+</li></ol>
+</li></ol>
+</li></ol>
+<h4> <span class="mw-headline" id="Clucene">Clucene</span></h4>
+<ol><li>Download and unpack clucene-core to C:\bt from <a href="https://sourceforge.net/projects/clucene/" class="external free" rel="nofollow">https://sourceforge.net/projects/clucene/</a>. I used clucene-core.2.3.3.4.
+</li><li>Rename the directory to C:\bt\clucene-core
+</li><li>Open cmake-gui 
+<ol><li>Point its source directory to C:\bt\clucene-core
+</li><li>Point its binary directory to C:\bt\clucene-core
+</li><li>Add Entry for ZLIB_INCLUDE_DIR=C:\bt\zlib
+</li><li>Add Entry for ZLIB_LIBRARY=C:\bt\zlib\Release\zlibstatic.lib
+</li><li>Click Configure and choose Visual Studio 11.
+</li><li>Click Configure again.
+</li><li>Click Generate on the main CMake window.
+</li></ol>
+</li><li>Compile clucene
+<ol><li>Open the c:\bt\clucene-core\clucene.sln in Visual Studio
+</li><li>Right click on clucene-core -&gt; Properties
+<ol><li>Set the Configuration to All
+</li><li>Under Configuration Properties -&gt; General
+</li><li>Set the Platform Toolset property to Visual Studio 2012 – Windows XP (v110_xp).
+</li></ol>
+</li><li>Set "Release" in the toolbar as the build type
+<ol><li>Compile the clucene-core project by right clicking on ALL_BUILD and "Build"
+</li></ol>
+</li><li>Set "Debug" in the toolbar as the build type (optional)
+<ol><li>Compile the clucene-core project by right clicking on ALL_BUILD and "Build"
+</li></ol>
+</li></ol>
+</li></ol>
+<h4> <span class="mw-headline" id="Curl">Curl</span></h4>
+<ol><li>Download and unpack curl into C:\bt from <a href="http://curl.haxx.se/download/" class="external text" rel="nofollow">http://curl.haxx.se/download/ </a>  I used  7.33.0.tar.gz
+</li><li>Rename the directory to C:\bt\curl
+</li><li>Open cmake-gui
+<ol><li>Point to the Source Code in C:\bt\curl
+</li><li>Build the binaries in C:\bt\curl
+</li><li>Click Configure and select Visual Studio 11 project files. Ignore the warnings. 
+</li><li>After the configure finishes:
+<ol><li>turn off BUILD_CURL_EXE
+</li><li>turn off BUILD_CURL_TESTS
+</li></ol>
+</li><li>Click Configure again.  
+</li><li>Click Generate on the main CMake window.
+</li></ol>
+</li><li>Open Visual Studio
+<ol><li>Open solution c:/bt/curl/CURL.sln
+</li><li>Ensure "Using Unicode Character Set" and "v110_xp" on libcurl project set as in projects above.
+</li><li> Right click libcurl and open properties
+</li><li>Set to "Release" and build the libcurl project.
+</li><li>Set to "Debug" and build the libcurl project. (optional)
+</li></ol>
+</li></ol>
+<h4> <span class="mw-headline" id="Sword">Sword</span></h4>
+<ol><li>Download Sword (v.1.7.0 or later) from <a href="ftp://ftp.crosswire.org/pub/sword/source/" class="external free" rel="nofollow">ftp://ftp.crosswire.org/pub/sword/source/</a>
+</li><li>unpack it into C:\bt. 
+</li><li>Rename the directory to C:\bt\sword
+</li><li>Copy c:/bt/sword/src/utilfuns/win32/dirent.h to c:/bt/sword/include
+</li></ol>
+<ol><li>Open cmake-gui
+<ol><li>Point to the Source Code in C:\bt\sword
+</li><li>Build the binaries in C:\bt\sword-build
+</li><li>Click Configure and select Visual Studio 11 project files. Ignore the warnings. 
+</li><li>If asked to create C:\bt\sword-build, say OK.
+</li><li>If not already defined, define the following in cmake-gui.
+<ol><li>CLUCENE_INCLUDE_DIR:PATH=C:/bt/clucene-core/src/core
+</li><li>CLUCENE_LIBRARY:FILEPATH=C:/bt/clucene-core/bin/Release/clucene-core.lib
+</li><li>CLUCENE_LIBRARY_DIR:PATH=C:/bt/clucene-core/src/shared
+</li><li>CURL_CONFIG:PATH:C:/bt/curl/lib/curl_config.h
+</li><li>CURL_INCLUDE_DIR:PATH=C:/bt/curl/include
+</li><li>CURL_LIBRARY:FILEPATH=C:/bt/curl/lib/Release/libcurl_imp.lib
+</li><li>ZLIB_INCLUDE_DIR:PATH=C:/bt/zlib
+</li><li>ZLIB_LIBRARY:FILEPATH=C:/bt/zlib/Release/zlibstatic.lib
+</li></ol>
+</li><li>Add "/DUNICODE /D_UNICODE /DREGEX_MALLOC" to:
+<ol><li>CMAKE_CXX_FLAGS
+</li><li>CMAKE_C_FLAGS
+</li></ol>
+</li><li>Add LIBSWORD_LIBRARY_TYPE=Static
+</li><li>Click Configure again.  
+</li><li>Click Generate on the main CMake window.
+</li></ol>
+</li><li>Open Visual Studio
+<ol><li>Open solution c:/bt/sword-build/libsword.sln
+</li><li>Add "v110_xp" to sword_static as in projects above.
+</li><li>Set the build to "Release" in the toolbar of studio.
+</li><li>Right click on the sword_static project and build it.
+</li></ol>
+</li></ol>
+<h3> <span class="mw-headline" id="Create_BibleTime.2C_debug_and_release_builds">Create BibleTime, debug and release builds</span></h3>
+<h4> <span class="mw-headline" id="Install_Microsoft_Redistributable_Library">Install Microsoft Redistributable Library </span></h4>
+<ol><li>Download the Visual C++ 2012 Redistributable Package from <a href="http://www.microsoft.com/en-us/download/details.aspx?id=30679" class="external text" rel="nofollow">Microsoft Visual C++ 2012 (x86)</a>
+</li><li>Put the file in C:\bt\vcredist_x86.exe
+</li></ol>
+<h4> <span class="mw-headline" id="Create_BibleTime_Solution">Create BibleTime Solution</span></h4>
+<ol><li>Using git, clone the BibleTime project into c:\bt\bibletime and select the desired branch.
+</li><li>Do the following procedure steps once for debug and separately for release.
+<ol><li>Add sword package config file
+<ol><li> Create text file C:\bt\sword.pc with the following lines
+</li></ol>
+</li></ol>
+</li></ol>
+<pre>
+prefix=C:/bt
+exec_prefix=${prefix}
+libdir=${prefix}/sword-build/Release
+includedir=${prefix}/sword/include
+curllib=${prefix}/curl/lib/Release/libcurl_imp
+zliblib=${prefix}/zlib/Release/zlibstatic
+
+Name: SWORD
+Description: Biblical Text Research Engine
+Version: 1.7.1
+Libs: ${libdir}/sword.lib ${curllib}.lib  ${zliblib}.lib
+Libs.private: -L${libdir}/sword -L${curllib}
+Cflags: -I${includedir}
+</pre>
+<ol><li><ol><li>Open Cmake-gui
+<ol><li>Tell it the source is in the c:\bt\bibletime folder
+</li><li>Tell it to build in c:\bt\bibletime-release (or bibletime-debug)
+</li><li>Click Configure and select Visual Studio 11
+</li><li>Tell it to create the build directory, if it asks
+</li><li> Add an entry CMAKE_BUILD_TYPE with a value of "Release" <b>(or Debug)</b>.
+</li><li>Change the CMAKE_INSTALL_PREFIX variable to C:\bt\bibletime-release\install <b>(or bibletime-debug\install)</b>
+</li><li><b>(Release only)</b> Add an entry MSVC_REDIST with a value of "c:\bt\vcredist_x86.exe".
+</li><li>If not already defined, define the following in cmake-gui.
+<ol><li>CLucene_INCLUDE_DIR:PATH=C:/bt/clucene-core/src/core
+</li><li>CLucene_LIBRARY:FILEPATH=C:/b/clucene-core/bin/Release/clucene-core.lib
+</li><li>CLucene_SHARED_LIB:FILEPATH=C:/b/clucene-core/bin/Release/clucene-shared.lib
+</li><li>CLucene_LIBRARY_DIR:PATH=C:/bt/clucene-core/src/shared
+</li><li>CURL_INCLUDE_DIR:PATH=C:/bt/curl/include
+</li><li>CURL_LIBRARY:FILEPATH=C:/bt/curl/lib/Release/libcurl_imp.lib
+</li><li>CURL_CONFIG:FILEPATH-C:/bt/curl/lib/curl_config.h
+</li><li>ZLIB_INCLUDE_DIR:PATH=C:/bt/zlib
+</li><li>ZLIB_LIBRARY:FILEPATH=C:/bt/zlib/Release/zlibstatic.lib
+</li></ol>
+</li><li>Click Configure
+</li><li>Click Generate on the main CMake window.
+</li></ol>
+</li><li>Open Visual Studio
+<ol><li>Open c:/bt/bibletime-release/bibletime.sln (or bibletime-debug)
+</li><li>Add "v110_xp" to the bibletime project as in projects above. 
+</li><li>Right click Bibletime project and build
+</li><li>Right click INSTALL project and build
+</li><li><b>(Release only)</b> Right click PACKAGE and build
+</li></ol>
+</li></ol>
+</li></ol>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 69/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1507-0!*!0!!en!*!edit=0 and timestamp 20140705155711 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Building_on_Windows.html">http://devel.bibletime.info/wiki/Building_on_Windows</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Building_on_Windows.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:Building_on_Windows&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Building_on_Windows&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Building_on_Windows&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Building_on_Windows&amp;returntoquery=oldid%3D3967" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Building_on_Windows.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Building_on_Windows.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://devel.bibletime.info/index.php?title=Building_on_Windows&amp;oldid=3967&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="index.php%3Ftitle=Building_on_Windows&amp;oldid=3967.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Building_on_Windows", "wgTitle": "Building on Windows", "wgAction": "view", "wgArticleId": 1507, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3967, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.223 secs. --></body></html>

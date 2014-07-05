@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>BibleTime2Qt4Classes - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-BibleTime2Qt4Classes skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">BibleTime2Qt4Classes</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">
+				<div id="mw-revision-info">Revision as of 18:47, 15 July 2008 by <a href="wiki/User:Mgruner.html" title="User:Mgruner" class="mw-userlink">Mgruner</a>  <span class="mw-usertoollinks">(<a href="http://devel.bibletime.info/index.php?title=User_talk:Mgruner&amp;action=edit&amp;redlink=1" class="new" title="User talk:Mgruner (page does not exist)">Talk</a> | <a href="wiki/Special:Contributions/Mgruner.html" title="Special:Contributions/Mgruner">contribs</a>)</span></div>
+
+				<div id="mw-revision-nav">(<a href="http://devel.bibletime.info/index.php?title=BibleTime2Qt4Classes&amp;diff=prev&amp;oldid=2830" title="BibleTime2Qt4Classes">diff</a>) <a href="http://devel.bibletime.info/index.php?title=BibleTime2Qt4Classes&amp;direction=prev&amp;oldid=2830" title="BibleTime2Qt4Classes">← Older revision</a> | Latest revision (diff) | Newer revision → (diff)</div>
+			</div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#column-one">navigation</a>, <a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#QFileSystemWatcher"><span class="tocnumber">1</span> <span class="toctext">QFileSystemWatcher</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#QSettings"><span class="tocnumber">2</span> <span class="toctext">QSettings</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#Threading_classes"><span class="tocnumber">3</span> <span class="toctext">Threading classes</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#QtAlgorithms"><span class="tocnumber">4</span> <span class="toctext">QtAlgorithms</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#Unit_testing"><span class="tocnumber">5</span> <span class="toctext">Unit testing</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#Accessibility_classes"><span class="tocnumber">6</span> <span class="toctext">Accessibility classes</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#D-Bus"><span class="tocnumber">7</span> <span class="toctext">D-Bus</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html#Qt_plugin_system"><span class="tocnumber">8</span> <span class="toctext">Qt plugin system</span></a></li>
+</ul>
+</td></tr></table>
+<h2> <span class="mw-headline" id="QFileSystemWatcher">QFileSystemWatcher</span></h2>
+<p><a href="http://doc.trolltech.com/4.3/qfilesystemwatcher.html" class="external text" rel="nofollow">QFileSystemWatcher</a> it a little, but useful class to watch changes to files and directories. It could be used to watch for changes in the modules directory or to changes to the config file or to the display templates ...
+It doesn't do recursive watching of a directory, so (if necessary) we have to take care of this in our own code.
+</p>
+<h2> <span class="mw-headline" id="QSettings">QSettings</span></h2>
+<p>The class <a href="http://doc.trolltech.com/4.3/qsettings.html" class="external text" rel="nofollow">QSettings</a> can be used to store and load persistent configuration settings. For a true cross-plattform approach it's probably necessary to change the methods used for reading and writing the data because QSettings uses different file formats on the different plattforms.
+</p>
+<h2> <span class="mw-headline" id="Threading_classes">Threading classes</span></h2>
+<p>There are several useful classes for multi-thread support. The most important classes are:
+</p>
+<ul><li> <a href="http://doc.trolltech.com/4.3/qthread.html" class="external text" rel="nofollow">QThread</a>
+</li><li> <a href="http://doc.trolltech.com/4.3/qmutex.html" class="external text" rel="nofollow">QMutex</a>
+</li><li> <a href="http://doc.trolltech.com/4.3/qmutexlocker.html" class="external text" rel="nofollow">QMutexLocker</a>
+</li><li> <a href="http://doc.trolltech.com/4.3/qwaitcondition.html" class="external text" rel="nofollow">QWaitCondition</a>
+</li></ul>
+<p>There's also a high-level multi-thread lib in <a href="http://labs.trolltech.com/" class="external text" rel="nofollow">Trolltech Labs</a> which might be useful for us.
+</p>
+<h2> <span class="mw-headline" id="QtAlgorithms">QtAlgorithms</span></h2>
+<p><a href="http://doc.trolltech.com/4.3/qtalgorithms.html" class="external text" rel="nofollow">QtAlgorithms</a> is a collection of useful general purpose algorithms (sorting, copying, etc.)
+</p>
+<h2> <span class="mw-headline" id="Unit_testing">Unit testing</span></h2>
+<p>The <a href="http://doc.trolltech.com/4.3/qttest.html" class="external text" rel="nofollow">QTest</a> module of Qt 4.3 is probably very useful for us. We really need serious unit testing of our code to be sure it has high quality.
+</p>
+<h2> <span class="mw-headline" id="Accessibility_classes">Accessibility classes</span></h2>
+<p>The page <a href="http://doc.trolltech.com/4.3/accessibility.html" class="external text" rel="nofollow">Accessibility</a> lists the classes available in Qt for accessibility aware applications.  A detailed evaluation of this topic is still required but enabling handicapped people to use BibleTime would be a good feature, imho.
+</p>
+<h2> <span class="mw-headline" id="D-Bus">D-Bus</span></h2>
+<p>BT 1.x uses DCOP for scripting. Is that feature desirable or needed? If it is, D-Bus is not only KDE4 alternative but it's part of Qt 4 under unix. No extra libraries are needed. KDE 4 is planned to be working under Windows and Mac also, so Qt will probably include D-Bus support under those platforms sooner or later. See also <a href="http://devel.bibletime.info/index.php?title=BibleTime1PortToKDE4Planning_DCOP&amp;action=edit&amp;redlink=1" class="new" title="BibleTime1PortToKDE4Planning DCOP (page does not exist)">BibleTime1PortToKDE4Planning_DCOP</a>
+</p>
+<h2> <span class="mw-headline" id="Qt_plugin_system">Qt plugin system</span></h2>
+<p>Qt has a simple <a href="http://doc.trolltech.com/4.2/plugins-howto.html#the-lower-level-api-extending-qt-applications" class="external text" rel="nofollow">plugin interface</a>. E.g. different file format interpreters could be plugins (better encapsulation).
+</p><p>I made a new page for <a href="wiki/Plugin_system.html" title="Plugin system">plugin discussion</a>.
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 30/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1396-0!*!0!!en!*!edit=0 and timestamp 20140705182257 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/BibleTime2Qt4Classes.html">http://devel.bibletime.info/wiki/BibleTime2Qt4Classes</a>"</div>
+		<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks"><a href="wiki/Special:Categories.html" title="Special:Categories">Category</a>: <span dir='ltr'><a href="wiki/Category:BibleTime_2.html" title="Category:BibleTime 2">BibleTime 2</a></span></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/BibleTime2Qt4Classes.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="http://devel.bibletime.info/index.php?title=Talk:BibleTime2Qt4Classes&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=BibleTime2Qt4Classes&amp;returntoquery=oldid%3D2830" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/BibleTime2Qt4Classes.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/BibleTime2Qt4Classes.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://devel.bibletime.info/index.php?title=BibleTime2Qt4Classes&amp;oldid=2830&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="index.php%3Ftitle=BibleTime2Qt4Classes&amp;oldid=2830.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "BibleTime2Qt4Classes", "wgTitle": "BibleTime2Qt4Classes", "wgAction": "view", "wgArticleId": 1396, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 2830, "wgCategories": ["BibleTime 2"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.260 secs. --></body></html>

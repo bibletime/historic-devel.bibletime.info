@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>View source - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="next" href="wiki/Talk:Bibletime2Backend.html" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<!--[if IE 8]><link rel="stylesheet" href="/skins/common/IE80Fixes.css?301" media="screen" /><![endif]-->
+<link rel="stylesheet" href="skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-1 ns-talk page-Talk_Bibletime2Backend skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">View source</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub">for <a href="wiki/Talk:Bibletime2Backend.html" title="Talk:Bibletime2Backend">Talk:Bibletime2Backend</a></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Talk:Bibletime2Backend&amp;action=edit.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Talk:Bibletime2Backend&amp;action=edit.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>You do not have permission to edit this page, for the following reason:
+</p>
+<div class="permissions-errors">
+<p>The action you have requested is limited to users in the group: <a href="http://devel.bibletime.info/index.php?title=BibleTime:Users&amp;action=edit&amp;redlink=1" class="new" title="BibleTime:Users (page does not exist)">Users</a>.
+</p>
+</div>
+<p>You can view and copy the source of this page:
+</p><textarea id="wpTextbox1" name="wpTextbox1" cols="80" rows="25" readonly="">With all this discussion of handling different formats, storing the data, ... it seems that this is moving into Sword's area of functionality. It seems like BibleTime could even be a stand-alone Bible program, and just handle Sword modules if the user wants, instead of being a true Sword frontend. Is that the direction BibleTime is moving? It seems to be duplicating a lot of the work on the Sword engine. Or maybe I'm just misunderstanding things? -Benjie
+
+You are correct. We are moving away from sword to implementing our own backend. We'll use sword for data import and will still support crosswire as a central place to share modules and code, but we decided to drop sword as internal backend for a number of reasons. We'll support alternative versification schemes from the start, for example. --mgruner
+
+I'm extremely interested in hearing what those reasons are. -Eeli
+
+==Rendering and markup languages==
+===The Unbound Bible===
+[http://unbound.biola.edu/index.cfm?method=downloads.showDownloadMain The Unbound Bible] looks interesting because it seems to have some translations which are not in Crosswire repos. Maybe it would be worth supporting. The file format is simple, it's zipped plain text. Here is text from Readme.txt from a Bible module:
+
+ The file ending in .html gives any known version or copyright information.
+ 
+ The file ending in _utf8.txt is the Bible file in UTF-8 encoding, with the following data format:
+ Book_Index
+ Chapter
+ Verse
+ SubVerse
+ Verse_Order_Index
+ Verse_Text
+ 
+ The file ending in _utf8_mapped_to_NRSVA.txt is the Bible file in UTF-8 encoding, where each verse in the Bible is mapped to the matching verse(s) in the English New Revised Standard Version (with Apocrypha).
+ This mapping may not be entirely accurate. At this point, it is a first attempt to map verse references of the two Bibles to each other.
+ The file's data format:
+ NRSVA_Book_Index
+ NRSVA_Chapter
+ NRSVA_Verse
+ Bible_Book_Index
+ Bible_Chapter
+ Bible_Verse
+ Bible_SubVerse
+ Bible_Verse_Order_Index
+ Bible_Verse_Text
+ 
+ The file ending in _mapping_to_NRSVA.txt is a list of the special mappings known to exist between the verse reference system in this Bible and the verse reference system in the NRSVA. The file's format:
+ NRSVA_Book_Index
+ NRSVA_Chapter
+ NRSVA_Verse
+ Bible_Book_Index
+ Bible_Chapter
+ Bible_Verse
+ Bible_SubVerse
+ Verse_Exists_In_NRSVA_But_Not_In_This_Bible_Version [Values are 0 or 1]
+ 
+ The book_names.txt file lists the Book_Index codes and the books of the Bible they represent.
+
+And here is the beginning of a module:
+
+ #THE UNBOUND BIBLE (www.unboundbible.org)
+ #name	English: King James Version
+ #filetype	Unmapped-BCVS
+ #copyright	Public Domain
+ #abbreviation	
+ #language	eng
+ #note	
+ #columns	orig_book_index	orig_chapter	orig_verse	orig_subverse	order_by	text
+ 01O	1	1		10	In the beginning God created the heaven and the earth.
+ 01O	1	2		20	And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.
+
+====Comments by mgruner====
+Eeli, good suggestion. We do want to make more material available. Our backend design will require all content to be xml-based. For simple formats like unbound material (though I do not know it in detail) we can utilize import-time transformation utilities that convert these formats to OSIS or another directly supported markup language. Is there any markup in the bible text of unbound texts?
+On first glance this would seem very easy to do. 
+--mgruner
+
+I think the Readme tells all about the format - if so, there is no extra markup. Of course we should contact The Unbound Bible before starting anyways, so we can ask about the details. (I think they would be happy to have this kind of great frontend for their format.) --Eeli
+
+Sounds very good. Feel free to contact them! We can open a page in the wiki where we can post all permissions/official statements that we received from Bible societies or similar organizations. --mgruner
+
+I sent a message, let's see if they respond. However, I'm afraid they have some issues with copyrights. They seem to have taken some modules from Crosswire, and I think you know the situation with Portuguese and some other modules which have been removed from Crosswire.
+
+Here is their answer (I chose to put it here publicly, there's no confidential information). It's very clear, only they did not explicitly say if there is markup in the text, but I think "no" is implied.
+
+ Supporting the format that Unbound Bible uses is fine. It's currently
+ designed to try to make Bibles available in a parallel format, using the
+ NRSVA as the point of commonality. Some of the versions (actually about
+ 40%) have not been mapped at all yet, and these have a different file
+ format than those that have been mapped.
+ 
+ The files also include some lines that start with #, which are
+ comments/meta-data
+ These may include:
+ #THE UNBOUND BIBLE (www.unboundbible.org)
+ #name&lt;tab>The name of the Bible
+ #filetype&lt;tab>The filetype of this file (see below)
+ #copyright&lt;tab>copyright information
+ #abbreviation&lt;tab>an abbreviation for the Bible
+ #language&lt;tab>ISO 693-3 language code
+ #note&lt;tab>some note about the Bible
+ #columns&lt;tab>A tab-delimited list of the column names 
+ 
+ The filetype options are currently:
+ 1. Unmapped-BCVS (unmapped means it has not had its verses mapped to
+ parallel the NRSVA, BCVS stands for Book,Chapter,Verse,Subverse)
+ 2. Unmapped-BCV (this does not include the Subverse field)
+ 3. Mapped-BCVS (mapped means it has had its verses mapped to parallel
+ the NRSVA)
+ 
+ The status of some Bibles in Unbound Bible may be unclear, and you
+ should use your own research and judgment in deciding what you want to
+ do with different Bibles on a case by case basis. Some are public
+ domain, some of them were approved by signed contracts, some by email
+ approvals, and some have unknown status or unclear status.
+
+===STEP===
+People ask about the STEP format support every now and then. It's very complicated format (that M$ rtf "standard" which we all hate plus something more) and not reasonable to think about right now. However, we have a complete rtf->XML importer already. It belongs to KWord filter collection. http://websvn.kde.org/trunk/koffice/filters/kword/rtf/import/. It depends only on Qt and some KDE macros as far as I can see (EDIT: wrong, it depends on some KDE stuff also, but not critically). It would be a good starting point. --Eeli
+
+Sounds good as well. Which materials are available in STEP? --mgruner
+
+I thought that you know better than me. http://en.wikipedia.org/wiki/Standard_Template_for_Electronic_Publishing. Actually, Crosswire folks should know something - they host some documentation for STEP.
+
+Check out http://lightbydesign.net/index.htm. They offer STEP books (not Bibles but Christian classics). They don't have own reader, but give link to e-Sword which has STEP support. As far as I know STEP is not supported by any other free reader, let alone FLOSS, and e-Sword is Windows only. Therefore STEP support in BT would be a good idea.
+
+Maybe lightbydesign folks would even be willing to help in some way. At least they know STEP.
+
+If we really start the STEP support, there have to be good reasons. I know two:
+*Support the "third party" material like lightbydesign, who don't have an own reader.
+*Support the material from some commercial applications. STEP may be a withering format and it may become important for some people to have a modern reader for older material which they have purchased. An old reader may not work anymore. Also some people want to use Linux and read their STEP material there even though their commercial programs still work.
+In either case we have to know which features need to be supported. Lightbydesign material is probably easier (no WMF-files etc.)
+
+[http://www.crosswire.org/pipermail/sword-devel/2000-November/subject.html Back in 2000] there was discussion on sword-devel about STEP support. It's seems to have faded away. Troy and others could still be interested in helping in that area.
+
+--Eeli</textarea><div class='templatesUsed'>
+
+</div>
+<p id="mw-returnto">Return to <a href="wiki/Talk:Bibletime2Backend.html" title="Talk:Bibletime2Backend">Talk:Bibletime2Backend</a>.</p>
+<div class="printfooter">
+Retrieved from "<a href="wiki/Talk:Bibletime2Backend.html">http://devel.bibletime.info/wiki/Talk:Bibletime2Backend</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main"><a href="wiki/Bibletime2Backend.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="selected"><a href="wiki/Talk:Bibletime2Backend.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource" class="selected"><a href="index.php%3Ftitle=Talk:Bibletime2Backend&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Talk:Bibletime2Backend&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="http://devel.bibletime.info/index.php?title=Special:UserLogin&amp;returnto=Talk:Bibletime2Backend&amp;returntoquery=action%3Dedit" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Talk:Bibletime2Backend.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Talk:Bibletime2Backend.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "Talk", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 1, "wgPageName": "Talk:Bibletime2Backend", "wgTitle": "Bibletime2Backend", "wgAction": "edit", "wgArticleId": 1398, "wgIsArticle": false, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 1781, "wgCategories": [], "wgBreakFrames": true, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.legacy.edit", "mediawiki.action.edit", "mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.276 secs. --></body></html>

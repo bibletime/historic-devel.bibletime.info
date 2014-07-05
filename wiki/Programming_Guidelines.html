@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Programming Guidelines - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<link rel="shortcut icon" href="../favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="../opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="../api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="../index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="../load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;skin=monobook&amp;*.css" />
+<link rel="stylesheet" href="../skins/monobook/main.css%3F301.css" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE50Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/skins/monobook/IE55Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/skins/monobook/IE60Fixes.css?301" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/skins/monobook/IE70Fixes.css?301" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Programming_Guidelines skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Programming Guidelines</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="Programming_Guidelines.html#column-one">navigation</a>, <a href="Programming_Guidelines.html#searchInput">search</a></div>
+		<!-- start content -->
+<p>BibleTime up to 1.6 never had strict rules for the implementation of the code. Looking at the code you'll see that the code is a total mess, not maintainable, not well put into an architecture. Part of the reasons were the lacking knowledge of the right techniques. 
+</p><p>These guidelines are quite strict to enforce good code quality. They are mandatory for any newly written code.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="Programming_Guidelines.html#Central_repository"><span class="tocnumber">1</span> <span class="toctext">Central repository</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="Programming_Guidelines.html#Types_of_branches"><span class="tocnumber">1.1</span> <span class="toctext">Types of branches</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="Programming_Guidelines.html#Policy_for_commiting_to_central_repository"><span class="tocnumber">1.2</span> <span class="toctext">Policy for commiting to central repository</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="Programming_Guidelines.html#Source_code_policies"><span class="tocnumber">2</span> <span class="toctext">Source code policies</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="Programming_Guidelines.html#Headers_and_implementations"><span class="tocnumber">2.1</span> <span class="toctext">Headers and implementations</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="Programming_Guidelines.html#Source_code_documentation"><span class="tocnumber">2.2</span> <span class="toctext">Source code documentation</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="Programming_Guidelines.html#Design_and_naming_conventions"><span class="tocnumber">2.3</span> <span class="toctext">Design and naming conventions</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="Programming_Guidelines.html#User-visible_text"><span class="tocnumber">2.4</span> <span class="toctext">User-visible text</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="Programming_Guidelines.html#Text_style_and_tone"><span class="tocnumber">2.4.1</span> <span class="toctext">Text style and tone</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="Programming_Guidelines.html#Capitalization"><span class="tocnumber">2.4.2</span> <span class="toctext">Capitalization</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="Programming_Guidelines.html#Coding_style"><span class="tocnumber">2.5</span> <span class="toctext">Coding style</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="Programming_Guidelines.html#General_class_header_file_structure"><span class="tocnumber">2.5.1</span> <span class="toctext">General class header file structure</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="Programming_Guidelines.html#General_class_source_file_structure"><span class="tocnumber">2.5.2</span> <span class="toctext">General class source file structure</span></a></li>
+<li class="toclevel-3 tocsection-14"><a href="Programming_Guidelines.html#Line_length"><span class="tocnumber">2.5.3</span> <span class="toctext">Line length</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="Programming_Guidelines.html#Indentation"><span class="tocnumber">2.5.4</span> <span class="toctext">Indentation</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="Programming_Guidelines.html#Namespaces"><span class="tocnumber">2.5.5</span> <span class="toctext">Namespaces</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="Programming_Guidelines.html#Classes"><span class="tocnumber">2.5.6</span> <span class="toctext">Classes</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="Programming_Guidelines.html#Switches"><span class="tocnumber">2.5.7</span> <span class="toctext">Switches</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="Programming_Guidelines.html#Blocks"><span class="tocnumber">2.5.8</span> <span class="toctext">Blocks</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="Programming_Guidelines.html#Operators"><span class="tocnumber">2.5.9</span> <span class="toctext">Operators</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="Programming_Guidelines.html#Initializer_lists"><span class="tocnumber">2.5.10</span> <span class="toctext">Initializer lists</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="Programming_Guidelines.html#Compiler_strictness"><span class="tocnumber">2.6</span> <span class="toctext">Compiler strictness</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="Programming_Guidelines.html#Checkin_restrictions"><span class="tocnumber">2.7</span> <span class="toctext">Checkin restrictions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="Programming_Guidelines.html#Mandatory_programming_principles"><span class="tocnumber">3</span> <span class="toctext">Mandatory programming principles</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="Programming_Guidelines.html#DRY_.28Don.27t_Repeat_Yourself.29"><span class="tocnumber">3.1</span> <span class="toctext">DRY (Don't Repeat Yourself)</span></a></li>
+<li class="toclevel-2 tocsection-26"><a href="Programming_Guidelines.html#RAII_.28Resource_Acquisition_Is_Initialisation.29"><span class="tocnumber">3.2</span> <span class="toctext">RAII (Resource Acquisition Is Initialisation)</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Central_repository"> Central repository </span></h1>
+<h2> <span class="mw-headline" id="Types_of_branches"> Types of branches </span></h2>
+<ul><li> <b>master</b> - the main development branch for checking in code.
+</li><li> <b>stable-*</b> - branches for stable versions used for backporting fixes (e.g. <i>stable-2.7</i>).
+</li><li> <b>archived-*</b> - old stable branches for versions no longer being supported (e.g. <i>archived-2.6</i>).
+</li></ul>
+<h2> <span class="mw-headline" id="Policy_for_commiting_to_central_repository"> Policy for commiting to central repository </span></h2>
+<p>All stable branches of our source code repository should <b>always</b> be in a releaseable state. That means that everything checked in has to compile and work properly, without breaking compatibility.
+</p><p>The master branch, which is the development branch, should <b>always</b> be in a near-releasable. This means, that unless explicitly coordinated with other developers, the master branch should also be kept as bug-free as possible. It should compile and work properly for the most part.
+</p><p>No commits should be done to the archived branches, <b>ever</b>!
+</p>
+<h1> <span class="mw-headline" id="Source_code_policies">Source code policies</span></h1>
+<h2> <span class="mw-headline" id="Headers_and_implementations"> Headers and implementations </span></h2>
+<p>It is good C++ practice to work with header and implementation files. The following rules apply:
+</p>
+<ul><li> One header and one implementation file for each major class
+</li><li> Classes declared within another class may be in the same file
+</li><li> The header files must #include only what is required for that particular header file. User forward declarations where possible.
+</li><li> Include everything needed for the class in the implementation file
+</li></ul>
+<p>All source files must have the following beginning:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Mandatory C++ file heading
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>/*********
+*
+* In the name of the Father, and of the Son, and of the Holy Spirit.
+*
+* This file is part of BibleTime's source code, http://www.bibletime.info/.
+*
+* Copyright 1999-2010 by the BibleTime developers.
+* The BibleTime source code is licensed under the GNU General Public License version 2.0.
+*
+**********/</code></div>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Source_code_documentation">Source code documentation</span></h2>
+<ul><li> Document classes, member variables and member functions in the <i>header</i> files. There should be at least a brief information about each class and member function.
+</li><li> Implementation files should contain in-code documentation (à la "the next block does..."). Please document enough, so that other people can understand your code quickly.
+</li></ul>
+<h2> <span class="mw-headline" id="Design_and_naming_conventions">Design and naming conventions</span></h2>
+<p>There are no rules for this (yet).
+For helpful hints, check out this trolltech <a href="http://doc.trolltech.com/qq/qq13-apis.html" class="external text" rel="nofollow">article</a> about a good API.
+</p>
+<h2> <span class="mw-headline" id="User-visible_text">User-visible text</span></h2>
+<p>Texts in the UI that the user sees must be marked with <span style="font-family:monospace">QObject::tr()</span> for translation.
+</p><p>Here is a list of old, internal names and their preferred equivalent that is to be used in existing and new code:
+</p>
+<table border="1" cellspacing="0" cellpadding="4" rules="all" class="hintergrundfarbe1 rahmenfarbe1" style="margin:1em 1em 1em 0; border-style:solid; border-width:1px; border-collapse:collapse; empty-cells:show; caption-side:top;">
+
+<tr style="background-color: lightgray;">
+<th> Old names </th>
+<th> Current name, to be used </th>
+<th> explanation
+</th></tr>
+<tr>
+<td> (sword) module </td>
+<td> work </td>
+<td> literary work, all kinds of books
+</td></tr>
+<tr>
+<td> main index </td>
+<td> bookshelf </td>
+<td> the place to store your works
+</td></tr>
+<tr>
+<td> (sword) module manager </td>
+<td> bookshelf manager </td>
+<td> the tool to download/update/remove works
+</td></tr>
+<tr>
+<td> presenter, display window </td>
+<td> read window </td>
+<td> the mdi windows where you can read your works
+</td></tr></table>
+<p>Read these instructions which are very enlightening and recommended for everyone working with user interface texts:
+</p>
+<ul><li><a href="http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGText/chapter_14_section_3.html#//apple_ref/doc/uid/TP30000365-CHDIEGHB" class="external text" rel="nofollow">Mac HIG</a>
+</li><li><a href="http://msdn2.microsoft.com/en-us/library/aa974175.aspx" class="external text" rel="nofollow">MS Vista HIG, Style and Tone</a>
+</li><li><a href="http://msdn2.microsoft.com/en-us/library/aa974176.aspx" class="external text" rel="nofollow">MS Vista HIG, User Interface Text</a>
+</li><li><a href="http://techbase.kde.org/Projects/Usability/HIG" class="external text" rel="nofollow">KDE HIG</a>
+</li></ul>
+<h3> <span class="mw-headline" id="Text_style_and_tone">Text style and tone</span></h3>
+<ul><li>Neutral tone, not aggressive or impolite but not overly polite ("please" is not necessary, "You have failed to..." is bad)
+</li><li>As short as possible - every word counts and must add new information
+</li><li>Avoid redundancy (in one sentence but also between UI elements)
+</li><li>Avoid obvious information which is easily deductible from the context (e.g. don't add the object of the action if user knows it already)
+</li><li>Tooltips end with period only if there are several sentences. If there are several sentences they all end with period. Single, short, even incomplete sentences are preferred.
+</li><li> Avoid snobbish or rare words or grammar, remember that the text must be understood by even non-native English users. (Example: use "indexes" instead of "indices", it's correct English and more understandable to the foreign users because it's a regular plural.)
+</li></ul>
+<p>Examples:
+</p>
+<ul><li><i>Bad tooltip:</i> You can go to the next verse of the current work by clicking this button.
+</li><li><i>Better tooltip:</i> Go to the next verse of the current work
+</li><li><i>Good tooltip:</i> Next verse
+</li></ul>
+<h3> <span class="mw-headline" id="Capitalization">Capitalization</span></h3>
+<p>Use title-style capitalization for titles, sentence-style capitalization for all other UI elements. For details, see <a href="http://msdn2.microsoft.com/en-us/library/aa974176.aspx" class="external text" rel="nofollow">MS Vista HIG, User Interface Text</a>.
+</p>
+<ul><li>Window titles are title-style
+</li><li>Buttons, tabs, menu items, labels etc. are sentence-style
+</li><li>Even grouping headers are sentence-style
+</li><li>Bookshelf Manager is a title, use title-case in all places, even in menu
+</li></ul>
+<h2> <span class="mw-headline" id="Coding_style"> Coding style </span></h2>
+<p>In general, source code should be as readable as possible. In case following any of the rules below makes code look too bad, then sometimes rules may be ignored.
+</p>
+<h3> <span class="mw-headline" id="General_class_header_file_structure"> General class header file structure </span></h3>
+<p>This is the general class header file structure for class ClassName, which inherits from BaseClassName:
+</p>
+<ol><li> Licence
+</li><li> empty line
+</li><li> <span style="font-family:monospace">#ifndef CLASSNAME_H</span>
+</li><li> <span style="font-family:monospace">#define CLASSNAME_H</span>
+</li><li> empty line
+</li><li> <span style="font-family:monospace">#include "baseclassname.h"</span>
+</li><li> empty line
+</li><li> Global includes, alphabetically ordered, e.g. <span style="font-family:monospace">#include &lt;QObject&gt;</span>
+</li><li> Local includes, alphabetically ordered, e.g. <span style="font-family:monospace">#include &quot;someclassname.h&quot;</span>
+</li><li> two empty lines
+</li><li> Macros
+</li><li> empty line
+</li><li> Global forward declarations, alphabetically ordered
+</li><li> empty line
+</li><li> <span style="font-family:monospace">namespace ThisClassNamespace {</span>
+</li><li> empty line
+</li><li> Local forward declarations, alphabetically ordered
+</li><li> empty line
+</li><li> Struct, class, typedef etc declarations separated by empty lines
+</li><li> empty line
+</li><li> Any other declarations for namespace, longer inlined or template code.
+</li><li> empty line
+</li><li> <span style="font-family:monospace">} // namespace ThisClassNamespace</span>
+</li><li> empty line
+</li><li> Any other declarations, macros.
+</li><li> empty line
+</li><li> <span style="font-family:monospace">#endif CLASSNAME_H</span>
+</li><li> empty line
+</li></ol>
+<h3> <span class="mw-headline" id="General_class_source_file_structure"> General class source file structure </span></h3>
+<p>This is the general class header file structure for class ClassName:
+</p>
+<ol><li> Licence
+</li><li> empty line
+</li><li> <span style="font-family:monospace">#include "classname.h"</span>
+</li><li> empty line
+</li><li> Global includes, alphabetically ordered, e.g. <span style="font-family:monospace">#include &lt;QObject&gt;</span>
+</li><li> Local includes, alphabetically ordered, e.g. <span style="font-family:monospace">#include &quot;someclassname.h&quot;</span>
+</li><li> two empty lines
+</li><li> Macros and anonymous namespaces
+</li><li> two empty lines
+</li><li> <span style="font-family:monospace">namespace ThisClassNamespace {</span>
+</li><li> definitions of class static variables
+</li><li> empty line
+</li><li> constructor definitions (separated by empty lines)
+</li><li> empty line
+</li><li> destructor definition
+</li><li> empty line
+</li><li> method definitions (separated by empty lines)
+</li><li> empty line
+</li><li> <span style="font-family:monospace">} namespace ThisClassNamespace</span>
+</li><li> empty line
+</li></ol>
+<h3> <span class="mw-headline" id="Line_length"> Line length </span></h3>
+<p>Please try to fit all source code lines to 80 characters. Local <span style="font-family:monospace">typedef</span>s, <span style="font-family:monospace">using</span> clauses and temporary references can help:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Line length limiting example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>void print(const SomeClass &amp;container) {
+    using namespace this::is::very::nested;
+    typedef std::map&lt;Foo, std::list&lt;Bar&gt; &gt; FBLM;
+    typedef std::map&lt;Foo, std::list&lt;Bar&gt; &gt;::const_iterator FBLMCI;
+    const FBLM &amp;theMap = container.getMap();
+    for (FBLMCI it = theMap.begin(); it != theMap.end(); it++) {
+        
+    }
+}</code></div>
+</td></tr></table>
+<p>If possible, try to use somewhat intuitive abbrevations, e.g. "FBLMCI" could stand for "FooBarListMapConstIterator", i.e. <span style="font-family:monospace">std::map&lt;Foo, std::list&lt;Bar&gt; &gt;::const_iterator</span>.
+</p>
+<h3> <span class="mw-headline" id="Indentation"> Indentation </span></h3>
+<p>One indentation level is <b>four spaces</b>. We do not use tabs to ensure that all text editors have the same display result.
+</p><p>Preprocessor directives should also be indented to the same level as code. The preprocessor blocks themselves are not required to introduce more indentation.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Example of indenting preprocessor directives
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>void f() {
+    #ifndef NDEBUG
+    #if STUFF &gt; 0
+    std::cerr &lt;&lt; &quot;STUFF is &quot; &lt;&lt; STUFF &lt;&lt; std::endl;
+    #endif
+    #endif
+}</code></div>
+</td></tr></table>
+<p>However, indentation may be used for clarity, i.e. in <tt>#if</tt> blocks, but keep in mind that regular code should also be indented. Here's how <b>NOT</b> to write the above example:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Bad (!!!) example of indenting preprocessor directives
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>void f() {
+    #ifndef NDEBUG
+        #if STUFF &gt; 0
+    std::cerr &lt;&lt; &quot;STUFF is &quot; &lt;&lt; STUFF &lt;&lt; std::endl; // SHOULD BE INDENTED!!!
+        #endif
+    #endif
+}</code></div>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Namespaces"> Namespaces </span></h3>
+<p>Namespaces are not indented and neither are their contents. An exception to this are forward declarations, which may be indented, if they're the only thing inside the namespace declaration:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Example of indenting forward declarations inside namespaces
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>namespace Foo {
+    class FooBar;
+}
+class Bar;</code></div>
+</td></tr></table>
+<p>In other cases, code inside namespaces is not indented:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Namespace indentation example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>namespace Foo {
+
+struct Bar;
+
+struct Baz {
+    int a;
+};
+
+} // namespace Foo</code></div>
+</td></tr></table>
+<p>If some namespace block spans many lines, a comment should be present after the closing brace, indicating what namespace it ends. See example above.
+</p>
+<h3> <span class="mw-headline" id="Classes"> Classes </span></h3>
+<p>Class member visibility specifiers (<span style="font-family:monospace">public</span>, <span style="font-family:monospace">protected</span>, <span style="font-family:monospace">private</span>, <span style="font-family:monospace">signals</span>) as well as Qt class macros (e.g. <span style="font-family:monospace">Q_OBJECT</span>) are indented once, all other members are indented twice. Each visibility specifier (except specifiers for signals and slots) should also have a comment with the text "Types:", "Methods:" or "Fields:" indicating the type of members that follow. Duplication of visibility specifiers is needed to group all all class members properly.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Class example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>class Bar: public QObject {
+    Q_OBJECT
+
+    public: /* Types: */
+        typedef int Baz;
+
+    public: /* Methods: */
+        Bar();
+        virtual ~Bar();
+
+    protected: /* Methods: */
+        virtual Baz setBaz(const Baz &amp;baz);
+
+    protected: /* Fields: */
+        Baz m_baz;
+}; // class Bar</code></div>
+</td></tr></table>
+<p>For long class declarations, a comment should be present after the closing brace, indicating what class declaration it ends. See example above.
+</p>
+<h3> <span class="mw-headline" id="Switches"> Switches </span></h3>
+<p>Cases are indented once, their contents are indented twice.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Switch example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>switch (foo) {
+    case 1:
+    {
+        Foo f = getFoo();
+        f.setValue(123);
+        a.setFoo(f);
+        break;
+    }
+    case 2: // Fall through
+    case 3:
+        a.setFoo(b.getFoo());
+        break;
+    default:
+        break;
+}</code></div>
+</td></tr></table>
+<p>For long switch statements, a comment should be present after the closing brace, indicating what switch statement it ends.
+</p>
+<h3> <span class="mw-headline" id="Blocks"> Blocks </span></h3>
+<p>Braces should generally open the block on the same line as the preceding keyword or function signature. If the preceding code or function signature spans multiple lines, the opening brace should be put on a new line.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Block examples
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>inline function doFoo() { Foo::getInstance()-&gt;doSomething(); }
+
+function bar(const SomeNamespace::SomeClass &amp;c,
+             OtherNamespace::OtherClass *p)
+{
+    Foo &amp;f = c.foo();
+    if (p-&gt;canAccept(f)) {
+        p-&gt;accept(f);
+    }
+}</code></div>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Operators"> Operators </span></h3>
+<p>There always must be space around binary and ternary operators. For very long expressions, break lines on the same subexpression level, before the operator.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Long expression example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>
+if ((a || b == 123 + c * 10)
+    &amp;&amp; (c + d &lt; limit()))
+{
+    doStuff();
+}</code></div>
+</td></tr></table>
+<h3> <span class="mw-headline" id="Initializer_lists"> Initializer lists </span></h3>
+<p>After the definition of the constructor, list all base class constructors and member variable inititializations in separate lines. Then comes the main constructor code block.
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Initializer list example
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>Foo::Foo(const QObject *parent)
+    : AbstractFoo(parent)
+    , m_bar(Bar::DEFAULT)
+{
+    // Intentionally empty
+}</code></div>
+</td></tr></table>
+<h2> <span class="mw-headline" id="Compiler_strictness">Compiler strictness</span></h2>
+<p>In normal development builds, the compiler will perform a very strict error checking with the flags "-Wall -Werror -pedantic-errors". This means that all compiler warnings will abort the build. Therefore code is not allowed to produce any compiler warnings. For developers this may seem nasty at times, but I'm convinced this will prove very helpful in future (find bugs before they find you).  One example where the stricter compiler checking can help find potential bugs is "inheritance / virtual functions".
+</p>
+<h2> <span class="mw-headline" id="Checkin_restrictions">Checkin restrictions</span></h2>
+<ul><li> Checked in code has to compile
+</li><li> Don't check in commented out code
+</li><li> Do not check in code that is only needed for development and active by default
+<ul><li> You can use a commandline switch like --debug to activate development-specific code. See main.cpp for an example (qDebug() messages will only be output if the user specified --debug as a commandline argument).
+</li></ul>
+</li></ul>
+<h1> <span class="mw-headline" id="Mandatory_programming_principles"> Mandatory programming principles </span></h1>
+<h2> <span class="mw-headline" id="DRY_.28Don.27t_Repeat_Yourself.29"> DRY (Don't Repeat Yourself) </span></h2>
+<p>This simple principle means that every piece of information (data or logic) may be represented only <b>once</b> in a system (= program).
+</p>
+<ul><li> <a href="http://www.artima.com/intv/dry.html" class="external free" rel="nofollow">http://www.artima.com/intv/dry.html</a>
+</li><li> Related: <a href="http://c2.com/cgi/wiki?OnceAndOnlyOnce" class="external free" rel="nofollow">http://c2.com/cgi/wiki?OnceAndOnlyOnce</a>
+</li></ul>
+<h2> <span class="mw-headline" id="RAII_.28Resource_Acquisition_Is_Initialisation.29"> RAII (Resource Acquisition Is Initialisation) </span></h2>
+<p>Resource Acquisition Is Initialisation (RAII) is a powerful technique for managing allocation and deallocation of resources that was invented and popularised by Bjarne Stroustrup, the creator of C++. It allows easier managing of resources, and is the *only* sensible way to make resources exception safe.
+</p><p>This is how this heap resources are usually used by developers:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Common style of coding in C and C++
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>{
+    allocate_resources
+    use_resources
+    delete_resources
+}</code></div>
+</td></tr></table>
+<p>This however, is (1) error prone, because everything in delete_resources must be made to match that in allocate_resources, and if use_resources has an early exit condition it is even more difficult to program correctly; and (2) not exception safe, because use_resources might throw an exception, and the resources will be leaked.
+</p><p>The way RAII works, is by creating a wrapper class for each resource type, the class initializes or stores the resource in its constructor, and releases it in its destructor. Since C++ guarantees that objects will be destroyed when they fall out of scope, this will ensure that resources are freed automatically. Thus, code will look like this:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> The effects of RAII
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>{
+    allocate_resources
+    use_resources
+} // Resources are automatically freed on return</code></div>
+</td></tr></table>
+<p>We use <a href="http://doc.trolltech.com/qsharedpointer.html" class="external text" rel="nofollow">QSharedPointer</a> from Qt for just about any scoped resource management of this type that is needed. BibleTime developers should use the RAII technique for *all* scoped resource allocation and deallocation, as it is the only legitimate way to ensure exception safety, and thus to satisfy one of the Abraham's exception safety rules (see <a href="http://www.gotw.ca/gotw/082.htm" class="external free" rel="nofollow">http://www.gotw.ca/gotw/082.htm</a> for information on the Abraham's exception safety rules).
+</p><p>Put simply,
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Example of resource management without RAII
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>void f(int val) {
+    MyClass *obj = new MyClass(); // Allocate resources
+    obj-&gt;doSomething(val);        // Use resources
+    delete obj;                   // Free resources
+}</code></div>
+</td></tr></table>
+<p>becomes:
+</p>
+<table style="width: 100%; background-color: #f9f9f9; border: dashed 1px #0037ff; border-collapse:collapse; color: #000; margin: 0.6em 0;&#123;&#123;&#123;tableStyles}}}">
+<tr>
+<td style="background-color: #eee; border-bottom: 1px dashed #7391ff; font-size: 0.9em; padding: 0.1em 0.3em;&#123;&#123;&#123;topCellStyles}}}"> <span style="color: #107; font-weight:bold;&#123;&#123;&#123;typeStyles}}}">CODE:</span> Example of resource management with RAII
+</td></tr>
+<tr>
+<td style="padding: 0.3em 0.5em;&#123;&#123;&#123;bottomCellStyles}}}">
+<div style="border-width: 0; background: inherit; padding: 0; margin: 0; font-family: monospace; white-space: pre; line-height: 1em;&#123;&#123;&#123;bottomDivStyles}}}"><code>#include &quot;&lt;QSharedPointer&gt;&quot;
+
+void f(int val) {
+    QSharedPointer&lt;MyClass&gt; obj = new MyClass(); // Allocate resources
+    obj-&gt;doSomething(val);                       // Use resources
+} // Free resources</code></div>
+</td></tr></table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 1067/1000000
+Post-expand include size: 23104/2097152 bytes
+Template argument size: 3857/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1430-0!*!0!!en!*!edit=0 and timestamp 20140704190104 -->
+<div class="printfooter">
+Retrieved from "<a href="Programming_Guidelines.html">http://devel.bibletime.info/wiki/Programming_Guidelines</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="Programming_Guidelines.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="Talk:Programming_Guidelines.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="../index.php%3Ftitle=Programming_Guidelines&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="../index.php%3Ftitle=Programming_Guidelines&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="../index.php%3Ftitle=Special:UserLogin&amp;returnto=Programming_Guidelines.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../bibletime.info/bt-logo.png);" href="../index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="../index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="Special:WhatLinksHere/Programming_Guidelines.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="Special:RecentChangesLinked/Programming_Guidelines.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="../index.php%3Ftitle=Programming_Guidelines&amp;printable=yes.html" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="../index.php%3Ftitle=Programming_Guidelines&amp;oldid=3986.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="../skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 30 January 2014, at 12:00.</li>
+		<li id="viewcount">This page has been accessed 13,210 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="../load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Programming_Guidelines", "wgTitle": "Programming Guidelines", "wgAction": "view", "wgArticleId": 1430, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3986, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.241 secs. --></body></html>

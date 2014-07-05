@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<title>Development Plan - BibleTime</title>
+<meta name="generator" content="MediaWiki 1.17.0" />
+<meta name="robots" content="noindex,follow" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="opensearch_desc.php" title="BibleTime (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="api.php%3Faction=rsd" />
+<link rel="alternate" type="application/atom+xml" title="BibleTime Atom feed" href="index.php%3Ftitle=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="load.php%3Fdebug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint,shared&amp;only=styles&amp;printable=1&amp;skin=monobook&amp;*.css" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Development_Plan skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">Development Plan</h1>
+	<div id="bodyContent">
+		<div id="siteSub">From BibleTime</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#column-one">navigation</a>, <a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#searchInput">search</a></div>
+		<!-- start content -->
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Next_release:_BibleTime_2.9"><span class="tocnumber">1</span> <span class="toctext">Next release: BibleTime 2.9</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Open_ToDos"><span class="tocnumber">1.1</span> <span class="toctext">Open ToDos</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Bookshelf_manager"><span class="tocnumber">1.1.1</span> <span class="toctext">Bookshelf manager</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#About_dialog"><span class="tocnumber">1.1.2</span> <span class="toctext">About dialog</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Search_Dialog"><span class="tocnumber">1.1.3</span> <span class="toctext">Search Dialog</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Main_index_does_not_save_all_settings"><span class="tocnumber">1.1.4</span> <span class="toctext">Main index does not save all settings</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Optimize_HTML.2FCSS_.5Bmartin.5D"><span class="tocnumber">1.1.5</span> <span class="toctext">Optimize HTML/CSS [martin]</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Search_Dialog_.5B.3F.5D"><span class="tocnumber">1.1.6</span> <span class="toctext">Search Dialog [?]</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Installing_a_work_for_a_default_work_isn.27t_reflected_in_display_windows_.5B.3F.5D"><span class="tocnumber">1.1.7</span> <span class="toctext">Installing a work for a default work isn't reflected in display windows [?]</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Main_window"><span class="tocnumber">1.1.8</span> <span class="toctext">Main window</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Refresh_all_respositories"><span class="tocnumber">1.1.9</span> <span class="toctext">Refresh all respositories</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Future_release:_BibleTime_2.x"><span class="tocnumber">2</span> <span class="toctext">Future release: BibleTime 2.x</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Support_user-defined_tools"><span class="tocnumber">2.1</span> <span class="toctext">Support user-defined tools</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Bookshelf_model"><span class="tocnumber">2.2</span> <span class="toctext">Bookshelf model</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Module_chooser_bar.2Fbuttons"><span class="tocnumber">2.3</span> <span class="toctext">Module chooser bar/buttons</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Icons"><span class="tocnumber">2.4</span> <span class="toctext">Icons</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Drag_and_Drop_.5BEeli.5D"><span class="tocnumber">2.5</span> <span class="toctext">Drag and Drop [Eeli]</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Search_dock_.2F_panel"><span class="tocnumber">2.6</span> <span class="toctext">Search dock / panel</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Find_panel"><span class="tocnumber">2.7</span> <span class="toctext">Find panel</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Refreshing_can.27t_be_cancelled_.5Bcan_wait.5D"><span class="tocnumber">2.8</span> <span class="toctext">Refreshing can't be cancelled [can wait]</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Replace_FTP_transport_layer_.5BEeli.5D"><span class="tocnumber">2.9</span> <span class="toctext">Replace FTP transport layer [Eeli]</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Bugs_pending_to_be_fixed_by_Qt.2FTrolltech"><span class="tocnumber">3</span> <span class="toctext">Bugs pending to be fixed by Qt/Trolltech</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="index.php%3Ftitle=Development_Plan&amp;printable=yes.html#Display_window_handling"><span class="tocnumber">3.1</span> <span class="toctext">Display window handling</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<h1> <span class="mw-headline" id="Next_release:_BibleTime_2.9"> Next release: BibleTime 2.9 </span></h1>
+<p>See also: <a href="wiki/Release_Schedules/2.9.html" title="Release Schedules/2.9">Release Schedules/2.9</a>
+</p>
+<h2> <span class="mw-headline" id="Open_ToDos">Open ToDos</span></h2>
+<h3> <span class="mw-headline" id="Bookshelf_manager"> Bookshelf manager </span></h3>
+<ul><li> Refactor the indexing page to use the new bookshelf model (likely by using BtBookshelfWidget). -- <a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a> 22:02, 24 November 2010 (UTC)
+<ul><li> <b>DEPENDS ON:</b> The whole UI concept of the indexing page should be redesigned. Ideas needed.
+</li><li> If still present, the following old bug will also be fixed:
+<ul><li> <b>Removing a module while it is indexed crashes [Eeli]</b>
+<ul><li> This is not a surprise, but removing a module while it is being indexed causes crash. Indexing is (and has been) kind of a background job but it allows deleting the module simultaneously. I don't know if anyone will every do that and if it's worth fixing. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 22:55, 22 March 2008 (CET)
+</li><li> After testing the new module list change notification with the indexing dialog it became clear that this is difficult to implement without threaded indexing. Therefore I will implement this with threads later. (Threads give also real responsive concurrent UI - otherwise threads would not be worth it.) <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 12:53, 23 May 2008 (UTC)
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<h3> <span class="mw-headline" id="About_dialog"> About dialog </span></h3>
+<ul><li> Give credit to the people who created the icons. -- <a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a> 22:02, 24 November 2010 (UTC)
+</li></ul>
+<h3> <span class="mw-headline" id="Search_Dialog"> Search Dialog </span></h3>
+<ul><li> Rewrite the whole search dialog to accommodate the bookshelf model. -- <a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a> 22:02, 24 November 2010 (UTC)
+</li></ul>
+<h3> <span class="mw-headline" id="Main_index_does_not_save_all_settings">Main index does not save all settings</span></h3>
+<p>Saving/restoring the opened folders when restarting is not a good idea in my opinion (Jeremy agreed). All other settings are now saved/restored. Keeping the folders open after hiding/showing modules would be good but needs some code - basically it's the same logic when saving/restoring. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 12:57, 11 January 2008 (CET)
+</p>
+<ul><li> I will research whether this can be easily implemented. --<a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a> 22:02, 24 November 2010 (UTC)
+</li></ul>
+<h3> <span class="mw-headline" id="Optimize_HTML.2FCSS_.5Bmartin.5D">Optimize HTML/CSS [martin] </span></h3>
+<ul><li> Improve display without linebreaks (inline divs, correct outlines)
+</li><li> Improve HTML/CSS structure
+<ul><li> Output <a href="http://validator.w3.org/" class="external text" rel="nofollow">valid</a> XHTML <a href="http://www.w3.org/TR/xhtml1/" class="external text" rel="nofollow">1.0</a> and <a href="http://jigsaw.w3.org/css-validator/" class="external text" rel="nofollow">valid</a> CSS <a href="http://www.w3.org/TR/CSS21/" class="external text" rel="nofollow">2.1</a>&#160;?
+</li></ul>
+</li><li> Improve debugging facilities
+</li></ul>
+<h3> <span class="mw-headline" id="Search_Dialog_.5B.3F.5D">Search Dialog [?]</span></h3>
+<ul><li> Enable context menus on verse references like in the main window.
+</li></ul>
+<h3> <span class="mw-headline" id="Installing_a_work_for_a_default_work_isn.27t_reflected_in_display_windows_.5B.3F.5D">Installing a work for a default work isn't reflected in display windows [?]</span></h3>
+<p>If there's e.g. no Bible installed for a default Bible to exist or Strong's dictionary, the footnotes or Strongs' don't show up in Mag. If I install one, it will automatically be shown in the Config dialog Standard works. However, that change is not reflected in the main window. I have to apply the changes in the Config dialog for them to take effect. This will probably lead some users to quit and restart the app.  <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 22:16, 26 March 2009 (UTC)
+</p>
+<h3> <span class="mw-headline" id="Main_window"> Main window </span></h3>
+<ul><li> Add text to the icons in the main toolbar (next to them). Make Icons larger.
+</li></ul>
+<h3> <span class="mw-headline" id="Refresh_all_respositories"> Refresh all respositories </span></h3>
+<p>Refresh all respositories in the bookshelf manager. Feature Request <a href="https://sourceforge.net/tracker/?func=detail&amp;aid=2969485&amp;group_id=954&amp;atid=350954" class="external text" rel="nofollow">2969485</a>
+</p>
+<h1> <span class="mw-headline" id="Future_release:_BibleTime_2.x"> Future release: BibleTime 2.x </span></h1>
+<h2> <span class="mw-headline" id="Support_user-defined_tools"> Support user-defined tools </span></h2>
+<p>Allow users to configure and use custom tools. Currently, for more information, see <a href="http://www.crosswire.org/pipermail/bt-devel/2010-June/010269.html" class="external text" rel="nofollow">this thread</a>. Brainstorming ideas:
+</p>
+<ul><li> Support for <a href="http://doc.trolltech.com/latest/qtscript.html" class="external text" rel="nofollow">QtScript</a>?
+</li></ul>
+<h2> <span class="mw-headline" id="Bookshelf_model"> Bookshelf model </span></h2>
+<p>Everything even remotely using QTreeWidget, QTreeWidgetItem's and will be rewritten, mostly for the purpose of code cleanup. They all will then use the new bookshelf model, which will simplify code management in the future.
+</p>
+<dl><dd> Perhaps I will have the time to do all this in the summer. -- <a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a>
+</dd><dd> there is cool widget that supports list/tree models, but it is oriented for mobile devices. Any way have a look on it: Mini Branch/src/frontend-mini/view/btminiview.h --<a href="http://devel.bibletime.info/index.php?title=User:Kalemas&amp;action=edit&amp;redlink=1" class="new" title="User:Kalemas (page does not exist)">Kalemas</a> 02:52, 15 July 2011 (CDT)
+</dd></dl>
+<h2> <span class="mw-headline" id="Module_chooser_bar.2Fbuttons"> Module chooser bar/buttons </span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="index.php%3Ftitle=Special:Upload&amp;wpDestFile=BtModuleChooserBar_2.6.png.html" class="new" title="File:BtModuleChooserBar 2.6.png">File:BtModuleChooserBar 2.6.png</a>  <div class="thumbcaption">Module chooser toolbar in BibleTime 2.6</div></div></div>
+<ul><li> Refactor the module chooser buttons to use the new bookshelf model (using BtMenuView).
+<ul><li> <b>MIGHT DEPEND ON:</b> <tt>CDisplayWindow</tt> and related classes using <tt>CSwordModuleInfo*</tt> pointers (e.g. a bookshelf model) instead of a <tt>QStringList</tt> of module names.
+<ul><li> <b>DEPENDS ON:</b> Removal <tt>CSwordBackend::reload()</tt> and related signals which reload the whole backend. We should use the bookshelf model instead.
+</li></ul>
+</li></ul>
+</li><li> <b>DEPENDS ON:</b> New module chooser bar widget. Should probably be similar to the old module chooser bar widget (BtModuleChooserBar).
+<ul><li> Constructor signature should be something like <tt>BtModuleChooserBar(QWidget *parent = 0);</tt>
+</li><li> Must use an external <tt>BtBookshelfModel</tt> for the list of open modules (CSwordModuleInfo).
+<ul><li> Must react to changes in the external model (insertion, removal, change of data)
+</li><li> Must have a <tt>setModel(BtBookshelfModel *)</tt> method.
+</li></ul>
+</li><li> Must use <tt>BtMenuView</tt> for the button menus.
+</li><li> Should probably provide the following signals:
+<ul><li> <tt>signalModuleAdded(int index, CSwordModuleInfo *module);</tt>
+</li><li> <tt>signalModuleRemoved(int index, CSwordModuleInfo *module);</tt>
+</li><li> <tt>signalModuleReplaced(int index, CSwordModuleInfo *oldModule, CSwordModuleInfo *newModule);</tt>
+</li></ul>
+</li></ul>
+</li></ul>
+<h2> <span class="mw-headline" id="Icons"> Icons </span></h2>
+<p>(It's easier to handle all icons under the same header though they are in different places in UI and code.)
+</p><p>There are some icons missing. Add here the ones you notice.
+</p>
+<ul><li> Display window RMB menu copy, save, print (former KStandardActions) <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 19:45, 25 February 2009 (UTC)
+</li></ul>
+<p>Unless new missing icons are found these will be fixed later. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 16:10, 23 May 2008 (UTC)
+</p>
+<h2> <span class="mw-headline" id="Drag_and_Drop_.5BEeli.5D"> Drag and Drop [Eeli] </span></h2>
+<p>Drag and drop works in some places:
+</p>
+<ul><li> Verse numbers and crossreferences can be dragged to a display window from a display window, mag window and search preview window
+</li><li> Verse numbers and crossreferences can be dragged to the bookmarks index
+</li></ul>
+<p>It doesn't work in some places:
+</p>
+<ul><li> Verse numbers or references can't be dropped into the bookshelf index to open a work though the index claims it accepts drops (fixed temporarily by not accepting drops - not very important, LATER)
+</li><li> References can't be dragged from the Search dialog result verse list (FIXME before the next release!) DONE
+</li><li> Are there other situations where we need DnD? I think I tested systemwide DnD once, it would be nice to be able to drag into other apps, but it's not urgent. (Dragging from display window to other apps is now implemented - very easy.) <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 20:47, 24 May 2008 (UTC)
+</li></ul>
+<h2> <span class="mw-headline" id="Search_dock_.2F_panel"> Search dock / panel </span></h2>
+<p>The main window could have a dock widget or a panel to replace the search dialog.
+</p>
+<h2> <span class="mw-headline" id="Find_panel"> Find panel </span></h2>
+<p>Display windows could have a find panel instead a dialog like most current web-browsers do.
+</p>
+<h2> <span class="mw-headline" id="Refreshing_can.27t_be_cancelled_.5Bcan_wait.5D"> Refreshing can't be cancelled [can wait] </span></h2>
+<p>Cancel in Refresh Source dialog does nothing. Cancelling was meant for situations when the network connection is broken or the source is misconfigured. The Sword library can't test the connection so it just hangs and the whole app hangs. Possible cure: use threads, again. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 16:08, 23 May 2008 (UTC)
+</p>
+<h2> <span class="mw-headline" id="Replace_FTP_transport_layer_.5BEeli.5D"> Replace FTP transport layer [Eeli] </span></h2>
+<p>Sword's FTP transport turned out to be not threadsafe. Eeli is working on a QFtp based, thread safe replacement.
+</p>
+<ul><li>This will wait until I have more free time. The current implementation works well enough. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 19:42, 25 February 2009 (UTC)
+</li></ul>
+<h1> <span class="mw-headline" id="Bugs_pending_to_be_fixed_by_Qt.2FTrolltech"> Bugs pending to be fixed by Qt/Trolltech </span></h1>
+<h2> <span class="mw-headline" id="Display_window_handling"> Display window handling </span></h2>
+<p>With several windows maximizing + restoring restores the maximized window to a wrong position, always top left. Same thing with opening a new window: it's always top left, re-ordering the previous windows. <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 15:28, 30 March 2008 (CEST)
+</p>
+<ul><li> This is a bug in QT. Qt 4.4 will contain the functions needed to realize the correct behaviour. --mgruner
+<ul><li> Bug still present in Qt 4.4. Submitted a report. --mgruner
+<ul><li> TT reported this to be fixed, should appear in QT 4.5. --mgruner
+</li><li> Has this been verified? <a href="wiki/User:Eelik.html" title="User:Eelik">Eelik</a> 17:42, 16 March 2009 (UTC)
+<ul><li> Still buggy in 4.5. =( --mgruner
+<ul><li> Where is the upstream bug report? --<a href="wiki/User:Jotik.html" title="User:Jotik">jotik</a> 19:17, 18 September 2010 (UTC)
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 90/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key joachima_btwiki:pcache:idhash:1475-0!*!0!!en!2!edit=0 and timestamp 20140705181240 -->
+<div class="printfooter">
+Retrieved from "<a href="wiki/Development_Plan.html">http://devel.bibletime.info/wiki/Development_Plan</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="wiki/Development_Plan.html" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk"><a href="wiki/Talk:Development_Plan.html" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="index.php%3Ftitle=Development_Plan&amp;action=edit.html" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="index.php%3Ftitle=Development_Plan&amp;action=history.html" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-anonuserpage"><a href="http://devel.bibletime.info/wiki/User:127.0.0.1" title="The user page for the IP address you are editing as [.]" accesskey="." class="new">127.0.0.1</a></li>
+				<li id="pt-anontalk"><a href="http://devel.bibletime.info/wiki/User_talk:127.0.0.1" title="Discussion about edits from this IP address [n]" accesskey="n" class="new">Talk for this IP address</a></li>
+				<li id="pt-anonlogin"><a href="index.php%3Ftitle=Special:UserLogin&amp;returnto=Development_Plan&amp;returntoquery=printable=yes.html" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(bibletime.info/bt-logo.png);" href="index.html" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-wiki_navigation'>
+		<h5>wiki navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="index.html" title="Visit the main page [z]" accesskey="z">Main Page</a></li>
+				<li id="n-recentchanges"><a href="wiki/Special:RecentChanges.html" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="wiki/Special:Random.html" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="wiki/Help:Contents.html" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="http://devel.bibletime.info/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search BibleTime" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&#160;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="wiki/Special:WhatLinksHere/Development_Plan.html" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="wiki/Special:RecentChangesLinked/Development_Plan.html" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="wiki/Special:SpecialPages.html" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-permalink"><a href="index.php%3Ftitle=Development_Plan&amp;oldid=3848.html" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+	<div class='generated-sidebar portlet' id='p-links'>
+		<h5>links</h5>
+		<div class='pBody'>
+<div style="width:100%;margin:0;border-width: 0;padding:0;text-align:center;font-size:95%"><a href="http://bibletime.info/">web</a>,&nbsp;<a href="http://bugs.bibletime.info/">bugs</a>,&nbsp;<a href="http://gitorious.org/bibletime/">git</a>,&nbsp;<a href="http://sourceforge.net/projects/bibletime/">sf</a></div>		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="http://www.mediawiki.org/"><img src="skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 15 July 2011, at 07:52.</li>
+		<li id="viewcount">This page has been accessed 98,229 times.</li>
+		<li id="privacy"><a href="http://devel.bibletime.info/wiki/BibleTime:Privacy_policy" title="BibleTime:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="wiki/BibleTime:About.html" title="BibleTime:About">About BibleTime</a></li>
+		<li id="disclaimer"><a href="http://devel.bibletime.info/wiki/BibleTime:General_disclaimer" title="BibleTime:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script src="load.php%3Fdebug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;printable=1&amp;skin=monobook&amp;*"></script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Development_Plan", "wgTitle": "Development Plan", "wgAction": "view", "wgArticleId": 1475, "wgIsArticle": true, "wgUserName": null, "wgUserGroups": ["*"], "wgCurRevisionId": 3848, "wgCategories": [], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": []});
+}
+</script>
+<script>if ( window.mediaWiki ) {
+	mediaWiki.loader.load(["mediawiki.util", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax"]);
+	mediaWiki.loader.go();
+}
+</script>
+
+<script>if ( window.mediaWiki ) {
+	mediaWiki.user.options.set({"ccmeonemails":0,"cols":80,"contextchars":50,"contextlines":5,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":1,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":0,
+	"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;mediaWiki.loader.state({"user.options":"ready"});
+}
+</script><!-- Served in 0.211 secs. --></body></html>
